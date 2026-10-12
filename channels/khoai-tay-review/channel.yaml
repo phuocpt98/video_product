@@ -1,0 +1,123 @@
+# Kênh Khoai Tây Review. Nguồn đúng về thương hiệu kênh; kế hoạch ở docs/plans/channel.md
+name: Khoai Tây Review
+handle: "@khoaitayreview"   # chưa xác nhận còn trống trên YouTube và TikTok
+color: "#F29B36"
+brand:
+  avatar: brand/avatar_1024.png
+  mascot_reference: brand/avatar_master.png
+  banner: brand/banner_2560x1440.png   # 2560x1440, chữ nằm trong vùng an toàn 1546x423
+  font: assets/fonts/BeVietnamPro-*.ttf  # OFL, dùng thương mại được
+schedule: "1-2 video/ngày, 19h-22h"
+tiktok_bio: "Nghe truyện drama, đô thị, trọng sinh 🥔 Full mỗi trưa 12h trên YouTube"   # ≤ 80 ký tự; Người sáng lập chọn 28/9/2026 (giữ đúng giờ đăng 12h)
+tts:   # Người sáng lập chọn ngày 26/9/2026
+  engine: vieneu-v3-turbo   # chạy local, Apache-2.0
+  voice: Ngọc Huyền         # mặc định (nữ, Bắc, đọc tự nhiên)
+  voice_backup: Trúc Ly
+  speed: 1.34               # tăng tốc bằng ffmpeg atempo; Người sáng lập chốt 28/9: nhanh thêm 20% so với 1.12 (26/9)
+
+visual_style: "simple rustic chibi cartoon, big round head about one third of the body height, NO neck (the head sits directly on the shoulders), small simple body, thick uniform black outlines, flat solid colors, no shading, no highlights, minimal details, simple cute faces, early-2000s Chinese TV cartoon / Flash animation look, simple flat background, no 3D, no photorealism, no gradients"   # Người sáng lập chốt 27/9/2026: chibi mộc mạc, đầu to, không cổ
+
+keywords:   # YouTube Studio > Cài đặt > Kênh > Từ khoá (giới hạn khoảng 500 ký tự)
+  - khoai tây review
+  - nghe truyện
+  - truyện audio
+  - truyện full
+  - truyện đô thị
+  - truyện hệ thống
+  - truyện trọng sinh
+  - trọng sinh làm giàu
+  - truyện làm giàu
+  - truyện vả mặt
+  - truyện lật kèo
+  - truyện nghịch tập
+  - truyện quan trường
+  - truyện đô thị hệ thống
+  - truyện audio full
+  - nghe truyện đêm khuya
+  - review truyện
+  - truyen audio
+  - nghe truyen
+  - truyen do thi
+
+description: |
+  🥔 Khoai Tây Review – nơi kể lại những bộ truyện đô thị, hệ thống, trọng sinh làm giàu cuốn nhất, theo cách dễ nghe nhất.
+
+  Bị coi thường, bị phản bội, bị dồn tới đường cùng… rồi lật kèo ngoạn mục. Nếu bạn mê cảm giác "vả mặt" sảng khoái, thích nghe nhân vật chính từ tay trắng đi lên đỉnh cao, thì đây là chỗ dành cho bạn.
+
+  📚 Ở kênh có gì:
+  • Truyện FULL dài, nghe liền một mạch, có mốc chương để tua nhanh
+  • Truyện đô thị, hệ thống, trọng sinh, làm giàu, quan trường
+  • Mỗi tối một truyện mới, khung giờ 19h–22h
+
+  🎧 Nghe lúc làm việc, lái xe, tập thể dục hay trước khi ngủ đều hợp.
+
+  ✍️ Kịch bản được Khoai Tây biên tập và kể lại theo phong cách riêng, có thêm lời bình của người kể, không đọc nguyên văn bản gốc. Kênh sử dụng giọng đọc AI và hình ảnh do kênh tự tạo.
+
+  👉 Bấm Đăng ký và bật chuông 🔔 để không bỏ lỡ truyện mới.
+  💬 Muốn nghe truyện gì? Để lại tên truyện ở phần bình luận nhé!
+
+  📩 Liên hệ công việc, bản quyền: <email>
+
+# YouTube Studio > Cài đặt > Mặc định tải lên. Pipeline (channel-manager) sẽ tự điền thay chỗ <...>
+upload_defaults:
+  title: "[FULL] <Câu móc: nỗi đau + ai ngờ + con số> | <Tên truyện> | Khoai Tây Review"
+  category: Giải trí
+  language: Tiếng Việt
+  license: Giấy phép chuẩn của YouTube
+  comments: Giữ lại bình luận có thể không phù hợp để xem xét
+  tags: [khoai tây review, nghe truyện, truyện audio, truyện full, truyện đô thị, truyện hệ thống, truyện trọng sinh, truyện làm giàu, truyện vả mặt]
+  description: |
+    <Tóm tắt 2–3 câu: nhân vật chính bị khinh ra sao, bước ngoặt gì, lật kèo tới đâu – KHÔNG spoil kết.>
+
+    📖 Truyện: <Tên truyện> | Thể loại: <đô thị / hệ thống / trọng sinh>
+    ⏱️ Mốc chương:
+    00:00:00 Mở đầu
+    <00:00:00 Chương 1 – ...>
+
+    👉 Đăng ký kênh + bật chuông 🔔 để nghe truyện mới mỗi tối 19h–22h.
+    🎬 Xem thêm truyện cùng thể loại: <link playlist>
+    📱 TikTok: <link TikTok>
+    ☕ Ủng hộ Khoai Tây: <thông tin donate / QR>
+
+    ✍️ Kịch bản do Khoai Tây Review biên tập và kể lại theo phong cách riêng, có lời bình của người kể; tên nhân vật và một số tình tiết đã được thay đổi. Video sử dụng giọng đọc AI và hình ảnh do kênh tự tạo.
+    📩 Liên hệ công việc, bản quyền: <email>
+
+    #nghetruyen #truyenaudio #khoaitayreview
+
+# Hashtag. YouTube: tối đa 15 cái/video (quá 15 thì YouTube bỏ qua TẤT CẢ), 3 cái đầu hiện trên tiêu đề
+hashtags:
+  youtube_top3: ["#nghetruyen", "#truyenaudio", "#khoaitayreview"]
+  youtube_common: ["#truyenfull", "#reviewtruyen", "#truyenhay", "#nghetruyendemkhuya"]
+  youtube_by_genre:   # chọn 1 nhóm theo truyện, tổng cộng không quá 15
+    do_thi: ["#truyendothi", "#dothi", "#truyenvamat", "#latkeo"]
+    he_thong: ["#truyenhethong", "#hethong", "#truyenvamat"]
+    trong_sinh: ["#truyentrongsinh", "#trongsinh", "#trongsinhlamgiau"]
+    lam_giau: ["#truyenlamgiau", "#lamgiau", "#nghichtap"]
+    quan_truong: ["#truyenquantruong", "#quantruong"]
+  tiktok_max: 5   # TikTok tối đa 5 hashtag/video (Người sáng lập chốt 28/9/2026): lấy nhóm thể loại trước, rồi tiktok_common theo thứ tự
+  tiktok_common: ["#khoaitayreview", "#nghetruyen", "#truyenaudio", "#reviewtruyen", "#truyenhay", "#xuhuong"]
+  tiktok_by_genre:
+    do_thi: ["#truyendothi", "#vamat"]
+    he_thong: ["#truyenhethong"]
+    trong_sinh: ["#trongsinh"]
+    drama: ["#truyendrama", "#vamat", "#truyenngan"]
+
+# Danh sách phát. Tạo sẵn các danh sách "core"; danh sách theo truyện chỉ tạo khi truyện có từ 2 phần trở lên
+playlists:
+  core:
+    - title: "Truyện FULL | Nghe Liền Một Mạch"
+      description: "Tổng hợp truyện FULL của Khoai Tây Review: đô thị, hệ thống, trọng sinh làm giàu. Nghe liền một mạch, có mốc chương để tua. Truyện mới mỗi tối 19h–22h. #truyenfull #nghetruyen #khoaitayreview"
+    - title: "Truyện Đô Thị Vả Mặt | Lật Kèo Cực Gắt"
+      description: "Bị coi thường, bị phản bội, rồi lật kèo ngoạn mục. Tuyển tập truyện đô thị vả mặt sảng khoái nhất do Khoai Tây kể lại. #truyendothi #truyenvamat #latkeo"
+    - title: "Truyện Hệ Thống | Kích Hoạt Là Đổi Đời"
+      description: "Nhân vật chính kích hoạt hệ thống, từ tay trắng lên đỉnh cao. Tuyển tập truyện hệ thống hay nhất. #truyenhethong #hethong #nghetruyen"
+    - title: "Truyện Trọng Sinh Làm Giàu | Làm Lại Cuộc Đời"
+      description: "Trọng sinh về quá khứ, biết trước tương lai, làm giàu và báo thù. Tuyển tập truyện trọng sinh làm giàu cuốn nhất. #truyentrongsinh #trongsinhlamgiau #lamgiau"
+    - title: "Nghe Truyện Đêm Khuya | Dễ Ngủ, Dễ Nghe"
+      description: "Truyện dài, giọng kể đều, hợp nghe trước khi ngủ, lúc lái xe hay làm việc. #nghetruyendemkhuya #truyenaudio #khoaitayreview"
+  later:   # tạo khi có nội dung
+    - title: "Truyện Quan Trường | Leo Lên Đỉnh Quyền Lực"   # khi thử ngách phụ
+    - title: "Tập Mở Đầu | Nghe Thử Truyện Mới"             # các bản P1 làm mồi
+  per_story_template:
+    title: "<Tên truyện> | Trọn Bộ Theo Thứ Tự"
+    description: "Nghe <Tên truyện> theo đúng thứ tự từ phần 1. <Tóm tắt 1 câu>. Khoai Tây Review kể lại, truyện mới mỗi tối 19h–22h."

@@ -1,0 +1,17 @@
+id: car-interior
+type: establishing
+group: giao thông
+tags:
+- trong xe hơi
+characters: []
+master: master.jpg
+size:
+- 1401
+- 760
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: the inside of a car seen from the back seat towards the driver seat and windshield

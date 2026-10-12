@@ -1,0 +1,14 @@
+# Bí mật
+.env
+**/cookies.json
+
+# Nháp, cache
+tmp/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+
+# Cài đặt cá nhân
+.claude/settings.local.json
+.idea/

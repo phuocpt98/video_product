@@ -1,0 +1,18 @@
+id: hospital-corridor
+type: establishing
+group: bệnh viện & pháp lý
+tags:
+- hành lang bệnh viện
+characters: []
+master: master.jpg
+size:
+- 1404
+- 764
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'a hospital corridor: row of waiting chairs along the back wall, doors to
+  exam rooms, a small ultrasound room door, wide empty clean floor in the foreground'

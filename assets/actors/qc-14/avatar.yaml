@@ -1,0 +1,13 @@
+head: head-grey-short
+eyes: eyes6
+mouth: mouth3
+nose: nose7
+extras:
+- glasses-round
+skin: '#f7d2b0'
+body:
+  outfit: m-oldman
+  build: fat
+look: quần chúng
+roles:
+- quần chúng

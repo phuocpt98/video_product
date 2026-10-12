@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>AI Action Animation Research</title>
+  <style>
+    :root{
+      color-scheme: light dark;
+      --bg:#f1efe9;--paper:#faf9f5;--ink:#171715;--muted:#5f5d57;--line:#c9c5ba;
+      --accent:#ce3b22;--accent-soft:#f2d8d1;--dark:#161819;--dark-2:#232627;--white:#fff;
+      --green:#1d765d;--shadow:0 18px 48px rgba(42,36,25,.11);
+    }
+    @media(prefers-color-scheme:dark){
+      :root{--bg:#111313;--paper:#1a1c1c;--ink:#f2f0e9;--muted:#b8b6ae;--line:#3a3d3c;--accent:#ff6648;--accent-soft:#40231f;--dark:#090a0a;--dark-2:#1e2121;--green:#60c5a1;--shadow:0 22px 60px rgba(0,0,0,.35)}
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Avenir Next",Avenir,"Segoe UI",sans-serif;line-height:1.55}
+    a{color:inherit}
+    button{font:inherit}
+    .top-rule{height:7px;background:linear-gradient(90deg,var(--accent) 0 34%,var(--dark) 34%)}
+    main{max-width:1180px;margin:auto;padding:0 28px 90px}
+    .hero{display:grid;grid-template-columns:1.18fr .82fr;gap:58px;padding:72px 0 58px;align-items:end;border-bottom:1px solid var(--line)}
+    .hero h1{font-family:"Arial Narrow","Avenir Next Condensed",sans-serif;font-stretch:condensed;text-transform:uppercase;font-size:clamp(46px,7.2vw,98px);line-height:.88;letter-spacing:-.045em;margin:0;max-width:900px}
+    .hero h1 em{font-style:normal;color:var(--accent)}
+    .hero-side{padding-bottom:4px}
+    .hero-side p{font-size:18px;margin:0 0 22px;max-width:36ch;color:var(--muted)}
+    .verdict{display:grid;grid-template-columns:7px 1fr;gap:16px;align-items:stretch}
+    .verdict:before{content:"";background:var(--accent)}
+    .verdict strong{display:block;font-family:"Arial Narrow","Avenir Next Condensed",sans-serif;text-transform:uppercase;font-size:25px;line-height:1.05;letter-spacing:.01em}
+    .verdict span{font-size:14px;color:var(--muted)}
+    .nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);margin:0 -28px;padding:0 28px}
+    .nav-inner{max-width:1180px;margin:auto;display:flex;gap:4px;overflow:auto;scrollbar-width:none}
+    .nav button{appearance:none;border:0;border-bottom:3px solid transparent;background:none;color:var(--muted);padding:15px 18px 12px;cursor:pointer;font-weight:750;white-space:nowrap}
+    .nav button.active{color:var(--ink);border-color:var(--accent)}
+    section{padding:70px 0 0;scroll-margin-top:70px}
+    .section-head{display:grid;grid-template-columns:95px 1fr;gap:24px;align-items:start;margin-bottom:34px}
+    .section-num{font-family:"Arial Narrow","Avenir Next Condensed",sans-serif;font-size:62px;line-height:.8;color:var(--accent);font-weight:900}
+    h2{font-family:"Arial Narrow","Avenir Next Condensed",sans-serif;font-size:clamp(34px,5vw,62px);line-height:.94;letter-spacing:-.03em;text-transform:uppercase;margin:0}
+    .section-head p{grid-column:2;margin:8px 0 0;max-width:72ch;color:var(--muted)}
+    .diagnosis{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .fail,.fix{padding:30px;background:var(--paper);border-top:5px solid}
+    .fail{border-color:var(--dark)}.fix{border-color:var(--accent)}
+    .label{font-size:12px;font-weight:850;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+    .diagnosis h3{font-size:26px;margin:0 0 12px;line-height:1.15}
+    .diagnosis ul{margin:0;padding:0;list-style:none;display:grid;gap:11px}
+    .diagnosis li{padding-left:20px;position:relative;color:var(--muted)}
+    .diagnosis li:before{content:"";position:absolute;left:0;top:.65em;width:8px;height:2px;background:var(--accent)}
+    .source{font-size:11px;vertical-align:super;text-decoration:none;color:var(--accent);font-weight:850;margin-left:2px}
+    .source:hover{text-decoration:underline}
+    .pipeline{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:var(--dark);color:#f6f4ed;box-shadow:var(--shadow)}
+    .pipe-step{position:relative;padding:24px 18px 25px;min-height:178px;border-right:1px solid #3a3e3f}
+    .pipe-step:last-child{border-right:0}
+    .pipe-step b{display:block;color:#ff765d;font-size:12px;letter-spacing:.1em;margin-bottom:33px}
+    .pipe-step strong{display:block;font-family:"Arial Narrow","Avenir Next Condensed",sans-serif;font-size:22px;line-height:1.05;text-transform:uppercase;margin-bottom:9px}
+    .pipe-step span{font-size:13px;color:#bdbfbb}
+    .pipe-step:not(:last-child):after{content:"";position:absolute;right:-6px;top:30px;width:11px;height:11px;background:#ff765d;transform:rotate(45deg);z-index:2}
+    .rule-strip{margin-top:22px;display:grid;grid-template-columns:1.3fr .7fr;gap:18px}
+    .frame-chain{background:var(--accent);color:#fff;padding:30px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+    .chain-icon{font-family:"Arial Narrow",sans-serif;font-size:64px;font-weight:900;line-height:1}
+    .frame-chain strong{display:block;font-size:24px;line-height:1.05}.frame-chain p{margin:6px 0 0;opacity:.88}
+    .numbers{background:var(--paper);padding:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .numbers strong{display:block;font-family:"Arial Narrow",sans-serif;font-size:32px;line-height:1;color:var(--accent)}
+    .numbers span{font-size:12px;color:var(--muted)}
+    .beats{display:grid;grid-template-columns:290px 1fr;background:var(--paper);box-shadow:var(--shadow)}
+    .beat-tabs{border-right:1px solid var(--line);padding:14px}
+    .beat-tabs button{width:100%;border:0;background:transparent;color:var(--muted);text-align:left;padding:16px 14px;cursor:pointer;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:center}
+    .beat-tabs button:last-child{border-bottom:0}
+    .beat-tabs button.active{background:var(--accent);color:white}
+    .beat-tabs b{font-family:"Arial Narrow",sans-serif;font-size:24px}
+    .beat-panel{padding:38px 42px;min-height:330px}
+    .beat-panel .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:850}
+    .beat-panel h3{font-family:"Arial Narrow","Avenir Next Condensed",sans-serif;font-size:40px;text-transform:uppercase;line-height:1;margin:10px 0 16px}
+    .beat-panel p{max-width:58ch;color:var(--muted)}
+    .shot-sequence{display:flex;gap:8px;margin-top:26px;align-items:stretch}
+    .shot{flex:1;background:var(--dark);color:white;padding:17px 15px;min-height:118px;display:flex;flex-direction:column;justify-content:space-between}
+    .shot small{color:#aeb2b0}.shot b{font-family:"Arial Narrow",sans-serif;font-size:17px;text-transform:uppercase}
+    .shot.accent{background:var(--accent)}
+    .grammar{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grammar-card{background:var(--paper);padding:28px;border-top:4px solid var(--line)}
+    .grammar-card.good{border-color:var(--green)}.grammar-card.bad{border-color:var(--accent)}
+    .grammar-card h3{margin:0 0 16px;font-size:21px}
+    .grammar-card code{display:block;white-space:normal;background:var(--dark);color:#f4f2eb;padding:19px;font-family:"SFMono-Regular",Consolas,monospace;font-size:13px;line-height:1.65}
+    .anatomy{margin-top:18px;padding:24px;background:var(--paper);display:flex;flex-wrap:wrap;gap:9px}
+    .anatomy span{border:1px solid var(--line);padding:9px 12px;font-weight:700;font-size:13px}
+    .anatomy .arrow{border:0;color:var(--accent);padding-inline:3px}
+    .shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+    .safe,.unsafe{padding:28px;background:var(--paper)}
+    .safe{border-top:5px solid var(--green)}.unsafe{border-top:5px solid var(--accent)}
+    .shot-grid h3{margin:0 0 18px;font-size:24px}
+    .shot-grid ul{padding:0;margin:0;list-style:none;display:grid;gap:12px}
+    .shot-grid li{display:flex;gap:11px;color:var(--muted)}
+    .shot-grid li:before{font-weight:900}.safe li:before{content:"✓";color:var(--green)}.unsafe li:before{content:"×";color:var(--accent)}
+    .audio{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    .soundboard{background:var(--dark);color:white;padding:34px}
+    .sound-row{display:grid;grid-template-columns:115px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid #3d4142}
+    .sound-row:last-child{border-bottom:0}.sound-row b{color:#ff765d}.sound-row span{color:#c0c2bd}
+    .mix{background:var(--accent);color:white;padding:34px}
+    .mix h3{font-size:28px;margin:0 0 24px}
+    .meter{margin:24px 0}.meter strong{font-family:"Arial Narrow",sans-serif;font-size:48px;line-height:1;display:block}.meter span{opacity:.83}
+    .repos{display:grid;gap:12px}
+    .repo{display:grid;grid-template-columns:1.25fr .75fr 2fr auto;gap:20px;align-items:center;padding:22px 24px;background:var(--paper);border-left:4px solid transparent;text-decoration:none;transition:border-color .2s,transform .2s}
+    .repo:hover{border-color:var(--accent);transform:translateX(3px)}
+    .repo-name{font-family:"SFMono-Regular",Consolas,monospace;font-weight:800;font-size:15px}.repo-stars{color:var(--accent);font-weight:850}.repo-desc{color:var(--muted);font-size:14px}.repo .go{font-size:24px}
+    .repo-note{margin:18px 0 0;color:var(--muted);font-size:13px}
+    .examples{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .example{background:var(--paper);padding:28px;display:flex;flex-direction:column;min-height:270px;border-top:5px solid var(--dark)}
+    .example:nth-child(2){border-color:var(--accent)}.example h3{font-size:29px;margin:0 0 5px}.example .creator{color:var(--accent);font-weight:800}.example p{color:var(--muted);font-size:14px}.example a{margin-top:auto;font-weight:800;text-decoration-thickness:2px;text-underline-offset:4px}
+    .checklist{background:var(--dark);color:#f3f1eb;padding:38px}
+    .check-list{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+    .check-item{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid #363a3b;color:#d1d2ce}
+    .check-item span:first-child{color:#ff765d;font-weight:900}.check-item strong{color:white}
+    .sources{margin-top:70px;padding-top:34px;border-top:1px solid var(--line)}
+    .sources h2{font-size:32px}.source-list{columns:2;column-gap:50px;margin-top:22px}.source-list a{display:block;break-inside:avoid;padding:7px 0;color:var(--muted);font-size:13px;text-decoration:none}.source-list a:hover{color:var(--accent)}
+    footer{margin-top:58px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:20px}
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;gap:32px}.pipeline{grid-template-columns:repeat(3,1fr)}.pipe-step:nth-child(3){border-right:0}.pipe-step{border-bottom:1px solid #3a3e3f}.rule-strip,.audio{grid-template-columns:1fr}.examples{grid-template-columns:1fr 1fr}.repo{grid-template-columns:1fr auto}.repo-desc{grid-column:1/-1}.repo .go{grid-row:1;grid-column:2}.beats{grid-template-columns:220px 1fr}.nav-inner{flex-wrap:wrap}.nav button{flex:1 1 auto}
+    }
+    @media(max-width:650px){
+      main{padding:0 18px 60px}.hero{padding:44px 0 38px}.hero h1{font-size:52px}.nav{margin:0 -18px;padding:0 10px}.nav-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:0}.nav button{padding:10px 4px 8px;font-size:12px;white-space:normal}.section-head{grid-template-columns:56px 1fr;gap:12px}.section-num{font-size:44px}.section-head p{grid-column:1/-1}.diagnosis,.grammar,.shot-grid,.examples{grid-template-columns:1fr}.pipeline{grid-template-columns:1fr 1fr}.pipe-step:nth-child(3){border-right:1px solid #3a3e3f}.pipe-step:nth-child(even){border-right:0}.pipe-step{min-height:150px}.pipe-step b{margin-bottom:20px}.frame-chain{grid-template-columns:1fr}.chain-icon{font-size:45px}.numbers{padding:18px}.numbers strong{font-size:26px}.beats{grid-template-columns:1fr}.beat-tabs{display:grid;grid-template-columns:1fr 1fr;border-right:0;border-bottom:1px solid var(--line)}.beat-tabs button{border-right:1px solid var(--line);font-size:13px}.beat-tabs button:nth-child(2n){border-right:0}.beat-panel{padding:28px 22px}.shot-sequence{display:grid;grid-template-columns:1fr 1fr}.sound-row{grid-template-columns:90px 1fr}.repo{padding:18px}.repo-stars{font-size:13px}.checklist{padding:26px 22px}.check-list{grid-template-columns:1fr}.source-list{columns:1}footer{display:block}.section-head{margin-bottom:25px}section{padding-top:56px}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.repo{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="top-rule"></div>
+  <main>
+    <header class="hero">
+      <h1>Cảnh đầu ổn.<br><em>Cảnh đánh bị nhảm.</em><br>Sửa từ đâu?</h1>
+      <div class="hero-side">
+        <p>Research từ quy trình AIGC Trung Quốc và các repo GitHub: cảnh hành động liền mạch không được “cứu” ở khâu dựng. Nó phải được thiết kế đúng ngay từ lúc tạo từng clip.</p>
+        <div class="verdict"><div><strong>Generate như một đạo diễn.<br>Dựng như một kỹ sư.</strong><span>Previz → frame chain → một beat/clip → sound hit-stop.</span></div></div>
+      </div>
+    </header>
+
+    <nav class="nav" aria-label="Đi tới phần">
+      <div class="nav-inner">
+        <button class="active" data-target="chan-doan">Chẩn đoán</button>
+        <button data-target="flow">Flow mới</button>
+        <button data-target="nhip">Nhịp đánh</button>
+        <button data-target="prompt">Prompt</button>
+        <button data-target="am-thanh">Âm thanh</button>
+        <button data-target="github">GitHub</button>
+        <button data-target="tham-khao">Video Trung</button>
+      </div>
+    </nav>
+
+    <section id="chan-doan">
+      <div class="section-head"><div class="section-num">01</div><div><h2>Vấn đề không nằm ở câu chuyện</h2><p>Cảnh thoại có thể chịu được chuyển động mơ hồ. Cảnh đánh thì không: người xem phải hiểu ai ở đâu, ai chủ động, đòn có trúng không, và sau va chạm vị trí thay đổi thế nào.</p></div></div>
+      <div class="diagnosis">
+        <article class="fail"><div class="label">Vì sao đoạn sau trông “nhảm”</div><h3>Mỗi clip tự bịa lại thế giới</h3><ul><li>Cắt ở tư thế đã kết thúc → clip sau “khởi động lại”.</li><li>Prompt kiểu “đánh nhau dữ dội” không có vector, tiếp xúc hay phản ứng.</li><li>Chuyển động lớn + hai cơ thể gần nhau → tay chân, vũ khí và tỷ lệ bị biến dạng.</li><li>Slow motion mặc định khiến lực đánh thành bay lơ lửng.</li></ul></article>
+        <article class="fix"><div class="label">Cách creator Trung xử lý</div><h3>Khóa chuyển động trước khi render</h3><ul><li>Storyboard các keypose trước, rồi mới tạo video.<a class="source" href="#s1">[1]</a></li><li>Frame cuối clip N chính là frame đầu clip N+1; nối khi động tác đang dang dở.<a class="source" href="#s2">[2]</a></li><li>Một beat/clip, tốc độ real-time, biên độ chuyển động “medium”.</li><li>Dùng insert bàn chân, mắt, vũ khí, bụi đá để che điểm nối xấu.</li></ul></article>
+      </div>
+    </section>
+
+    <section id="flow">
+      <div class="section-head"><div class="section-num">02</div><div><h2>Flow nên dùng lại từ đầu</h2><p>Đây là phần đáng mượn nhất từ các workflow Trung Quốc: biến chuỗi clip rời thành một hệ thống có “bộ nhớ”.</p></div></div>
+      <div class="pipeline" aria-label="Quy trình 6 bước">
+        <div class="pipe-step"><b>01</b><strong>Keypose poster</strong><span>9–16 dáng hành động, mỗi dáng khác rõ hướng, độ cao và độ mở cơ thể.</span></div>
+        <div class="pipe-step"><b>02</b><strong>Mother image</strong><span>1 ảnh chuẩn/nhân vật + 3–5 góc chuẩn của bối cảnh.</span></div>
+        <div class="pipe-step"><b>03</b><strong>Một beat / clip</strong><span>5–10 giây; tối đa khoảng 5–6 động tác trong clip 10 giây.</span></div>
+        <div class="pipe-step"><b>04</b><strong>2–4 bản chọn</strong><span>Render nhiều candidate cho mỗi beat, chỉ giữ bản không lỗi.</span></div>
+        <div class="pipe-step"><b>05</b><strong>Frame chain</strong><span>Trích đúng frame cuối và dùng làm frame mở clip kế tiếp.</span></div>
+        <div class="pipe-step"><b>06</b><strong>Sound pass</strong><span>Clip im lặng; dựng SFX, hit-stop, nhạc và narration ở hậu kỳ.</span></div>
+      </div>
+      <div class="rule-strip">
+        <div class="frame-chain"><div class="chain-icon">N → N+1</div><div><strong>Luôn cắt giữa động tác.</strong><p>Kiếm đang vung nửa đường, chân vừa rời đất, bàn tay đang siết. Không cắt sau khi nhân vật đã đứng yên.</p></div></div>
+        <div class="numbers"><div><strong>≤15s</strong><span>mỗi generation</span></div><div><strong>1.5–2s</strong><span>mỗi move</span></div><div><strong>≥2×</strong><span>độ nhảy cỡ cảnh</span></div></div>
+      </div>
+    </section>
+
+    <section id="nhip">
+      <div class="section-head"><div class="section-num">03</div><div><h2>Chia trận đấu thành 4 khối</h2><p>Với nữ chiến binh và titan đá, report đề xuất 4 mini-arc nối nhau. Bấm từng khối để xem nhịp dựng.</p></div></div>
+      <div class="beats">
+        <div class="beat-tabs" role="tablist">
+          <button class="active" role="tab" data-beat="0"><b>01</b> Áp sát</button>
+          <button role="tab" data-beat="1"><b>02</b> Thất thế</button>
+          <button role="tab" data-beat="2"><b>03</b> Đảo chiều</button>
+          <button role="tab" data-beat="3"><b>04</b> Kết liễu</button>
+        </div>
+        <div class="beat-panel" role="tabpanel" aria-live="polite">
+          <div class="eyebrow" id="beat-kicker">Khối 1 · Địa lý rõ trước</div>
+          <h3 id="beat-title">Titan tiến — chiến binh thủ</h3>
+          <p id="beat-copy">Mở bằng một mid-close có cả hai nhân vật: chiến binh bên trái, titan bên phải. Cho va chạm đầu tiên xuất hiện sớm; tránh cảnh đứng nhìn nhau quá lâu.</p>
+          <div class="shot-sequence" id="shot-sequence">
+            <div class="shot"><small>WIDE</small><b>Khóa vị trí</b></div><div class="shot accent"><small>MID</small><b>Titan dậm</b></div><div class="shot"><small>INSERT</small><b>Chân trụ</b></div><div class="shot"><small>CLOSE</small><b>Ánh mắt</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prompt">
+      <div class="section-head"><div class="section-num">04</div><div><h2>Viết vật lý, không viết khí thế</h2><p>Mỗi đòn phải là một chuỗi nguyên nhân–kết quả. Câu prompt cần mô tả đủ hướng, va chạm và hậu quả để model không tự điền.</p></div></div>
+      <div class="grammar">
+        <article class="grammar-card bad"><h3>Không dùng</h3><code>“Nữ chiến binh chiến đấu dữ dội với titan đá, khung cảnh hoành tráng, máy quay điện ảnh.”</code></article>
+        <article class="grammar-card good"><h3>Dùng cấu trúc này</h3><code>“Cô đâm chéo lên cổ tay phải của titan; lưỡi kiếm chạm đá, mảnh đá vỡ bật sang trái; titan giật cánh tay và lùi nửa bước; cô tiếp đất thấp, vẫn ở bên trái khung hình.”</code></article>
+      </div>
+      <div class="anatomy" aria-label="Cấu trúc prompt"><span>Ai chủ động</span><span class="arrow">→</span><span>Hướng + tốc độ</span><span class="arrow">→</span><span>Trúng / đỡ / hụt</span><span class="arrow">→</span><span>Phản ứng</span><span class="arrow">→</span><span>Vị trí mới</span><span class="arrow">→</span><span>Mồi cho beat sau</span></div>
+      <div class="shot-grid">
+        <article class="safe"><h3>Cảnh an toàn hơn</h3><ul><li>Một nhân vật, medium shot, một chuyển động rõ.</li><li>Cận vũ khí, chân, mắt, debris hoặc năng lượng.</li><li>Silhouette / backlight để giấu mặt và bàn tay.</li><li>Wide hai nhân vật nhưng tách xa, hành động đơn giản.</li><li>Hạt năng lượng được mô tả cụ thể thay vì “cột sáng”.</li></ul></article>
+        <article class="unsafe"><h3>Nên thiết kế lại</h3><ul><li>Vật nhau hoặc hai cơ thể quấn vào nhau.</li><li>Multi-person melee có người cắt ngang khung.</li><li>Cận cảnh trao đổi tay không tốc độ cao.</li><li>Đứng yên “tụ lực”, lơ lửng hoặc đối đầu quá lâu.</li><li>Một generation dài hơn 15 giây.</li></ul></article>
+      </div>
+    </section>
+
+    <section id="am-thanh">
+      <div class="section-head"><div class="section-num">05</div><div><h2>Âm thanh gánh nửa cảm giác lực</h2><p>Workflow phổ biến là tạo clip không âm thanh rồi làm toàn bộ SFX/nhạc/voice trong 剪映. Mỗi sự kiện hình ảnh cần một cue âm thanh đúng trong 1–2 frame.<a class="source" href="#s3">[3]</a></p></div></div>
+      <div class="audio">
+        <div class="soundboard">
+          <div class="label">Cue sheet cho trận này</div>
+          <div class="sound-row"><b>Chiến binh</b><span>Whoosh nhẹ, sắc; tiếng kiếm kim loại gọn.</span></div>
+          <div class="sound-row"><b>Titan</b><span>Sub-bass drop, đá nứt, impact nặng.</span></div>
+          <div class="sound-row"><b>Va chạm</b><span>Freeze 1–2 frame + spark + metallic screech.</span></div>
+          <div class="sound-row"><b>Nền</b><span>Gió / rumble liên tục; không để khoảng hình hoàn toàn im.</span></div>
+        </div>
+        <aside class="mix">
+          <div class="label" style="color:white;opacity:.75">Mốc mix từ workflow nguồn</div>
+          <h3>Hit-stop bán lực tốt hơn slow-mo.</h3>
+          <div class="meter"><strong>−12 LUFS</strong><span>Mức master khoảng</span></div>
+          <div class="meter"><strong>≤ −1 dB</strong><span>True peak</span></div>
+          <div class="meter"><strong>+7 dB</strong><span>Narration cao hơn bed tối thiểu</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="github">
+      <div class="section-head"><div class="section-num">06</div><div><h2>Repo đáng mượn flow</h2><p>Không cần bê nguyên cả hệ thống. Chọn đúng phần giải quyết nút thắt: consistency, orchestration, audio cue và render tự động.</p></div></div>
+      <div class="repos">
+        <a class="repo" href="https://github.com/EvoLinkAI/ai-short-drama" target="_blank" rel="noopener"><span class="repo-name">EvoLinkAI/ai-short-drama</span><span class="repo-stars">★ chưa xác minh upstream</span><span class="repo-desc">Kiến trúc gần nhất: phân tích nhân vật/cảnh/đạo cụ → workshop consistency → storyboard → render song song → voice/lip-sync → Remotion.</span><span class="go">↗</span></a>
+        <a class="repo" href="https://github.com/bitqs/ai-director-film" target="_blank" rel="noopener"><span class="repo-name">bitqs/ai-director-film</span><span class="repo-stars">Active · 2026</span><span class="repo-desc">Đáng lấy cue-sheet theo giây, audio event tuyệt đối, contact-sheet review 15–20 frame và tách picture khỏi audio.</span><span class="go">↗</span></a>
+        <a class="repo" href="https://github.com/HVision-NKU/StoryDiffusion" target="_blank" rel="noopener"><span class="repo-name">HVision-NKU/StoryDiffusion</span><span class="repo-stars">NeurIPS ’24</span><span class="repo-desc">Tạo chuỗi keyframe bằng shared attention rồi nội suy chuyển động — bản research của tư duy frame-chain.</span><span class="go">↗</span></a>
+        <a class="repo" href="https://github.com/comfyanonymous/ComfyUI" target="_blank" rel="noopener"><span class="repo-name">comfyanonymous/ComfyUI</span><span class="repo-stars">≈137K★</span><span class="repo-desc">Node graph để ghép reference + ControlNet + LoRA + video model thành pipeline consistency có thể lặp lại.</span><span class="go">↗</span></a>
+        <a class="repo" href="https://github.com/instantX-research/InstantID" target="_blank" rel="noopener"><span class="repo-name">instantX-research/InstantID</span><span class="repo-stars">≈12K★</span><span class="repo-desc">Dùng để làm character sheet nhiều góc từ một khuôn mặt; không nên khóa quá mạnh trực tiếp vào mọi frame video.</span><span class="go">↗</span></a>
+        <a class="repo" href="https://github.com/tencent-ailab/IP-Adapter" target="_blank" rel="noopener"><span class="repo-name">tencent-ailab/IP-Adapter</span><span class="repo-stars">≈6.7K★</span><span class="repo-desc">Pattern reference-image conditioning mà các công cụ đóng cũng đang hội tụ tới.</span><span class="go">↗</span></a>
+        <a class="repo" href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noopener"><span class="repo-name">harry0703/MoneyPrinterTurbo</span><span class="repo-stars">≈129K★</span><span class="repo-desc">Mượn phần assembly: TTS switching, subtitle timing, FFmpeg/MoviePy, preset 9:16/16:9 — không mượn stock-footage workflow.</span><span class="go">↗</span></a>
+        <a class="repo" href="https://github.com/zhubicen/ai-scripts" target="_blank" rel="noopener"><span class="repo-name">zhubicen/ai-scripts</span><span class="repo-stars">Flow đạo diễn võ thuật</span><span class="repo-desc">N-panel keypose poster → prompt video liên tục; có grammar 15 giây / 8–10 move.</span><span class="go">↗</span></a>
+        <a class="repo" href="https://github.com/tomatoparkdao/omniailab-ai-director" target="_blank" rel="noopener"><span class="repo-name">omniailab-ai-director</span><span class="repo-stars">COMBAT SKILL</span><span class="repo-desc">Frame chain, cấm slow-mo mặc định, vector hóa động tác và dùng insert để che điểm nối.</span><span class="go">↗</span></a>
+      </div>
+      <p class="repo-note">Star counts ghi “≈” được report xác minh ngày 08/10/2026; StoryDiffusion và upstream ai-short-drama chưa xác minh số sao.</p>
+    </section>
+
+    <section id="tham-khao">
+      <div class="section-head"><div class="section-num">07</div><div><h2>Ba case đáng xem trước</h2><p>Không phải để copy style. Hãy soi cách họ giữ địa lý, cắt giữa động tác và dành thời gian polish.</p></div></div>
+      <div class="examples">
+        <article class="example"><h3>《归墟》</h3><div class="creator">泫九 · Bilibili / Douyin</div><p>Solo creator, dành vài ngày làm lại riêng một phút cảnh đánh; report ghi nhận khoảng 12.35M lượt xem series trên Bilibili và hơn 100M tổng lượt xem đa nền tảng.</p><a href="https://www.bilibili.com/video/BV1HiGV6uEpw/" target="_blank" rel="noopener">Mở series ↗</a></article>
+        <article class="example"><h3>《归藏》</h3><div class="creator">休息的小狗崽 · Bilibili</div><p>Creator nói họ dồn công sức vào cảnh đánh để “loại cảm giác AI”. Prologue khoảng 690K lượt xem; series 4.64M theo report.</p><a href="https://www.bilibili.com/video/BV1KBh56aEUe/" target="_blank" rel="noopener">Mở series ↗</a></article>
+        <article class="example"><h3>《大师兄》</h3><div class="creator">柯克明 · Bilibili</div><p>AI wuxia nguyên bản, solo full-process, định vị “quay lại võ hiệp thuần túy”; report ghi 363K lượt xem. Đây là case gần nhất để soi grammar đánh kiếm.</p><a href="https://www.woshipm.com/it/6471249.html" target="_blank" rel="noopener">Đọc phân tích ngành ↗</a></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><div class="section-num">08</div><div><h2>Checklist trước khi gen lại</h2><p>Nếu chỉ làm một việc: dựng lại storyboard phần đánh theo danh sách này trước khi tiêu thêm credit.</p></div></div>
+      <div class="checklist">
+        <div class="check-list">
+          <div class="check-item"><span>01</span><div><strong>Viết 8–12 beat có số thứ tự.</strong><br>Một beat = một clip.</div></div>
+          <div class="check-item"><span>02</span><div><strong>Khóa bên màn hình.</strong><br>Chiến binh trái, titan phải suốt trận.</div></div>
+          <div class="check-item"><span>03</span><div><strong>Dùng mother image ở mọi generation.</strong><br>Outfit, tóc, vũ khí giữ nguyên.</div></div>
+          <div class="check-item"><span>04</span><div><strong>Mỗi prompt chỉ một camera move.</strong><br>Tối đa hai, biên độ chuyển động medium.</div></div>
+          <div class="check-item"><span>05</span><div><strong>Render 2–4 candidate/beat.</strong><br>Không cố cứu bản lỗi bằng edit.</div></div>
+          <div class="check-item"><span>06</span><div><strong>Cắt đầu/đuôi cứng khoảng 0.5 giây.</strong><br>Nối đúng giữa chuyển động.</div></div>
+          <div class="check-item"><span>07</span><div><strong>Chèn insert khi wide shot gãy.</strong><br>Mắt, kiếm, chân, đá vỡ.</div></div>
+          <div class="check-item"><span>08</span><div><strong>Kết thúc trên climax freeze.</strong><br>Không thêm đuôi hạ nhiệt nhẹ nhàng.</div></div>
+          <div class="check-item"><span>09</span><div><strong>Làm cue sheet SFX.</strong><br>Mỗi swing, contact và bước chân đều có âm.</div></div>
+          <div class="check-item"><span>10</span><div><strong>Lưu artifact sau mỗi beat.</strong><br>Clip giữ lại + end frame + prompt + reference.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sources" id="sources">
+      <h2>Nguồn chính</h2>
+      <div class="source-list">
+        <a id="s1" href="https://github.com/zhubicen/ai-scripts/blob/HEAD/skills/martial-arts-director-cy/SKILL.md" target="_blank" rel="noopener">[1] martial-arts-director-cy — previz, 15s grammar, continuity ↗</a>
+        <a id="s2" href="https://github.com/tomatoparkdao/omniailab-ai-director/blob/HEAD/references/COMBAT%20SKILL.md" target="_blank" rel="noopener">[2] COMBAT SKILL — frame chain, ban slow-mo, inserts ↗</a>
+        <a id="s3" href="https://github.com/bitqs/ai-director-film" target="_blank" rel="noopener">[3] ai-director-film — cue sheet, audio specs, review flow ↗</a>
+        <a href="https://github.com/eblis15812769881-coder/manju-laoli-skill/blob/HEAD/short-drama-director/references/action-previs-15grid.md" target="_blank" rel="noopener">manju-laoli — fight previs 15-grid ↗</a>
+        <a href="https://news.mydrivers.com/1/1152/1152245.htm" target="_blank" rel="noopener">快科技 — quy trình AI short-drama 8 bước ↗</a>
+        <a href="https://blog.csdn.net/qq_41035650/article/details/154576531" target="_blank" rel="noopener">CSDN — tutorial nối frame đầu/cuối ↗</a>
+        <a href="http://www.360doc.com/content/26/0114/23/57798620_1168428842.shtml" target="_blank" rel="noopener">360doc — mother image và khóa bối cảnh ↗</a>
+        <a href="https://www.woshipm.com/it/6471249.html" target="_blank" rel="noopener">人人都是产品经理 — AI中剧 và các case series ↗</a>
+      </div>
+    </section>
+    <footer><span>Research snapshot · 08/10/2026</span><span>Các số liệu chưa xác minh trực tiếp được ghi rõ trong nội dung.</span></footer>
+  </main>
+  <script>
+    (function(){
+      var beatData=[
+        {k:'Khối 1 · Địa lý rõ trước',t:'Titan tiến — chiến binh thủ',p:'Mở bằng một mid-close có cả hai nhân vật: chiến binh bên trái, titan bên phải. Cho va chạm đầu tiên xuất hiện sớm; tránh cảnh đứng nhìn nhau quá lâu.',s:[['WIDE','Khóa vị trí'],['MID','Titan dậm'],['INSERT','Chân trụ'],['CLOSE','Ánh mắt']]},
+        {k:'Khối 2 · Hậu quả vật lý',t:'Đòn đầu — cô bị đánh bật',p:'Mỗi cú đánh phải có contact hoặc miss rõ, phản ứng và vị trí mới. Dùng debris và âm trầm của titan để bán trọng lượng; không kéo dài slow motion.',s:[['MID','Kiếm chạm đá'],['CLOSE','Spark + clash'],['WIDE','Cô bật lùi'],['INSERT','Đá vỡ']]},
+        {k:'Khối 3 · Turning point ở khoảng 2/3',t:'Nhìn thấy điểm yếu',p:'Cho một nhịp thở khoảng nửa giây trước đảo chiều. Nhảy từ cực cận ánh mắt sang cực rộng quy mô titan để làm rõ phát hiện và thay đổi chiến thuật.',s:[['ECU','Ánh mắt'],['INSERT','Khe nứt'],['EWS','Đổi hướng'],['MID','Lao vào']]},
+        {k:'Khối 4 · Chỉ một slow-mo quyết định',t:'Kết liễu — dừng đúng va chạm',p:'Camera ba pha: low-angle tụ thế → diving follow → collision freeze. Kết thúc ngay trên cú đánh quyết định; không thêm đoạn đứng nhìn hay hạ nhiệt.',s:[['LOW','Tụ thế'],['TRACK','Bám lao xuống'],['CLOSE','Hit-stop'],['FREEZE','Kết thúc']]}
+      ];
+      var tabs=document.querySelectorAll('.beat-tabs button');
+      var kicker=document.getElementById('beat-kicker'),title=document.getElementById('beat-title'),copy=document.getElementById('beat-copy'),seq=document.getElementById('shot-sequence');
+      tabs.forEach(function(btn){btn.addEventListener('click',function(){var i=Number(btn.getAttribute('data-beat'));tabs.forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false')});btn.classList.add('active');btn.setAttribute('aria-selected','true');var d=beatData[i];kicker.textContent=d.k;title.textContent=d.t;copy.textContent=d.p;seq.innerHTML=d.s.map(function(x,j){return '<div class="shot '+(j===1?'accent':'')+'"><small>'+x[0]+'</small><b>'+x[1]+'</b></div>'}).join('')})});
+      var navBtns=document.querySelectorAll('.nav button');
+      navBtns.forEach(function(btn){btn.addEventListener('click',function(){var el=document.getElementById(btn.getAttribute('data-target'));if(el)el.scrollIntoView({behavior:'smooth',block:'start'})})});
+      var ids=Array.from(navBtns).map(function(b){return b.getAttribute('data-target')});
+      var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){navBtns.forEach(function(b){b.classList.toggle('active',b.getAttribute('data-target')===e.target.id)})}})},{rootMargin:'-20% 0px -70% 0px'});
+      ids.forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
+    })();
+  </script>
+</body>
+</html>

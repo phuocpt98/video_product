@@ -1,0 +1,18 @@
+id: car-roadside-night
+type: establishing
+group: nhà & nơi khác (bản có chỗ diễn)
+tags:
+- xe sang đỗ bên đường đêm
+characters: []
+master: master.jpg
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+used_in: []
+prompt: a black luxury car parked by the roadside at night under a street lamp, seen
+  from the side in the background, wide empty sidewalk pavement in the foreground
+size:
+- 1376
+- 768
+notes: agy tạo 1 nền/ảnh, có sàn trống phía trước (bản có chỗ diễn 28/9/2026).

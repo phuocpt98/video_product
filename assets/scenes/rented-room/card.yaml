@@ -1,0 +1,18 @@
+id: rented-room
+type: establishing
+group: mua sắm & nhà nghèo
+tags:
+- phòng trọ
+characters: []
+master: master.jpg
+size:
+- 1400
+- 760
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'a tiny cheap rented room in the city: narrow bed and a small plastic wardrobe
+  at the sides, peeling wall, wide empty concrete floor in the foreground'

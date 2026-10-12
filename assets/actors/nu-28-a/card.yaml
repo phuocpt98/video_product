@@ -1,0 +1,31 @@
+id: nu-28-a
+kind: actor
+gender: nữ
+age: 25-32
+look: Chinese woman, elegant cold beauty, long wavy black hair, sharp confident eyes,
+  red lips
+signature: cold confident look
+rig:
+  mode: chibi
+  head_scale: 1.0
+  overlap: 0.1
+  neck_dx: {}
+heads:
+  neutral: parts/head_neutral.png
+  neutral_talk: parts/head_neutral_talk.png
+  smirk: parts/head_smirk.png
+  smirk_talk: parts/head_smirk_talk.png
+  shocked: parts/head_shocked.png
+  angry: parts/head_angry.png
+  sad: parts/head_sad.png
+  blink: parts/head_blink.png
+outfits:
+  cong-so:
+    desc: black business suit with white blouse, high heels
+    sheet: source/sheet_cong-so.jpg
+    bodies:
+      relaxed: parts/cong-so/body_relaxed.png
+      hips: parts/cong-so/body_hips.png
+      phone: parts/cong-so/body_phone.png
+      point: parts/cong-so/body_point.png
+roles: []

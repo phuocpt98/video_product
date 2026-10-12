@@ -1,0 +1,9 @@
+id: bus-stop-2002
+type: establishing            # establishing | dialogue | action | emotion | transition
+tags: [bus-stop, street, town, day, summer, 2002, outdoor, barber-shop, dirt-road]
+characters: []                # nền không có nhân vật: dùng chung mọi truyện
+master: master.jpg            # 1376x768, agy generate_image 27/9/2026
+frames: [16:9, 9:16]          # máy quay bám nhân vật, cắt dọc vẫn đẹp
+ground_y: 0.98                # chân (mép dưới) nhân vật đặt ở 98% chiều cao sân khấu
+notes: "Chừa khoảng trống giữa-dưới cho nhân vật đứng. Không có chữ trên biển hiệu."
+used_in: []

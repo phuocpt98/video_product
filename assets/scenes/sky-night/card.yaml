@@ -1,0 +1,18 @@
+id: sky-night
+type: establishing
+group: trời & đường
+tags:
+- bầu trời đêm
+characters: []
+master: master.jpg
+size:
+- 1409
+- 754
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: dark blue night sky with stars, a crescent moon and a few clouds, nothing
+  else

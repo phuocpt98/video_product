@@ -1,0 +1,18 @@
+id: city-street-night
+type: establishing
+group: đường phố
+tags:
+- phố đêm
+characters: []
+master: master.jpg
+size:
+- 1395
+- 765
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: a Chinese city street at night with glowing shop lights and street lamps
+crowd: 2

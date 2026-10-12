@@ -1,0 +1,95 @@
+# Luật hành động dùng chung cho mọi truyện (src/studio/direct.py đọc). Không dùng AI: câu có từ khoá thì nhân vật
+# đang được nhắc diễn theo. Xét từ trên xuống; mỗi trường (expr, pose, prop, shake, cam) lấy luật ĐẦU TIÊN khớp.
+# Từ khoá so khớp nguyên từ, không phân biệt hoa thường. Khớp tương đối là đủ.
+# expr: neutral | smirk | shocked | angry | sad       pose: relaxed | hips | phone | point
+# prop: id trong assets/props/props.yaml (chưa có ảnh thì bỏ qua)   cam: push (dí sát) | pull (lùi ra)
+- when: [súng, bóp cò, nổ súng, họng súng]
+  expr: angry
+  pose: point
+  prop: pistol
+- when: [con dao, rút dao, dao găm, lưỡi dao]
+  expr: angry
+  pose: point
+  prop: kitchen-knife
+- when: [ống thép, gậy sắt, cây gậy, đánh nhau, ẩu đả]
+  expr: angry
+  pose: point
+  prop: steel-pipe
+- when: [sững sờ, chết lặng, kinh ngạc, bàng hoàng, giật mình, sốc, không thể tin, trợn mắt, há hốc, hoảng hốt, choáng, tai nạn, đâm sầm]
+  expr: shocked
+  shake: true
+  cam: push
+- when: [giận, tức giận, quát, gầm, hét, tức, chửi, mắng, cáu, nổi điên, nghiến răng, trừng mắt, đập bàn]
+  expr: angry
+  pose: point
+- when: [buồn, khóc, thở dài, chua xót, tiếc nuối, cô đơn, nghẹn ngào, rơi nước mắt, đau lòng, thở hắt]
+  expr: sad
+  cam: pull
+- when: [cười, nhếch mép, đắc ý, khoái chí, hí hửng, trêu, cười nhạt, bật cười, thản nhiên, lịch thiệp]
+  expr: smirk
+- when: [chỉ tay, chỉ vào, chỉ thẳng, ra lệnh]
+  pose: point
+- when: [chống nạnh, hiên ngang, tự tin, ra vẻ, vênh váo, khoanh tay]
+  pose: hips
+- when: [điện thoại, gọi điện, a lô, alô, nhắn tin, di động, nghe máy]
+  pose: phone
+- when: [thuốc lá, điếu thuốc, bao thuốc, châm thuốc, hút thuốc]
+  pose: point
+  prop: cigarette
+- when: [xấp tiền, tiền mặt, nhét tiền, đưa tiền, tiền boa]
+  pose: point
+  prop: cash
+- when: [phong bì]
+  pose: point
+  prop: envelope
+- when: [ly rượu, nâng ly, cạn ly, kính rượu, chúc rượu, rượu vang]
+  pose: point
+  prop: wine-glass
+- when: [chai bia, uống bia]
+  pose: point
+  prop: beer-bottle
+- when: [danh thiếp, thẻ ngân hàng, thẻ đen, quẹt thẻ]
+  pose: point
+  prop: black-card
+- when: [chìa khoá, chìa khóa, chìa khoá xe]
+  pose: point
+  prop: car-key
+- when: [hợp đồng, giấy báo, tài liệu, lá thư, bức thư, giấy tờ]
+  pose: point
+  prop: contract
+- when: [tờ báo, đọc báo]
+  pose: point
+  prop: newspaper
+- when: [túi xách]
+  pose: point
+  prop: handbag
+- when: [ba lô, cặp sách]
+  pose: point
+  prop: backpack
+- when: [cặp da, cặp tài liệu]
+  pose: point
+  prop: briefcase
+- when: [vali, hành lý]
+  pose: point
+  prop: suitcase
+- when: [máy tính xách tay, laptop]
+  pose: point
+  prop: laptop
+- when: [hộp quà, món quà, quà tặng]
+  pose: point
+  prop: gift-box
+- when: [nhẫn, cầu hôn]
+  pose: point
+  prop: ring-box
+- when: [tách trà, chén trà, uống trà, pha trà]
+  pose: point
+  prop: tea-cup
+- when: [bó hoa, hoa hồng]
+  pose: point
+  prop: flowers
+- when: [cái ô, chiếc ô, che ô]
+  pose: point
+  prop: umbrella
+# QUẦN CHÚNG (crowd = số người đứng phía sau, lấy ngẫu nhiên từ thư viện diễn viên, không diễn gì)
+- when: [đám đông, mọi người, cả lớp, khách khứa, quan khách, bạn học, đồng nghiệp, người qua đường, hành khách, nam thanh nữ tú, học sinh, dân làng, hàng xóm, người xem]
+  crowd: 5

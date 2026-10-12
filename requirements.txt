@@ -1,0 +1,5 @@
+pytest
+pillow
+vieneu    # TTS tiếng Việt chạy local, v3 Turbo Apache-2.0 (xem docs/progress.md 26/9 về lỗi symlink)
+playwright   # quay gameplay nền (scripts/record_game.py); trình duyệt tải vào .cache/ms-playwright
+scipy   # tách mảng liền khi cắt bảng rối (src/studio/cutout.py)

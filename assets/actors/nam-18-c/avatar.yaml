@@ -1,0 +1,15 @@
+head: head-sidepart
+eyes: eyes2
+mouth: mouth1
+nose: nose7
+extras: []
+skin: ''
+body:
+  outfit: m-polo
+  build: normal
+look: Công tử chải chuốt tóc rẽ ngôi, áo polo hàng hiệu, vẻ ngoài đạo đức giả thích
+  ra vẻ tri thức
+head_size: 1.0
+adjust: {}
+roles:
+- Cao Gia Lương (ta-that-su-khong-muon-trong-sinh)

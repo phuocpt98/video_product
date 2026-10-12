@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(python:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(ffprobe:*)",
+      "Bash(edge-tts:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./**/.env)",
+      "Read(./**/cookies.json)",
+      "Bash(cat .env*)",
+      "Edit(./tool/**)",
+      "Write(./tool/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/company/hooks/check_file_placement.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

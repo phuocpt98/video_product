@@ -1,0 +1,16 @@
+head: head-long-bangs
+eyes: eyes3
+mouth: mouth2
+nose: nose8
+extras:
+- blush
+skin: ''
+body:
+  outfit: f-evening
+  build: thin
+look: Nữ thư ký trẻ tóc xoăn sóng quyến rũ, mắt to ngây thơ giả tạo, diện đầm dạ hội
+  đỏ gợi cảm.
+head_size: 1.0
+adjust: {}
+roles:
+- Bạch Liên (vo-cao-tay)

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tạo nhân vật</title>
+<style>
+  :root { --bg:#1d2130; --panel:#262b3d; --line:#3a4160; --text:#e8eaf2; --muted:#9aa2bd; --accent:#f2b544; --stage:#78829a; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.4 system-ui, sans-serif; }
+  header { padding:10px 16px; display:flex; gap:12px; align-items:center; border-bottom:1px solid var(--line); }
+  header h1 { font-size:18px; margin:0; }
+  header .sp { flex:1; }
+  button, select, input[type=text] { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:8px; padding:6px 10px; font:inherit; }
+  button { cursor:pointer; }
+  button.on, button:hover { border-color:var(--accent); }
+  button.primary { background:var(--accent); color:#222; border-color:var(--accent); font-weight:600; }
+  main { display:grid; grid-template-columns: minmax(320px, 1fr) 460px; gap:16px; padding:16px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  .stage { background:var(--stage); border-radius:12px; min-height:520px; display:flex; align-items:flex-end; justify-content:center; padding:16px; position:relative; }
+  .stage img { max-height:620px; max-width:100%; image-rendering:auto; }
+  .stage .busy { position:absolute; top:10px; right:14px; color:#fff; opacity:0; transition:opacity .2s; }
+  .stage.loading .busy { opacity:.9; }
+  .row { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0; }
+  .strip { background:var(--stage); border-radius:12px; padding:8px; overflow-x:auto; }
+  .strip img { height:110px; display:block; }
+  .panel { background:var(--panel); border-radius:12px; padding:12px; max-height:calc(100vh - 110px); overflow:auto; }
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; position:sticky; top:-12px; background:var(--panel); padding:6px 0; z-index:1; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap:8px; }
+  .cell { background:#fff; border:2px solid transparent; border-radius:10px; padding:4px; cursor:pointer; text-align:center; }
+  .cell img { width:100%; height:66px; object-fit:contain; display:block; }
+  .cell small { color:#333; font-size:10px; display:block; line-height:1.2; height:24px; overflow:hidden; }
+  .cell.on { border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); }
+  .cell.none { display:flex; align-items:center; justify-content:center; color:#666; height:100px; }
+  label.opt { display:flex; align-items:center; gap:8px; margin:6px 0; }
+  .muted { color:var(--muted); font-size:12px; }
+  .sw { display:flex; align-items:center; gap:8px; margin:6px 0; }
+  .sw .chip { width:26px; height:26px; border-radius:6px; border:1px solid #0005; display:inline-block; }
+  input[type=color] { width:44px; height:30px; border:none; background:none; padding:0; }
+  input[type=range] { width:100%; }
+  h3 { margin:14px 0 6px; font-size:14px; }
+  #msg { margin-top:8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Tạo nhân vật</h1>
+  <span class="muted">Chọn bộ phận bên phải, nhân vật cập nhật ngay. Lưu là ra diễn viên dùng được trong video.</span>
+  <span class="sp"></span>
+  <select id="load"><option value="">Mở nhân vật đã lưu…</option></select>
+  <button id="random">Ngẫu nhiên</button>
+</header>
+<main>
+  <section>
+    <div class="stage" id="stage"><span class="busy">đang vẽ…</span><img id="view" alt="nhân vật"></div>
+    <div class="row" id="exprs"></div>
+    <div class="row" id="poses"></div>
+    <div class="strip"><img id="strip" alt="8 biểu cảm"></div>
+  </section>
+  <aside class="panel">
+    <div class="tabs" id="tabs"></div>
+    <div id="pane"></div>
+  </aside>
+</main>
+<script>
+const EXPR_VI = {neutral:"Bình thường", neutral_talk:"Nói", smirk:"Cười nhếch", smirk_talk:"Cười nói", shocked:"Sốc", angry:"Giận", sad:"Buồn", blink:"Chớp mắt"};
+const POSE_VI = {relaxed:"Thả tay", hips:"Chống nạnh", phone:"Cầm điện thoại", point:"Chỉ tay"};
+const BUILD_VI = {thin:"Gầy", normal:"Vừa", fat:"Béo"};
+const SKINS = ["#f7d2b0","#f2c9a0","#e8b98f","#d9a57a","#c48a5f","#9c6a45"];
+let C = null, tab = "head", expr = "neutral", pose = "relaxed", pal = [];
+let spec = {head:"head-messy", eyes:"eyes2", mouth:"mouth1", nose:"nose2", extras:[], skin:"",
+            body:{outfit:"m-tshirt-jeans", build:"normal", colors:{}}, head_size:1.0, overlap:0.06, adjust:{}};
+
+const $ = s => document.querySelector(s);
+const el = (t, a={}, kids=[]) => { const e = document.createElement(t); Object.assign(e, a); kids.forEach(k => e.append(k)); return e; };
+
+async function api(path, body) {
+  const r = await fetch(path, body ? {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)} : {});
+  if (!r.ok) { const j = await r.json().catch(() => ({})); throw new Error(j.error || r.statusText); }
+  return r;
+}
+
+let timer = null, seq = 0;
+function redraw() {
+  clearTimeout(timer);
+  timer = setTimeout(async () => {
+    const my = ++seq; $("#stage").classList.add("loading");
+    try {
+      const [a, b] = await Promise.all([api("/api/render", {spec, expr, pose}), api("/api/strip", {spec})]);
+      if (my !== seq) return;
+      $("#view").src = URL.createObjectURL(await a.blob());
+      $("#strip").src = URL.createObjectURL(await b.blob());
+    } catch (e) { msg("Lỗi: " + e.message); }
+    finally { if (my === seq) $("#stage").classList.remove("loading"); }
+  }, 120);
+}
+
+function buttons(box, items, labels, get, set) {
+  box.innerHTML = "";
+  items.forEach(k => { const b = el("button", {textContent:labels[k] || k, className: get() === k ? "on" : ""});
+    b.onclick = () => { set(k); buttons(box, items, labels, get, set); redraw(); }; box.append(b); });
+}
+
+function cells(items, isOn, pick, withNone) {
+  const g = el("div", {className:"grid"});
+  if (withNone) { const n = el("div", {className:"cell none" + (isOn(null) ? " on" : ""), textContent:"Không"}); n.onclick = () => pick(null); g.append(n); }
+  items.forEach(it => {
+    const c = el("div", {className:"cell" + (isOn(it.id) ? " on" : ""), title: it.desc || it.id},
+      [el("img", {src:"/parts/" + it.file, loading:"lazy"}), el("small", {textContent: it.desc || it.id})]);
+    c.onclick = () => pick(it.id); g.append(c);
+  });
+  return g;
+}
+
+function slider(label, val, min, max, step, set) {
+  const out = el("span", {textContent: val});
+  const r = el("input", {type:"range", min, max, step, value: val});
+  r.oninput = () => { out.textContent = r.value; set(parseFloat(r.value)); redraw(); };
+  return el("div", {}, [el("div", {className:"muted"}, [label + ": ", out]), r]);
+}
+
+const TABS = {
+  head: ["Đầu & tóc", () => cells(C.heads, id => spec.head === id, id => { spec.head = id; render(); })],
+  eyes: ["Mắt", () => cells(C.eyes, id => spec.eyes === id, id => { spec.eyes = id; render(); })],
+  mouth: ["Miệng", () => cells(C.mouths, id => spec.mouth === id, id => { spec.mouth = id; render(); })],
+  extra: ["Mũi & phụ kiện", () => el("div", {}, [
+    el("h3", {textContent:"Mũi"}), cells(C.noses, id => (spec.nose || null) === id, id => { spec.nose = id; render(); }, true),
+    el("h3", {textContent:"Phụ kiện (bấm để bật/tắt)"}),
+    cells(C.extras, id => spec.extras.includes(id), id => { spec.extras = spec.extras.includes(id) ? spec.extras.filter(x => x !== id) : [...spec.extras, id]; render(); })])],
+  skin: ["Màu da", () => {
+    const box = el("div");
+    const row = el("div", {className:"row"});
+    SKINS.forEach(c => { const b = el("button", {className: spec.skin === c ? "on" : "", title:c}); b.style.cssText = `background:${c};width:40px;height:32px`; b.onclick = () => { spec.skin = c; render(); }; row.append(b); });
+    const pick = el("input", {type:"color", value: spec.skin || "#f2c9a0"}); pick.oninput = () => { spec.skin = pick.value; redraw(); };
+    const reset = el("button", {textContent:"Màu gốc"}); reset.onclick = () => { spec.skin = ""; render(); };
+    box.append(row, el("div", {className:"sw"}, [el("span", {className:"muted", textContent:"Tự chọn:"}), pick, reset]));
+    return box; }],
+  body: ["Trang phục", () => {
+    const box = el("div");
+    const bt = el("div", {className:"row"}); buttons(bt, ["thin","normal","fat"], BUILD_VI, () => spec.body.build, v => spec.body.build = v);
+    box.append(el("h3", {textContent:"Vóc dáng"}), bt, el("h3", {textContent:"Bộ đồ"}));
+    const g = el("div", {className:"grid"});
+    C.outfits.forEach(o => {
+      const c = el("div", {className:"cell" + (spec.body.outfit === o.id ? " on" : ""), title:o.desc},
+        [el("img", {src:`/parts/bodies/${o.id}/normal-relaxed.png`, loading:"lazy"}), el("small", {textContent:o.desc.split(";")[0]})]);
+      c.onclick = async () => { spec.body.outfit = o.id; spec.body.colors = {}; await loadPalette(); render(); };
+      g.append(c);
+    });
+    box.append(g, el("h3", {textContent:"Màu quần áo"}));
+    if (!pal.length) box.append(el("div", {className:"muted", textContent:"Không đọc được bảng màu."}));
+    pal.forEach(src => {
+      const cur = spec.body.colors[src] || src;
+      const inp = el("input", {type:"color", value:cur});
+      inp.oninput = () => { spec.body.colors[src] = inp.value; redraw(); };
+      const back = el("button", {textContent:"Gốc"}); back.onclick = () => { delete spec.body.colors[src]; render(); };
+      const sw = el("span", {className:"chip"}); sw.style.background = src;
+      box.append(el("div", {className:"sw"}, [sw, el("span", {className:"muted", textContent:"→"}), inp, back]));
+    });
+    return box; }],
+  tune: ["Chỉnh", () => {
+    const a = spec.adjust; const get = (k, f) => (a[k] && a[k][f] !== undefined) ? a[k][f] : (f === "scale" ? 1 : 0);
+    const set = (k, f) => v => { a[k] = a[k] || {}; a[k][f] = v; };
+    return el("div", {}, [
+      slider("Cỡ đầu", spec.head_size, 0.7, 1.4, 0.02, v => spec.head_size = v),
+      slider("Đầu thấp xuống (che cổ)", spec.overlap, 0, 0.25, 0.01, v => spec.overlap = v),
+      slider("Mắt: cỡ", get("eyes","scale"), 0.6, 1.5, 0.02, set("eyes","scale")),
+      slider("Mắt: lên (−) / xuống (+)", get("eyes","dy"), -0.2, 0.2, 0.01, set("eyes","dy")),
+      slider("Miệng: cỡ", get("mouth","scale"), 0.6, 1.6, 0.02, set("mouth","scale")),
+      slider("Miệng: lên (−) / xuống (+)", get("mouth","dy"), -0.2, 0.2, 0.01, set("mouth","dy")),
+      slider("Mũi: lên (−) / xuống (+)", get("nose","dy"), -0.2, 0.2, 0.01, set("nose","dy")),
+    ]); }],
+  save: ["Lưu", () => {
+    const id = el("input", {type:"text", placeholder:"vd: nam-30-c", value: spec._id || ""});
+    const look = el("input", {type:"text", placeholder:"mô tả ngắn: côn đồ tóc vàng", value: spec.look || ""});
+    const b = el("button", {className:"primary", textContent:"Lưu thành diễn viên"});
+    b.onclick = async () => {
+      spec.look = look.value; spec._id = id.value;
+      try { const r = await (await api("/api/save", {id:id.value, spec})).json(); msg(`Đã lưu ${r.id}. Ảnh xem thử: ${r.preview}`); refreshActors(); }
+      catch (e) { msg("Lỗi: " + e.message); }
+    };
+    return el("div", {}, [el("div", {className:"muted", textContent:"Mã diễn viên (không dấu, gạch ngang): nam/nu-tuổi-chữ"}), id,
+      el("div", {className:"muted", textContent:"Mô tả"}), look, el("div", {className:"row"}, [b]), el("div", {id:"msg"})]); }],
+};
+
+function msg(t) { const m = $("#msg"); if (m) m.textContent = t; else console.log(t); }
+
+function render() {
+  const tabs = $("#tabs"); tabs.innerHTML = "";
+  Object.entries(TABS).forEach(([k, [label]]) => { const b = el("button", {textContent:label, className: tab === k ? "on" : ""}); b.onclick = () => { tab = k; render(); }; tabs.append(b); });
+  const pane = $("#pane"); pane.innerHTML = ""; pane.append(TABS[tab][1]());
+  buttons($("#exprs"), C.expressions, EXPR_VI, () => expr, v => expr = v);
+  buttons($("#poses"), C.poses, POSE_VI, () => pose, v => pose = v);
+  redraw();
+}
+
+async function loadPalette() { pal = await (await api(`/api/palette?outfit=${spec.body.outfit}&build=${spec.body.build}`)).json(); }
+
+function refreshActors() {
+  api("/api/catalog").then(r => r.json()).then(c => { const s = $("#load"); s.length = 1; c.actors.forEach(a => s.append(el("option", {value:a, textContent:a}))); });
+}
+
+$("#random").onclick = async () => {
+  const r = a => a[Math.floor(Math.random() * a.length)];
+  const heads = C.heads.filter(h => !h.id.endsWith("-special"));
+  spec.head = r(heads).id; spec.eyes = r(C.eyes).id; spec.mouth = r(C.mouths).id; spec.nose = r(C.noses).id;
+  spec.extras = Math.random() < 0.3 ? [r(C.extras).id] : [];
+  spec.skin = r(["", ...SKINS]); spec.body.outfit = r(C.outfits).id; spec.body.build = r(["thin","normal","normal","fat"]);
+  spec.body.colors = {}; await loadPalette(); render();
+};
+$("#load").onchange = async e => {
+  if (!e.target.value) return;
+  spec = await (await api("/api/load?id=" + e.target.value)).json(); spec._id = e.target.value;
+  spec.adjust = spec.adjust || {}; spec.extras = spec.extras || []; spec.body.colors = spec.body.colors || {};
+  await loadPalette(); render();
+};
+
+(async () => {
+  C = await (await api("/api/catalog")).json();
+  refreshActors();
+  if (!C.outfits.find(o => o.id === spec.body.outfit)) spec.body.outfit = C.outfits[0].id;
+  await loadPalette(); render();
+})();
+</script>
+</body>
+</html>

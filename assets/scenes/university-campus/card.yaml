@@ -1,0 +1,18 @@
+id: university-campus
+type: establishing
+group: đại học & quán
+tags:
+- sân trường đại học
+characters: []
+master: master.jpg
+size:
+- 1404
+- 764
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: a Chinese university campus with a big teaching building and a wide plaza
+crowd: 4

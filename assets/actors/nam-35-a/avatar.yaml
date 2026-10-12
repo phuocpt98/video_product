@@ -1,0 +1,15 @@
+head: head-slick
+eyes: eyes2
+mouth: mouth1
+nose: nose7
+extras: []
+skin: ''
+body:
+  outfit: m-suit
+  build: normal
+look: Doanh nhân 35 tuổi thành đạt, tóc vuốt ngược lịch lãm, phong thái từng trải
+  và ánh mắt sắc sảo trong bộ vest sang trọng.
+head_size: 1.0
+adjust: {}
+roles:
+- Trần Hán Thăng (ta-that-su-khong-muon-trong-sinh)

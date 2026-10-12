@@ -1,0 +1,15 @@
+head: head-grey-temples
+eyes: eyes2
+mouth: mouth1
+nose: nose7
+extras:
+- mustache
+skin: ''
+body:
+  outfit: m-suit
+  build: normal
+look: Chủ tịch 50 tuổi gia trưởng, tóc hoa râm, ria mép uy nghiêm trong âu phục vest
+head_size: 1.0
+adjust: {}
+roles:
+- Lộ Chấn Hải (thien-kim-that)

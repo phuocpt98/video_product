@@ -1,0 +1,19 @@
+id: villa-gate
+type: establishing
+group: nhà giàu
+tags:
+- cổng, sân biệt thự
+characters: []
+master: master.jpg
+size:
+- 1396
+- 764
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'the front gate and driveway of a rich family''s villa: iron gate, garden
+  hedges and a big white house in the background, wide empty paved driveway in the
+  foreground'

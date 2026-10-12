@@ -1,0 +1,1 @@
+{"time": "2026-09-26T14:42:30", "role": "prompts/roles/researcher.md", "brief": "docs/research/trends/briefs/2026-09-26-tts-vi.md", "model": "gemini-3.1-pro-high", "rc": 0, "status": "SUCCESS", "seconds": 140, "usage": {"input_tokens": 73489, "output_tokens": 7391, "thinking_tokens": 3974, "cache_read_tokens": 12186, "total_tokens": 80880}, "chars": 7509, "notices": []}

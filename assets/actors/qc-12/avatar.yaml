@@ -1,0 +1,12 @@
+head: head-grey-short
+eyes: eyes7
+mouth: mouth3
+nose: nose7
+extras: []
+skin: '#f7d2b0'
+body:
+  outfit: m-school
+  build: fat
+look: quần chúng
+roles:
+- quần chúng

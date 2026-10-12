@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quy trình sản xuất studio</title>
+<style>
+:root{
+  --bg:#f6f5f1; --surface:#fff; --ink:#1d1d1b; --muted:#6b6a64; --line:#dcdad2;
+  --claude:#c2542d; --claude-bg:#fbeee8; --agy:#1f7a5a; --agy-bg:#e6f4ee;
+  --local:#2f5fa7; --local-bg:#e8eef9; --founder:#8a6d1d; --founder-bg:#f8f0d9;
+  --warn:#b0441b; --ok:#1f7a5a; --todo:#8a8880;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#161614; --surface:#211f1d; --ink:#ecebe6; --muted:#a3a19a; --line:#3a3834;
+  --claude:#ef8a63; --claude-bg:#3a2419; --agy:#5fcf9f; --agy-bg:#17322a;
+  --local:#8fb3f0; --local-bg:#1c2940; --founder:#e2c26a; --founder-bg:#3a3118;
+  --warn:#f08a62; --ok:#5fcf9f; --todo:#8f8d86; } }
+:root[data-theme="dark"]{
+  --bg:#161614; --surface:#211f1d; --ink:#ecebe6; --muted:#a3a19a; --line:#3a3834;
+  --claude:#ef8a63; --claude-bg:#3a2419; --agy:#5fcf9f; --agy-bg:#17322a;
+  --local:#8fb3f0; --local-bg:#1c2940; --founder:#e2c26a; --founder-bg:#3a3118;
+  --warn:#f08a62; --ok:#5fcf9f; --todo:#8f8d86; }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 16px 64px}
+h1{font-size:26px;margin:0 0 4px} h2{font-size:19px;margin:34px 0 10px} h3{font-size:15px;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 18px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:13px;border:1px solid var(--line);background:var(--surface)}
+.dot{width:10px;height:10px;border-radius:50%}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.flow{display:flex;flex-direction:column;gap:0}
+.phase{border-left:4px solid var(--c);background:var(--surface);border-radius:10px;padding:12px 16px;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.phase .top{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.phase .who{font-size:13px;color:var(--c);font-weight:600}
+.phase p{margin:6px 0 0;font-size:14px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-top:10px}
+.step{background:var(--cbg);border-radius:8px;padding:8px 10px;font-size:13px}
+.step b{display:block;font-size:14px}
+.step .m{color:var(--muted);font-size:12px}
+.arrow{text-align:center;color:var(--muted);font-size:13px;padding:6px 0}
+code{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:13px}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;overflow-x:auto;font-size:13px;line-height:1.45;margin:0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:13px}
+.tag{display:inline-block;font-size:12px;padding:1px 7px;border-radius:5px;font-weight:600}
+.ok{background:var(--agy-bg);color:var(--ok)} .todo{background:var(--bg);color:var(--todo);border:1px solid var(--line)} .warn{background:var(--claude-bg);color:var(--warn)}
+.q{border-left:4px solid var(--founder);background:var(--founder-bg);border-radius:8px;padding:10px 14px;margin:8px 0}
+.num{font-size:24px;font-weight:700} .lbl{color:var(--muted);font-size:13px}
+.tablewrap{overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Quy trình sản xuất: Khoai Tây Review</h1>
+<p class="sub">Trạng thái thật ngày 26/9/2026. Nhãn <span class="tag ok">đã chạy</span> là đã chạy thật trên truyện mẫu; <span class="tag todo">dự kiến</span> là đã có kế hoạch nhưng chưa làm. Kế hoạch chi tiết ở <code>agent-team.md</code>, sơ đồ đội ở <code>agent-team.html</code>.</p>
+
+<div class="legend">
+  <span class="pill"><span class="dot" style="background:var(--founder)"></span>Người sáng lập</span>
+  <span class="pill"><span class="dot" style="background:var(--claude)"></span>Claude Code: trưởng nhóm (gói team, dùng ít)</span>
+  <span class="pill"><span class="dot" style="background:var(--agy)"></span>agy: nhân viên (gói Gemini Pro cá nhân)</span>
+  <span class="pill"><span class="dot" style="background:var(--local)"></span>Máy của bạn: script, VieNeu, ffmpeg (0đ)</span>
+</div>
+
+<h2>1. Ý tưởng cốt lõi</h2>
+<div class="grid">
+  <div class="card"><h3>Claude lên kế hoạch, Gemini làm</h3>Claude Code dựng quy trình, viết prompt và code, duyệt những chỗ quan trọng. Việc đọc, viết, duyệt khối lượng lớn chạy trên agy bằng quota gói Pro của bạn.</div>
+  <div class="card"><h3>Mỗi chương là 1 phần việc</h3>Mỗi chương ra 1 file chữ và 1 file mp3 riêng. Các chương làm song song, leader gom lại thành video. Chạy lại lệnh là làm tiếp chỗ dở.</div>
+  <div class="card"><h3>Không tin một model</h3>Người duyệt luôn khác model đã viết. Viết hỏng thì leo lên model mạnh hơn. Có kiểm tra bằng máy (chữ Hán sót, markdown, độ dài) trước khi người duyệt đọc.</div>
+  <div class="card"><h3>Không phụ thuộc dịch vụ trả phí</h3>Giọng đọc chạy trên máy (VieNeu, Apache-2.0), dựng video bằng ffmpeg. Chi phí tiền mặt hiện tại: 0đ.</div>
+</div>
+
+<h2>2. Luồng sản xuất 1 truyện <span class="tag ok">đã chạy</span></h2>
+<p>Lệnh: <code>.venv/bin/python -m src.run &lt;truyện&gt; --chapters 1-10 --render</code></p>
+<div class="flow">
+
+  <div class="phase" style="--c:var(--founder);--cbg:var(--founder-bg)">
+    <div class="top"><h3>0. Chọn truyện và khai báo</h3><span class="who">Người sáng lập + Claude</span></div>
+    <p>Chọn truyện; Claude tạo <code>stories/&lt;slug&gt;/story.yaml</code> (tên gốc, link Qidian, kênh, mức viết lại <code>light</code>). Truyện mẫu: 《我真没想重生啊》 (Ta Thật Sự Không Muốn Trọng Sinh A).</p>
+  </div>
+  <div class="arrow">▼</div>
+
+  <div class="phase" style="--c:var(--agy);--cbg:var(--agy-bg)">
+    <div class="top"><h3>Pha 1. Rã chương (song song)</h3><span class="who">agy · story-analyst</span></div>
+    <div class="steps">
+      <div class="step"><b>Đọc chương gốc</b>agy tự mở m.qidian.com, tìm đúng chương. Repo không lưu nguyên văn.<div class="m">Gemini 3.8 Flash → 3.1 Pro</div></div>
+      <div class="step"><b>Thẻ chương</b>Tóm tắt, 15–25 nhịp diễn biến, nhân vật, bối cảnh, câu móc.<div class="m">→ outline/chapter_cards/NNN.md</div></div>
+    </div>
+  </div>
+  <div class="arrow">▼</div>
+
+  <div class="phase" style="--c:var(--agy);--cbg:var(--agy-bg)">
+    <div class="top"><h3>Pha 2. Bảng tên (1 lần cho cả lô)</h3><span class="who">agy · rename</span></div>
+    <p>Gộp thẻ chương mới, thêm tên nhân vật, địa danh, thuật ngữ theo âm Hán Việt. Không được đổi tên đã dùng (máy kiểm). → <code>rename_map.json</code></p>
+  </div>
+  <div class="arrow">▼</div>
+
+  <div class="phase" style="--c:var(--agy);--cbg:var(--agy-bg)">
+    <div class="top"><h3>Pha 3. Viết → soát → duyệt (song song, mỗi chương 1 nhân viên)</h3><span class="who">agy · 3 vai trò</span></div>
+    <div class="steps">
+      <div class="step"><b>Viết lại nhẹ</b>Đọc chương gốc, giữ cốt truyện, bối cảnh Trung, tên Hán Việt; đổi cách diễn đạt; lời bình Khoai Tây ~5%.<div class="m">Gemini 3.1 Pro → Opus 4.6</div></div>
+      <div class="step"><b>Soát văn</b>Câu dài, văn "mùi AI", markdown, tên sai.<div class="m">Gemini 3.8 Flash → Sonnet 4.6</div></div>
+      <div class="step" style="background:var(--local-bg)"><b>Kiểm bằng máy</b>Còn chữ Hán? Có markdown? Độ dài đúng khoảng?<div class="m">script, 0 quota</div></div>
+      <div class="step"><b>Duyệt</b>ĐẠT hoặc CHƯA ĐẠT theo 6 tiêu chí. CHƯA ĐẠT thì viết lại 1 lần bằng model cao hơn, vẫn hỏng thì dừng và báo.<div class="m">Sonnet 4.6 → Opus 4.6 (khác người viết)</div></div>
+    </div>
+    <p>→ <code>script/NNN.txt</code> + <code>script/NNN.review.md</code></p>
+  </div>
+  <div class="arrow">▼</div>
+
+  <div class="phase" style="--c:var(--local);--cbg:var(--local-bg)">
+    <div class="top"><h3>Pha 4. Giọng đọc (leader, tuần tự)</h3><span class="who">Máy bạn · VieNeu-TTS</span></div>
+    <p>Giọng <b>Ngọc Huyền</b> (dự phòng Trúc Ly), tốc độ 1.12. Đọc từng câu, cache theo nội dung câu, phụ đề khớp từng câu. → <code>audio/NNN.mp3</code> + <code>audio/NNN.srt</code></p>
+  </div>
+  <div class="arrow">▼</div>
+
+  <div class="phase" style="--c:var(--local);--cbg:var(--local-bg)">
+    <div class="top"><h3>Leader: dựng video</h3><span class="who">Máy bạn · ffmpeg</span></div>
+    <p>Ghép mp3 các chương, cộng dồn phụ đề, khung hình linh vật + tiêu đề, phụ đề mềm. → <code>output/full_001-003.mp4</code>, <code>.srt</code>, <code>.chapters.txt</code> (mốc chương dán vào mô tả YouTube).</p>
+  </div>
+  <div class="arrow">▼</div>
+
+  <div class="phase" style="--c:var(--founder);--cbg:var(--founder-bg)">
+    <div class="top"><h3>Đăng <span class="tag todo">dự kiến</span></h3><span class="who">channel-manager + Người sáng lập</span></div>
+    <p>Script tải lên YouTube ở chế độ Riêng tư, kèm tiêu đề, mô tả, mốc chương, playlist. Bạn bấm Công khai. Hiện tại đăng bằng tay.</p>
+  </div>
+</div>
+
+<h2>3. File của một truyện</h2>
+<pre>stories/ta-that-su-khong-muon-trong-sinh/
+├── story.yaml              khai báo truyện (nguồn, kênh, rewrite: light)
+├── rename_map.json         bảng tên Hán Việt, dùng chung mọi chương
+├── outline/chapter_cards/  001.md 002.md …      thẻ chương (pha 1)
+├── script/                 001.txt 001.review.md …   bản kể + kết quả duyệt (pha 3)
+├── audio/                  001.mp3 001.srt …     giọng đọc từng chương (pha 4, không commit)
+├── render/                 file trung gian + pipeline.jsonl (nhật ký), xoá được
+└── output/                 full_001-003.mp4 .srt .chapters.txt   (không commit)</pre>
+
+<h2>4. Số đo thật</h2>
+<div class="grid">
+  <div class="card"><div class="num">~9,5 phút</div><div class="lbl">mỗi chương khi chạy tuần tự (agy ~7 phút + giọng ~2 phút). Chạy song song đang đo lại.</div></div>
+  <div class="card"><div class="num">~5 phút</div><div class="lbl">audio mỗi chương (~2.000 chữ Hán), video 3 chương = 17 phút</div></div>
+  <div class="card"><div class="num">~1–1,5%</div><div class="lbl">quota Gemini khung 5 giờ cho mỗi chương. Duyệt bằng Opus tốn gấp khoảng 3 lần</div></div>
+  <div class="card"><div class="num">0đ</div><div class="lbl">chi phí tiền mặt. Claude Code chỉ dùng để dựng và duyệt code</div></div>
+</div>
+
+<h2>5. Các luồng phụ</h2>
+<div class="tablewrap"><table>
+  <tr><th>Luồng</th><th>Ai làm</th><th>Trạng thái</th><th>Ghi chú</th></tr>
+  <tr><td>Nghiên cứu thị trường</td><td>trend-scout (Gemini 3.1 Pro) → content-reviewer</td><td><span class="tag warn">chạy 1 lượt, CHƯA ĐẠT</span></td><td>Gemini dẫn nguồn kém, có bịa. Đã siết prompt, chưa chạy lại. TikTok không đọc được qua web.</td></tr>
+  <tr><td>Nhận diện kênh</td><td>Claude + Gemini (ảnh)</td><td><span class="tag ok">xong</span></td><td>Avatar, ảnh bìa, mô tả, từ khoá, hashtag, playlist, mặc định tải lên: <code>channels/khoai-tay-review/</code></td></tr>
+  <tr><td>Chọn giọng</td><td>VieNeu local</td><td><span class="tag ok">xong</span></td><td>Ngọc Huyền, tốc độ 1.12</td></tr>
+  <tr><td>Kiểm soát chất lượng code</td><td>qa-lead (Claude)</td><td><span class="tag ok">đã chạy</span></td><td>Pipeline: lượt 1 CHƯA ĐẠT 5 lỗi, lượt 2 ĐẠT. Bản song song mới chưa qua QA.</td></tr>
+  <tr><td>Máy mới</td><td><code>scripts/setup.sh</code></td><td><span class="tag ok">có</span></td><td>Mọi thứ tải về nằm trong repo (<code>.cache/</code>, <code>.venv/</code>), hướng dẫn ở <code>docs/setup.md</code></td></tr>
+</table></div>
+
+<h2>6. Còn thiếu để ra video đăng được</h2>
+<div class="tablewrap"><table>
+  <tr><th>Thiếu</th><th>Vì sao quan trọng</th><th>Hướng</th></tr>
+  <tr><td>Hình nền động (clip lặp)</td><td>Khung tĩnh dễ bị coi là nội dung sản xuất hàng loạt, người xem cũng chán</td><td>Gameplay game của bạn + ảnh do agy tạo (<code>generate_image</code>) có zoom và lia chậm</td></tr>
+  <tr><td>Nhạc nền</td><td>Tăng cảm xúc</td><td>Tạm bỏ qua theo quyết định của bạn</td></tr>
+  <tr><td>Phụ đề in lên hình, clip TikTok 9:16</td><td>TikTok cần phụ đề in sẵn</td><td>Cài ffmpeg bản đầy đủ (libass)</td></tr>
+  <tr><td>Thumbnail</td><td>Quyết định tỷ lệ bấm vào xem</td><td>Mẫu chung + linh vật + chữ theo công thức tiêu đề</td></tr>
+  <tr><td>Nguồn chương VIP</td><td>Qidian chỉ miễn phí vài chục chương đầu</td><td>Chọn truyện ngắn, hoặc tìm nguồn khác, hoặc tự sáng tác (hướng d)</td></tr>
+  <tr><td>Hàng đợi chạy ngầm</td><td>Sản xuất hàng loạt qua đêm, tự chờ quota</td><td>Thiết kế ở agent-team.md §4b, làm khi quy trình đã ổn</td></tr>
+</table></div>
+
+<h2>7. Câu hỏi để bạn xác nhận hướng đi</h2>
+<div class="q"><b>Bản quyền:</b> hướng a (viết lại nhẹ truyện Trung chưa có giấy phép) nhanh nhất nhưng rủi ro cao nhất. Bạn vẫn giữ lựa chọn này cho giai đoạn đầu?</div>
+<div class="q"><b>Chính sách YouTube:</b> hình tĩnh + giọng AI + truyện dịch đúng là kiểu nội dung YouTube đang tắt kiếm tiền. Điểm khác biệt của kênh (linh vật, lời bình ~5%, hình động) có đủ không, hay nên tăng lời bình?</div>
+<div class="q"><b>Định dạng:</b> mỗi video gộp bao nhiêu chương? Một bản FULL dài vài giờ hay nhiều phần 1–2 giờ như các kênh đối thủ?</div>
+<div class="q"><b>Ưu tiên tiếp theo:</b> (1) hình động, (2) thumbnail và clip TikTok, (3) chạy thử 20–30 chương để đo độ bền, hay (4) đăng thử video đầu tiên để lấy số liệu thật?</div>
+</div>
+</body>
+</html>

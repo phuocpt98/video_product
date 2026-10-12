@@ -1,0 +1,18 @@
+id: poor-village-house
+type: establishing
+group: mua sắm & nhà nghèo
+tags:
+- nhà quê nghèo
+characters: []
+master: master.jpg
+size:
+- 1400
+- 760
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'a poor countryside house interior: old wooden table, worn bench, earthen
+  walls, small window at the back, wide empty packed-earth floor in the foreground'

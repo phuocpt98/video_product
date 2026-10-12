@@ -1,0 +1,18 @@
+id: airport-hall
+type: establishing
+group: nơi khác
+tags:
+- sân bay
+characters: []
+master: master.jpg
+size:
+- 1373
+- 755
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'an airport departure hall: check-in counters and a big window with a parked
+  airplane at the back, wide empty floor in the foreground'

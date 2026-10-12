@@ -1,0 +1,265 @@
+# ĐOÀN DIỄN VIÊN rối chibi dùng chung mọi truyện (thư viện assets/actors/). Tạo bằng scripts/make_actor.py.
+# Một diễn viên = một khuôn mặt + nhiều bộ trang phục; đóng nhiều vai qua stories/<slug>/cast.yaml.
+# Thể loại: ĐÔ THỊ (trọng sinh, hệ thống, làm giàu, vả mặt) — làm trước theo yêu cầu Người sáng lập 27/9. Tu tiên, cổ đại làm sau.
+# priority: 1 = cần cho truyện mẫu (tập 1), 2 = mô-típ đô thị rất hay gặp, 3 = làm sau.
+# look/outfits viết tiếng Anh để đưa thẳng vào prompt; phong cách chung lấy từ channel.yaml → visual_style.
+
+actors:
+  # ── NHÂN VẬT CHÍNH ──────────────────────────────────────────────────────────────────────────────
+  - id: nam-18-a
+    archetype: nam chính lanh lợi, "cáo già" trong thân xác trẻ
+    gender: nam
+    age: 18-25
+    look: "Chinese young man, lean, short slightly messy black hair, sharp knowing eyes"
+    signature: "confident half smirk"
+    outfits:
+      ao-phong-2002: "loose plain white T-shirt, blue jeans, white sneakers"
+      sinh-vien: "light blue short-sleeve shirt, grey trousers, canvas backpack"
+      vest: "dark navy suit, white shirt, no tie"
+    roles: ["Trần Hán Thăng 18 tuổi (ta-that-su-khong-muon-trong-sinh)", "nam chính trọng sinh", "nam chính nhận hệ thống"]
+    priority: 1
+  - id: nam-35-a
+    archetype: doanh nhân thành đạt, lịch lãm, mệt mỏi
+    gender: nam
+    age: 30-40
+    look: "Chinese man, 35, neat short black hair, sharp tired eyes, faint stubble"
+    signature: "cool polite smile"
+    outfits:
+      vest: "dark navy tailored suit, white shirt, loosened tie, luxury watch"
+      tho-thuong: "grey polo shirt, dark trousers"
+    roles: ["Trần Hán Thăng 35 tuổi (kiếp trước)", "tổng giám đốc", "đại gia"]
+    priority: 1
+  - id: nu-18-a
+    archetype: hoa khôi kiêu kỳ, "bạch nguyệt quang"
+    gender: nữ
+    age: 18-25
+    look: "Chinese young woman, very pretty, long straight black hair with bangs, big bright eyes, proud"
+    signature: "proud pouting look"
+    outfits:
+      dong-phuc-2002: "white short-sleeve blouse, light blue pleated knee-length skirt, white canvas shoes"
+      dam-du-tiec: "simple elegant white dress"
+    roles: ["Tiêu Dung Ngư", "hoa khôi", "nữ chính"]
+    priority: 1
+  - id: nu-18-b
+    archetype: nữ chính dịu dàng, hiền lành
+    gender: nữ
+    age: 18-25
+    look: "Chinese young woman, gentle kind face, soft shoulder-length black hair, warm eyes"
+    signature: "shy gentle smile"
+    outfits:
+      thuong-ngay: "pastel yellow cardigan over white T-shirt, long denim skirt"
+      cong-so: "white blouse, black pencil skirt"
+    roles: ["nữ chính hiền", "bạn gái thanh mai trúc mã", "nữ phụ"]
+    priority: 2
+  - id: nu-28-a
+    archetype: nữ tổng tài / nữ cường lạnh lùng
+    gender: nữ
+    age: 25-32
+    look: "Chinese woman, elegant cold beauty, long wavy black hair, sharp confident eyes, red lips"
+    signature: "cold confident look"
+    outfits:
+      cong-so: "black business suit with white blouse, high heels"
+      du-tiec: "elegant red evening dress"
+    roles: ["nữ tổng giám đốc", "Trương Minh Dung (khách ở tiệc, chương 1)", "vợ tổng tài"]
+    priority: 1
+  # ── BẠN BÈ, TÌNH ĐỊCH ────────────────────────────────────────────────────────────────────────────
+  - id: nam-18-b
+    archetype: bạn thân mập, thật thà, nghĩa khí
+    gender: nam
+    age: 18-25
+    look: "Chinese young man, stocky and chubby, lightly tanned, round honest face, buzz-cut black hair"
+    signature: "awkward friendly grin"
+    outfits:
+      he-2002: "faded blue T-shirt, grey shorts, plastic sandals"
+      sinh-vien: "white T-shirt, black track pants"
+    roles: ["Vương Tử Bác", "bạn thân nam chính", "đồng nghiệp tốt bụng"]
+    priority: 1
+  - id: nam-18-c
+    archetype: phú nhị đại / tình địch kiêu ngạo
+    gender: nam
+    age: 18-28
+    look: "Chinese young man, handsome rich kid, neatly styled side-part hair, arrogant eyes"
+    signature: "arrogant sneer"
+    outfits:
+      polo-2002: "branded polo shirt, beige chinos, expensive white sneakers"
+      hang-hieu: "designer jacket, gold chain, sunglasses pushed up on the head"
+    roles: ["Cao Gia Lương", "thiếu gia ăn chơi", "tình địch bị vả mặt"]
+    priority: 1
+  - id: nam-18-d
+    archetype: nam gầy nhút nhát, mọt sách
+    gender: nam
+    age: 16-25
+    look: "Chinese young man, skinny, big round glasses, messy bowl-cut hair, timid eyes"
+    signature: "nervous smile"
+    outfits:
+      hoc-sinh: "white school shirt, dark trousers"
+    roles: ["bạn học", "đàn em", "nhân viên mới bị bắt nạt"]
+    priority: 3
+  - id: nu-18-c
+    archetype: bạn gái cùng lớp nhiều chuyện
+    gender: nữ
+    age: 16-22
+    look: "Chinese young woman, ordinary cute, black ponytail, round glasses, gossipy eyes"
+    signature: "gossipy grin"
+    outfits:
+      dong-phuc-2002: "white short-sleeve school blouse, dark blue skirt"
+    roles: ["bạn cùng nhóm Dung Ngư", "bạn học nữ", "đồng nghiệp nữ"]
+    priority: 1
+  - id: nu-22-a
+    archetype: "trà xanh, tiểu tam giả tạo"
+    gender: nữ
+    age: 20-28
+    look: "Chinese young woman, pretty but fake-innocent face, long curled light-brown hair, heavy makeup"
+    signature: "fake innocent smile"
+    outfits:
+      thoi-trang: "tight pink dress, small designer handbag"
+    roles: ["bạn gái cũ phản bội", "tiểu tam", "kẻ đào mỏ"]
+    priority: 2
+  # ── GIA ĐÌNH ────────────────────────────────────────────────────────────────────────────────────
+  - id: nu-45-a
+    archetype: mẹ tần tảo, nghiêm mà thương con
+    gender: nữ
+    age: 40-50
+    look: "Chinese woman, warm but strict mother, short permed black hair, slightly plump"
+    signature: "suspicious strict look"
+    outfits:
+      o-nha-2002: "floral short-sleeve blouse, dark trousers, apron"
+    roles: ["Lương Mỹ Quyên (mẹ Hán Thăng)", "mẹ nam chính"]
+    priority: 1
+  - id: nam-48-a
+    archetype: bố hiền, lém lỉnh
+    gender: nam
+    age: 45-55
+    look: "Chinese man, easy-going sly father, short black hair, medium build, friendly crafty smile"
+    signature: "sly knowing smile"
+    outfits:
+      o-nha-2002: "white sleeveless undershirt, grey trousers, plastic slippers"
+      di-lam: "short-sleeve checked shirt, trousers"
+    roles: ["Trần Triệu Quân (bố Hán Thăng)", "bố nam chính"]
+    priority: 1
+  - id: nu-50-a
+    archetype: mẹ vợ / bà thím đanh đá, khinh người nghèo
+    gender: nữ
+    age: 45-60
+    look: "Chinese middle-aged woman, sharp-tongued, tight curly perm, thin eyebrows, gold earrings, heavy makeup"
+    signature: "contemptuous sneer"
+    outfits:
+      sang-chanh: "flashy purple silk blouse, black skirt, pearl necklace"
+      thuong-ngay: "leopard print top, black trousers"
+    roles: ["mẹ vợ khinh con rể", "bà thím hàng xóm nhiều chuyện", "dì ghẻ"]
+    priority: 2
+  - id: nu-70-a
+    archetype: bà cụ hiền hậu
+    gender: nữ
+    age: 65-80
+    look: "Chinese old woman, kind wrinkled smiling face, grey hair in a bun, small and slightly hunched"
+    signature: "warm kind smile"
+    outfits:
+      que: "plain dark blue traditional jacket, black trousers, cloth shoes"
+    roles: ["bà nội", "bà cụ bán hàng", "người được nam chính giúp"]
+    priority: 2
+  - id: nu-70-b
+    archetype: bà già độc ác, cay nghiệt
+    gender: nữ
+    age: 60-80
+    look: "Chinese old woman, mean sharp face, thin lips, narrow cunning eyes, grey hair pulled back tightly"
+    signature: "cruel scowl"
+    outfits:
+      giau: "dark red embroidered jacket, jade bracelet, walking cane"
+    roles: ["mẹ chồng ác", "bà nội thiên vị", "lão phu nhân gia tộc"]
+    priority: 2
+  - id: nam-70-a
+    archetype: ông lão bí ẩn / đại lão ẩn danh
+    gender: nam
+    age: 65-80
+    look: "Chinese old man, calm wise face, white hair and short white beard, deep eyes"
+    signature: "mysterious calm smile"
+    outfits:
+      gian-di: "plain grey tunic, cloth shoes"
+      sang-trong: "black Tang-style jacket, prayer beads"
+    roles: ["ông lão được nam chính cứu hoá ra là đại gia", "thầy dạy võ", "ông nội"]
+    priority: 2
+  # ── CÔNG SỞ, XÃ HỘI ─────────────────────────────────────────────────────────────────────────────
+  - id: nam-50-a
+    archetype: thầy giáo / công chức già, gầy
+    gender: nam
+    age: 45-60
+    look: "Chinese thin man, receding grey-black hair, thin glasses, tired kind eyes, smoker look"
+    signature: "gruff but caring look"
+    outfits:
+      giao-vien-2002: "short-sleeve light grey shirt tucked in, dark trousers, leather belt"
+    roles: ["thầy Từ Văn", "thầy chủ nhiệm", "trưởng phòng già"]
+    priority: 1
+  - id: nam-45-b
+    archetype: sếp bụng phệ, hống hách
+    gender: nam
+    age: 40-55
+    look: "Chinese man, big pot belly, balding with comb-over, small greedy eyes, double chin"
+    signature: "smug arrogant grin"
+    outfits:
+      cong-so: "tight white shirt straining over the belly, loose tie, black trousers"
+      dai-gia: "gold chain, flashy printed shirt, leather man-bag"
+    roles: ["giám đốc chèn ép nhân viên", "trọc phú", "chủ nợ"]
+    priority: 2
+  - id: nam-35-b
+    archetype: trưởng phòng gầy, xu nịnh, gian xảo
+    gender: nam
+    age: 30-45
+    look: "Chinese thin man, slicked-back hair, narrow shifty eyes, thin moustache"
+    signature: "sly fawning smile"
+    outfits:
+      cong-so: "cheap grey suit, thin tie"
+    roles: ["trưởng phòng ghen tị", "kẻ tiểu nhân", "môi giới lừa đảo"]
+    priority: 2
+  - id: nam-30-a
+    archetype: côn đồ / đại ca xã hội đen
+    gender: nam
+    age: 25-40
+    look: "Chinese tough man, shaved head, scar on the eyebrow, muscular, tattoo on the arm"
+    signature: "menacing grin"
+    outfits:
+      con-do: "black tank top, gold chain, camo pants"
+    roles: ["đại ca vòi tiền", "đòi nợ thuê", "tay chân của phản diện"]
+    priority: 2
+  - id: nam-30-b
+    archetype: vệ sĩ / quản gia trung thành
+    gender: nam
+    age: 25-45
+    look: "Chinese man, tall and strong, short crew cut, stern expressionless face"
+    signature: "stern serious look"
+    outfits:
+      ve-si: "black suit, black sunglasses, earpiece"
+      quan-gia: "black butler vest, white gloves"
+    roles: ["vệ sĩ của đại lão", "quản gia gia tộc", "tài xế riêng"]
+    priority: 3
+  - id: nu-25-b
+    archetype: thư ký / lễ tân / nhân viên bán hàng
+    gender: nữ
+    age: 20-30
+    look: "Chinese young woman, neat bun hairstyle, polite professional face"
+    signature: "polite professional smile"
+    outfits:
+      dong-phuc: "white blouse, navy vest and skirt uniform, name badge"
+    roles: ["thư ký", "lễ tân khách sạn", "nhân viên cửa hàng xem thường nam chính"]
+    priority: 2
+  - id: nam-40-a
+    archetype: cảnh sát / bác sĩ / người có chức phận (đổi đồng phục)
+    gender: nam
+    age: 35-50
+    look: "Chinese man, square honest face, short neat hair, serious eyes"
+    signature: "serious professional look"
+    outfits:
+      canh-sat: "Chinese police uniform, cap"
+      bac-si: "white doctor coat, stethoscope"
+    roles: ["cảnh sát", "bác sĩ", "quan chức"]
+    priority: 3
+  - id: tre-8-a
+    archetype: em nhỏ
+    gender: nam/nữ
+    age: 6-10
+    look: "Chinese small child, round cute face, short hair, big eyes"
+    signature: "cheerful grin"
+    outfits:
+      thuong-ngay: "red T-shirt, shorts"
+    roles: ["em trai/em gái", "con của nhân vật", "đứa trẻ được cứu"]
+    priority: 3

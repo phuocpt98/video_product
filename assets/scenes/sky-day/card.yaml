@@ -1,0 +1,17 @@
+id: sky-day
+type: establishing
+group: trời & đường
+tags:
+- bầu trời ban ngày
+characters: []
+master: master.jpg
+size:
+- 1391
+- 754
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: clear blue sky with a few big white cartoon clouds, nothing else

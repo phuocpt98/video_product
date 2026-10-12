@@ -1,0 +1,16 @@
+head: head-mid-m
+eyes: eyes4
+mouth: mouth1
+nose: nose7
+extras:
+- glasses-round
+skin: ''
+body:
+  outfit: m-office
+  build: thin
+look: Thầy giáo chủ nhiệm trung niên gầy gò, đeo kính tròn, ánh mắt mệt mỏi vì thức
+  khuya lo toan cho học trò.
+head_size: 1.0
+adjust: {}
+roles:
+- Từ Văn (ta-that-su-khong-muon-trong-sinh)

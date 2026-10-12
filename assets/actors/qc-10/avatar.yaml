@@ -1,0 +1,12 @@
+head: head-bowl
+eyes: eyes4
+mouth: mouth3
+nose: nose7
+extras: []
+skin: '#e8b98f'
+body:
+  outfit: m-guard
+  build: fat
+look: quần chúng
+roles:
+- quần chúng

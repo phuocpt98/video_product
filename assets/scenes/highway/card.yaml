@@ -1,0 +1,18 @@
+id: highway
+type: establishing
+group: trời & đường
+tags:
+- đường lớn cho xe chạy
+characters: []
+master: master.jpg
+size:
+- 1391
+- 766
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'a wide city road seen from the side: grey asphalt lanes across the lower
+  half, sidewalk and city buildings in the background'

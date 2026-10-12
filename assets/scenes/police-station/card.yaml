@@ -1,0 +1,18 @@
+id: police-station
+type: establishing
+group: bệnh viện & pháp lý
+tags:
+- đồn công an
+characters: []
+master: master.jpg
+size:
+- 1396
+- 764
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'a police station reception room: counter and desks with computers at the
+  back, notice board, wide empty floor in the foreground'

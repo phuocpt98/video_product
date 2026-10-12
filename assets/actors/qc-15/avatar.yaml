@@ -1,0 +1,12 @@
+head: head-yellow
+eyes: eyes2
+mouth: mouth1
+nose: nose7
+extras: []
+skin: ''
+body:
+  outfit: m-waiter
+  build: normal
+look: quần chúng
+roles:
+- quần chúng

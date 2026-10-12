@@ -1,0 +1,18 @@
+id: courtroom
+type: establishing
+group: bệnh viện & pháp lý
+tags:
+- toà án
+characters: []
+master: master.jpg
+size:
+- 1404
+- 756
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'a courtroom: judge''s bench on a raised platform at the back, wooden railings
+  at the sides, wide empty floor in the foreground'

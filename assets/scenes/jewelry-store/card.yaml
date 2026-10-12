@@ -1,0 +1,18 @@
+id: jewelry-store
+type: establishing
+group: mua sắm & nhà nghèo
+tags:
+- cửa hàng trang sức
+characters: []
+master: master.jpg
+size:
+- 1400
+- 760
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'a luxury jewelry store: glass display counters with necklaces and rings along
+  the back and sides, bright lights, wide empty polished floor in the foreground'

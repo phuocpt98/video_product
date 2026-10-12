@@ -1,0 +1,40 @@
+# Bí mật
+.env
+**/cookies.json
+
+# Repo tham khảo clone từ GitHub (mỗi repo có .git riêng)
+tool/
+
+# Nháp và file trung gian
+tmp/
+stories/*/render/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.DS_Store
+
+# Media nặng: giữ ngoài git
+stories/*/audio/
+stories/*/output/
+*.mp4
+*.mov
+*.wav
+
+# Cài đặt cá nhân của Claude Code và IDE
+.claude/settings.local.json
+.idea/
+
+# Model AI và bộ nhớ đệm tải về (tải lại bằng scripts/setup.sh)
+.cache/
+
+# Repo GitHub chỉ giữ cấu trúc, quy tắc, code và thư viện hình (chốt 12/10/2026)
+# Dữ liệu từng truyện, việc đang chạy, media nặng: chỉ nằm trên máy
+stories/
+board/
+channels/*/brand/
+assets/clips/
+assets/music/
+assets/sfx/*
+!assets/sfx/LICENSE.md
+.claude/scheduled_tasks.lock

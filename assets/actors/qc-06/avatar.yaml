@@ -1,0 +1,13 @@
+head: head-long-wavy
+eyes: eyes8
+mouth: mouth2
+nose: nose8
+extras:
+- glasses-round
+skin: '#e8b98f'
+body:
+  outfit: f-nurse
+  build: normal
+look: quần chúng
+roles:
+- quần chúng

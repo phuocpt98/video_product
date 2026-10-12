@@ -1,0 +1,15 @@
+head: head-sidepart
+eyes: eyes2
+mouth: mouth1
+nose: nose7
+extras: []
+skin: ''
+body:
+  outfit: m-suit
+  build: normal
+look: Trợ lý cấp cao 26 tuổi, tóc rẽ ngôi chỉn chu, ánh mắt sắc lạnh trung thành trong
+  bộ vest đen.
+head_size: 1.0
+adjust: {}
+roles:
+- Cố Ngôn Chi (thien-kim-that)

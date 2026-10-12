@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đội agent Khoai Tây Review</title>
+<style>
+:root{
+  --bg:#f6f5f1; --surface:#ffffff; --ink:#1d1d1b; --muted:#6b6a64; --line:#dcdad2;
+  --claude:#c2542d; --claude-bg:#fbeee8;
+  --agy:#1f7a5a; --agy-bg:#e6f4ee;
+  --glm:#5b57c9; --glm-bg:#ecebfb;
+  --machine:#6b6a64; --machine-bg:#efeee9;
+  --founder:#8a6d1d; --founder-bg:#f8f0d9;
+  --shadow:0 8px 28px rgba(0,0,0,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161614; --surface:#211f1d; --ink:#ecebe6; --muted:#a3a19a; --line:#3a3834;
+    --claude:#ef8a63; --claude-bg:#3a2419;
+    --agy:#5fcf9f; --agy-bg:#17322a;
+    --glm:#a29ef5; --glm-bg:#26244a;
+    --machine:#b5b3ac; --machine-bg:#2a2926;
+    --founder:#e2c26a; --founder-bg:#3a3118;
+    --shadow:0 8px 28px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#161614; --surface:#211f1d; --ink:#ecebe6; --muted:#a3a19a; --line:#3a3834;
+  --claude:#ef8a63; --claude-bg:#3a2419;
+  --agy:#5fcf9f; --agy-bg:#17322a;
+  --glm:#a29ef5; --glm-bg:#26244a;
+  --machine:#b5b3ac; --machine-bg:#2a2926;
+  --founder:#e2c26a; --founder-bg:#3a3118;
+  --shadow:0 8px 28px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 60px}
+h1{font-size:26px;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 20px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:13px;border:1px solid var(--line);background:var(--surface)}
+.dot{width:10px;height:10px;border-radius:50%}
+.tier{margin:0 0 8px;border-left:4px solid var(--c);background:var(--surface);border-radius:10px;padding:14px 14px 16px;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tier h2{font-size:15px;margin:0 0 2px;color:var(--c);text-transform:uppercase;letter-spacing:.04em}
+.tier .note{font-size:13px;color:var(--muted);margin:0 0 12px}
+.groups{display:flex;flex-wrap:wrap;gap:12px}
+.group{flex:1 1 260px;min-width:0}
+.group h3{font-size:12px;color:var(--muted);margin:0 0 6px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.card{position:relative;background:var(--cbg);border:1px solid var(--line);border-radius:9px;padding:10px 12px;cursor:default;outline:none}
+.card:hover,.card:focus{border-color:var(--c)}
+.card .name{font-weight:650;font-size:15px}
+.card .role{font-size:13px;color:var(--muted);margin:2px 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-size:11.5px;padding:1px 7px;border-radius:5px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+.chip.main{border-color:var(--c);color:var(--c);font-weight:600}
+.tip{display:none;position:absolute;z-index:20;left:0;top:calc(100% + 6px);width:min(360px,86vw);background:var(--surface);border:1px solid var(--c);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);font-size:13.5px}
+.card:hover .tip,.card:focus .tip,.card:focus-within .tip{display:block}
+.tip dt{font-weight:650;color:var(--c);margin-top:6px;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.tip dt:first-child{margin-top:0}
+.tip dd{margin:1px 0 0}
+.tip .ladder{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.arrow{text-align:center;color:var(--muted);font-size:13px;margin:4px 0 8px}
+.pools{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:26px}
+.pool{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:10px;padding:12px 14px}
+.pool h3{margin:0 0 2px;font-size:15px;color:var(--c)}
+.pool p{margin:0 0 8px;font-size:13px;color:var(--muted)}
+.pool ul{margin:0;padding-left:18px;font-size:13.5px}
+.rules{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.rules h2{font-size:16px;margin:0 0 8px}
+.rules ol{margin:0;padding-left:20px}
+.rules li{margin:3px 0}
+.hint{font-size:12.5px;color:var(--muted);margin-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Đội agent Khoai Tây Review</h1>
+  <p class="sub">Claude Code là trưởng nhóm: lên ý tưởng, kế hoạch và duyệt. Đội agy dùng gói Gemini Pro cá nhân làm phần lớn việc. Di chuột (hoặc chạm) vào thẻ để xem chi tiết. Kế hoạch đầy đủ ở <code>agent-team.md</code>.</p>
+
+  <div class="legend">
+    <span class="pill"><span class="dot" style="background:var(--claude)"></span>Claude Code: gói team, hạn chế</span>
+    <span class="pill"><span class="dot" style="background:var(--agy)"></span>agy: gói Gemini Pro cá nhân, dùng thoải mái</span>
+    <span class="pill"><span class="dot" style="background:var(--glm)"></span>GLM: miễn phí, dự phòng</span>
+    <span class="pill"><span class="dot" style="background:var(--machine)"></span>Script, không dùng LLM</span>
+  </div>
+
+  <div id="tiers"></div>
+
+  <div class="pools" id="pools"></div>
+
+  <div class="rules">
+    <h2>Luật chuyển model</h2>
+    <ol>
+      <li><b>Trong gói agy:</b> đổi tự do. Mỗi vai trò có thang model trong <code>config.yaml</code>.</li>
+      <li><b>Sang GLM:</b> tự do. Dùng khi quota agy dưới 10% hoặc cho việc máy móc số lượng lớn.</li>
+      <li><b>Lên Claude Code:</b> không tự động. Runner dừng lại và báo Điều phối quyết định.</li>
+      <li><b>Leo thang tự động khi:</b> kết quả sai định dạng hoặc bị cắt, trượt kiểm tra bằng máy, hoặc bị chấm CHƯA ĐẠT 2 lần liền.</li>
+      <li><b>Duyệt chéo:</b> model duyệt luôn khác model đã làm.</li>
+    </ol>
+  </div>
+  <p class="hint">Cập nhật 26/9/2026. Quota đo ngày 26/9: một lần viết lại khoảng 400 chữ Hán tốn khoảng 1% khung 5 giờ với Gemini và Sonnet 4.6, khoảng 3% với Opus 4.6.</p>
+</div>
+
+<script>
+const T = {
+  founder:{c:"--founder",bg:"--founder-bg"}, claude:{c:"--claude",bg:"--claude-bg"},
+  agy:{c:"--agy",bg:"--agy-bg"}, machine:{c:"--machine",bg:"--machine-bg"}
+};
+const tiers = [
+  {key:"founder", title:"Người sáng lập", note:"Quyết định hướng đi, ngân sách, những gì được đăng ra ngoài.", groups:[{cards:[
+    {name:"Người sáng lập", role:"Quyết định cuối", chips:["Chốt hướng","Duyệt đăng"],
+     d:{"Nhiệm vụ":"Chọn truyện, chốt tên kênh, ngân sách, sửa hiến pháp, duyệt đăng video.","Quyền":"Mọi quyền. Các việc ở hiến pháp §6 phải có Người sáng lập đồng ý."}}
+  ]}]},
+  {key:"claude", title:"Dẫn dắt: Claude Code (gói team)", note:"Chỉ dùng cho việc quan trọng. Không làm việc đọc hay viết khối lượng lớn.", groups:[
+    {h:"Trưởng nhóm", cards:[
+      {name:"Điều phối", role:"Phiên chính: ý tưởng, kế hoạch, chia việc", chips:["Opus 5.5"], main:0,
+       d:{"Nhiệm vụ":"Lên ý tưởng và kế hoạch, đặt tiêu chí, chia việc thành brief nhỏ cho đội agy, đọc bản tóm tắt và vài mẫu, quyết định leo thang lên Claude Code.","Quyền":"Đọc và ghi toàn repo. Gọi mọi vai trò. Không đọc .env.","Model":["Claude Opus 5.5"],"Không làm":"Không tự đọc cả chương hay viết kịch bản dài: giao cho agy."}},
+      {name:"qa-lead", role:"Cổng code và cấu trúc", chips:["Opus","Hiếm"], main:0,
+       d:{"Nhiệm vụ":"Duyệt code pipeline (kể cả code do coder trên agy viết) và thay đổi cấu trúc. Kết luận ĐẠT hoặc CHƯA ĐẠT kèm bằng chứng.","Quyền":"Đọc, chạy lệnh kiểm tra, ghi bộ nhớ QA. Không sửa sản phẩm.","Model":["Claude Opus (subagent)"],"Không làm":"Không duyệt nội dung: đó là việc của content-reviewer."}},
+      {name:"architect", role:"Kế hoạch kỹ thuật lớn", chips:["Opus","Rất hiếm"], main:0,
+       d:{"Nhiệm vụ":"Chỉ gọi khi cần thiết kế lớn (module mới, đổi kiến trúc). Việc thường thì Điều phối tự lên kế hoạch.","Quyền":"Đọc, ghi docs/, giao việc.","Model":["Claude Opus (subagent)"]}}
+    ]},
+    {h:"Dự phòng (chỉ khi agy hỏng 2 lần)", cards:[
+      {name:"Đội dự phòng Claude", role:"developer, tester, researcher, operator, product-lead, llm-runner", chips:["sonnet","haiku","opus"],
+       d:{"Nhiệm vụ":"Cứu những việc đội agy làm hỏng 2 lần, hoặc việc cần suy luận sâu.","Quyền":"Theo file vai trò trong .claude/agents/.","Model":["sonnet","haiku","opus"],"Luật":"Chỉ Điều phối được gọi. Mỗi lần gọi đều tốn quota của team."}}
+    ]}
+  ]},
+  {key:"agy", title:"Nhân viên: agy (gói Gemini Pro cá nhân)", note:"Dùng thoải mái. Mỗi vai trò có thang model: tự leo thang khi kết quả không đạt.", groups:[
+    {h:"Nghiên cứu", cards:[
+      {name:"trend-scout", role:"Xu hướng và đối thủ", chips:["Gemini 3.1 Pro","Opus 4.6"], main:0,
+       d:{"Nhiệm vụ":"Quét YouTube, TikTok Việt Nam, Douyin, Bilibili và bảng xếp hạng truyện Trung (Fanqie, Qidian): truyện đang lên, mô-típ hot, tiêu đề và thumbnail ăn khách, kênh mới. Có Google Search nên tìm được kết quả tiếng Việt và tiếng Trung.","Quyền":"Tìm kiếm web. Ghi docs/research/trends/.","Model":["Gemini 3.1 Pro high","Opus 4.6"],"Không làm":"Không tải hay dùng video của người khác. Không chọn truyện (Người sáng lập chốt)."}},
+      {name:"source-finder", role:"Bản gốc truyện và tài nguyên", chips:["Gemini 3.8 Flash","3.1 Pro"], main:0,
+       d:{"Nhiệm vụ":"Tìm bản gốc tiếng Trung từ video hoặc tên truyện đã Việt hoá. Tìm nhạc và clip nền được phép dùng thương mại, có ghi giấy phép.","Quyền":"Tìm kiếm web. Ghi stories/<slug>/source/, docs/research/trends/.","Model":["Gemini 3.8 Flash high","Gemini 3.1 Pro high"],"Không làm":"Không dùng tài nguyên chưa rõ giấy phép."}}
+    ]},
+    {h:"Sản xuất", cards:[
+      {name:"story-analyst", role:"Rã truyện", chips:["Gemini 3.8 Flash","3.1 Pro"], main:0,
+       d:{"Nhiệm vụ":"Đọc chương tiếng Trung, lập thẻ chương, danh sách nhân vật, mô-típ, bảng đổi tên sang tên Việt.","Quyền":"Đọc stories/<slug>/chapters/. Ghi stories/<slug>/outline/.","Model":["Gemini 3.8 Flash medium","Gemini 3.1 Pro high"],"Không làm":"Không bịa tình tiết không có trong truyện."}},
+      {name:"scriptwriter", role:"Viết lại kịch bản kể", chips:["Gemini 3.1 Pro","Opus 4.6"], main:0,
+       d:{"Nhiệm vụ":"Viết lại theo cách 拆书 + 仿写: dựa vào thẻ chương và thẻ phong cách, câu ngắn, dễ nghe, có lời bình của người kể.","Quyền":"Đọc outline/. Ghi stories/<slug>/script/.","Model":["Gemini 3.1 Pro high","Opus 4.6"],"Không làm":"Không dùng markdown. Không chép nguyên văn bản dịch."}},
+      {name:"editor", role:"Soát văn", chips:["Gemini 3.8 Flash","Sonnet 4.6"], main:0,
+       d:{"Nhiệm vụ":"Soát văn AI: lặp ý, sáo rỗng, markdown lọt vào, tên còn phiên âm Trung, câu quá dài để đọc TTS.","Quyền":"Đọc và ghi stories/<slug>/script/ (bản đã sửa).","Model":["Gemini 3.8 Flash high","Sonnet 4.6"]}},
+      {name:"packager", role:"Tiêu đề, móc câu, thumbnail", chips:["Opus 4.6","Sonnet 4.6"], main:0,
+       d:{"Nhiệm vụ":"Tiêu đề YouTube, mô tả, câu móc TikTok 3 giây đầu, ý tưởng thumbnail.","Quyền":"Đọc script/. Ghi stories/<slug>/output/.","Model":["Opus 4.6","Sonnet 4.6"],"Không làm":"Không giật tít sai nội dung."}},
+      {name:"content-reviewer", role:"Cổng nội dung", chips:["Opus 4.6","→ Điều phối"], main:0,
+       d:{"Nhiệm vụ":"Chấm kịch bản, báo cáo nghiên cứu và tiêu đề theo tiêu chí của brief. Kết luận ĐẠT hoặc CHƯA ĐẠT kèm lỗi cụ thể.","Quyền":"Đọc sản phẩm. Chỉ ghi file review.","Model":["Opus 4.6","Điều phối (Claude Code)"],"Luật":"Không duyệt sản phẩm do chính model mình viết ra. CHƯA ĐẠT 2 lần thì báo Điều phối."}}
+    ]},
+    {h:"Vận hành kênh", cards:[
+      {name:"channel-manager", role:"Đăng video, số liệu, báo cáo", chips:["Script","Gemini 3.1 Pro","Opus 4.6"], main:0,
+       d:{"Nhiệm vụ":"Tải video lên YouTube ở chế độ Riêng tư, kèm tiêu đề, mô tả, thumbnail, chapter và playlist. Kéo số liệu hằng ngày, viết báo cáo tuần, tóm tắt bình luận và gợi ý trả lời.","Quyền":"YouTube Data API và Analytics API qua OAuth. Ghi data/tracking.csv và báo cáo kênh.","Model":["Script (đăng video, số liệu)","Gemini 3.1 Pro high","Opus 4.6"],"Luật":"Người sáng lập bấm Công khai trong Studio (project chưa qua kiểm duyệt thì video tải lên luôn ở chế độ Riêng tư). Trả lời bình luận phải được Người sáng lập duyệt.","Khi nào":"Giai đoạn 4, khi đã có video đầu tiên."}}
+    ]},
+    {h:"Kỹ thuật", cards:[
+      {name:"coder", role:"Viết code theo brief", chips:["Opus 4.6","Sonnet 4.6","3.1 Pro"], main:0,
+       d:{"Nhiệm vụ":"Viết code theo kế hoạch và brief của Điều phối: file, hàm, tiêu chí đều cụ thể.","Quyền":"Chỉ ghi các file ghi trong brief (src/, scripts/, tests/). Không chạy lệnh shell.","Model":["Opus 4.6 thinking","Sonnet 4.6","Gemini 3.1 Pro high"],"Luật":"Runner chạy test sau khi coder xong. Code pipeline phải qua qa-lead. Cần git để xem thay đổi và hoàn tác."}},
+      {name:"test-writer", role:"Viết test", chips:["Sonnet 4.6","3.1 Pro"], main:0,
+       d:{"Nhiệm vụ":"Viết test theo tiêu chí của brief, trong đó có ít nhất 1 lần gọi thật cho mỗi đường dùng chính (theo lessons.md).","Quyền":"Ghi tests/. Không chạy lệnh (runner chạy).","Model":["Sonnet 4.6","Gemini 3.1 Pro high"]}}
+    ]}
+  ]},
+  {key:"machine", title:"Máy: script, không dùng LLM", note:"Không tốn quota. Làm những việc chỉ cần quy tắc rõ ràng.", groups:[{cards:[
+    {name:"runner", role:"src.agents.run (dự kiến)", chips:["agy","GLM"],
+     d:{"Nhiệm vụ":"Ghép file vai trò với brief, gọi agy -p hoặc GLM, kiểm tra kết quả bằng máy, leo thang model, ghi run.jsonl (model, token, % quota).","Quyền":"Chạy agy trong thư mục được phép, luôn bật --sandbox."}},
+    {name:"llm.py", role:"src/common/llm.py (đã có)", chips:["GLM","agy (dự kiến)"],
+     d:{"Nhiệm vụ":"Gọi LLM theo lô: cắt đoạn, thử lại, log. Hiện có GLM; sẽ thêm backend agy.","Trạng thái":"GLM đã qua QA ngày 26/9/2026 (ĐẠT)."}},
+    {name:"pipeline media", role:"TTS, ffmpeg, dựng video (dự kiến)", chips:["ffmpeg","TTS"],
+     d:{"Nhiệm vụ":"Đọc kịch bản thành giọng, ghép clip nền lặp, phụ đề, cắt clip TikTok.","Trạng thái":"Giai đoạn 4 của lộ trình."}}
+  ]}]}
+];
+const pools = [
+  {c:"--agy", t:"Gói agy (Gemini Pro cá nhân)", p:"Hai kho quota riêng, mỗi kho có giới hạn 5 giờ và giới hạn tuần.", li:[
+    "Gemini 3.8 / 3.7 / 3.6 Flash: mức low, medium, high",
+    "Gemini 3.1 Pro: mức low, high",
+    "Claude Opus 4.6 thinking, Sonnet 4.6 (kho riêng, tốn quota nhanh hơn)",
+    "GPT-OSS 120B"]},
+  {c:"--glm", t:"GLM (Z.ai, miễn phí)", p:"Mỗi lần 1 yêu cầu, đôi lúc quá tải.", li:[
+    "glm-4.7-flash (chính)","glm-4.5-flash (dự phòng)"]},
+  {c:"--claude", t:"Claude Code (gói team)", p:"Chỉ dùng cho việc quan trọng.", li:[
+    "Opus 5.5: Điều phối", "opus / sonnet / haiku: các subagent"]}
+];
+const $ = s => document.createElement(s);
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+const root = document.getElementById("tiers");
+tiers.forEach((tier, i) => {
+  const t = T[tier.key];
+  const sec = $("section"); sec.className = "tier";
+  sec.style.setProperty("--c", `var(${t.c})`); sec.style.setProperty("--cbg", `var(${t.bg})`);
+  sec.innerHTML = `<h2>${esc(tier.title)}</h2><p class="note">${esc(tier.note)}</p>`;
+  const gs = $("div"); gs.className = "groups";
+  tier.groups.forEach(g => {
+    const gd = $("div"); gd.className = "group";
+    if (g.h) gd.innerHTML = `<h3>${esc(g.h)}</h3>`;
+    const cs = $("div"); cs.className = "cards";
+    g.cards.forEach(c => {
+      const card = $("div"); card.className = "card"; card.tabIndex = 0;
+      const chips = c.chips.map((x, j) => `<span class="chip${j === c.main ? " main" : ""}">${esc(x)}</span>`).join("");
+      const tip = Object.entries(c.d).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${Array.isArray(v)
+        ? `<span class="ladder">${v.map(esc).map(x => `<span class="chip">${x}</span>`).join(" → ")}</span>`
+        : esc(v)}</dd>`).join("");
+      card.innerHTML = `<div class="name">${esc(c.name)}</div><div class="role">${esc(c.role)}</div><div class="chips">${chips}</div><dl class="tip">${tip}</dl>`;
+      cs.appendChild(card);
+    });
+    gd.appendChild(cs); gs.appendChild(gd);
+  });
+  sec.appendChild(gs); root.appendChild(sec);
+  if (i < tiers.length - 1) { const a = $("div"); a.className = "arrow"; a.textContent = "▼ giao việc bằng brief · ▲ báo cáo và kết quả"; root.appendChild(a); }
+});
+const pr = document.getElementById("pools");
+pools.forEach(p => {
+  const d = $("div"); d.className = "pool"; d.style.setProperty("--c", `var(${p.c})`);
+  d.innerHTML = `<h3>${esc(p.t)}</h3><p>${esc(p.p)}</p><ul>${p.li.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+  pr.appendChild(d);
+});
+</script>
+</body>
+</html>

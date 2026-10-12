@@ -1,0 +1,38 @@
+id: vo-cao-tay-tieu-tam
+kind: actor
+made_by: avatar
+gender: ''
+age: ''
+look: Nữ thư ký trẻ tóc xoăn sóng quyến rũ, mắt to ngây thơ giả tạo, diện đầm dạ hội
+  đỏ gợi cảm.
+signature: smirk
+rig:
+  mode: chibi
+  head_scale: 1.0
+  overlap: 0.06
+  head_dx: 0
+  chin_up: 0.0
+  hair_back: parts/hair_back.png
+  hair_back_chin: 0.2956
+  neck_dx: {}
+heads:
+  neutral: parts/head_neutral.png
+  neutral_talk: parts/head_neutral_talk.png
+  smirk: parts/head_smirk.png
+  smirk_talk: parts/head_smirk_talk.png
+  shocked: parts/head_shocked.png
+  angry: parts/head_angry.png
+  sad: parts/head_sad.png
+  blink: parts/head_blink.png
+outfits:
+  f-evening:
+    desc: f-evening
+    bodies:
+      relaxed: parts/f-evening/body_relaxed.png
+      hips: parts/f-evening/body_hips.png
+      phone: parts/f-evening/body_phone.png
+      point: parts/f-evening/body_point.png
+roles:
+- Bạch Liên (vo-cao-tay)
+notes: Ghép bằng src/studio/avatar.py từ avatar.yaml (trang tạo nhân vật); sửa avatar.yaml
+  rồi chạy lại.

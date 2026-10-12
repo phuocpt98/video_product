@@ -1,0 +1,17 @@
+id: teacher-office
+type: establishing
+group: trường học
+tags:
+- phòng giáo viên
+characters: []
+master: master.jpg
+size:
+- 1376
+- 768
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: agy tạo 1 nền/ảnh, có sàn trống phía trước (bản có chỗ diễn 28/9/2026).
+used_in: []
+prompt: a teachers' office with several desks piled with papers and books, a window

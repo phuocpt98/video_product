@@ -1,0 +1,16 @@
+head: head-bun
+eyes: eyes4
+mouth: mouth2
+nose: nose8
+extras:
+- earring-pearl
+skin: ''
+body:
+  outfit: f-lady
+  build: normal
+look: Phu nhân quý tộc trung niên tóc búi quý phái, nét mặt mệt mỏi suy sụp vì hối
+  hận muộn màng
+head_size: 1.0
+adjust: {}
+roles:
+- Thẩm Bội Dung (thien-kim-that)

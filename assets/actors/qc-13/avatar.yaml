@@ -1,0 +1,12 @@
+head: head-long-m
+eyes: eyes7
+mouth: mouth1
+nose: nose7
+extras: []
+skin: '#d9a57a'
+body:
+  outfit: m-guard
+  build: fat
+look: quần chúng
+roles:
+- quần chúng

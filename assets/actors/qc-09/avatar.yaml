@@ -1,0 +1,12 @@
+head: head-mid-m2
+eyes: eyes4
+mouth: mouth3
+nose: nose7
+extras: []
+skin: '#d9a57a'
+body:
+  outfit: m-hoodie
+  build: normal
+look: quần chúng
+roles:
+- quần chúng

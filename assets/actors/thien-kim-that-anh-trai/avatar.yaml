@@ -1,0 +1,14 @@
+head: head-slick
+eyes: eyes2
+mouth: mouth1
+nose: nose7
+extras: []
+skin: ''
+body:
+  outfit: m-suit
+  build: normal
+look: Giám đốc trẻ 25 tuổi ngạo mạn, tóc vuốt ngược, mặc vest bảnh bao
+head_size: 1.0
+adjust: {}
+roles:
+- Lộ Cảnh Viễn (thien-kim-that)

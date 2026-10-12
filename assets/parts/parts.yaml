@@ -1,0 +1,850 @@
+eyes1-normal:
+  file: eyes/eyes1-normal.png
+  kind: eyes
+  desc: mắt chấm đen đơn giản, bình thường
+eyes1-closed:
+  file: eyes/eyes1-closed.png
+  kind: eyes
+  desc: mắt chấm đen đơn giản, nhắm
+eyes1-wide:
+  file: eyes/eyes1-wide.png
+  kind: eyes
+  desc: mắt chấm đen đơn giản, mở to sốc
+eyes1-angry:
+  file: eyes/eyes1-angry.png
+  kind: eyes
+  desc: mắt chấm đen đơn giản, giận
+eyes1-sad:
+  file: eyes/eyes1-sad.png
+  kind: eyes
+  desc: mắt chấm đen đơn giản, buồn
+eyes2-normal:
+  file: eyes/eyes2-normal.png
+  kind: eyes
+  desc: mắt nam sắc sảo kèm lông mày rậm, bình thường
+eyes2-closed:
+  file: eyes/eyes2-closed.png
+  kind: eyes
+  desc: mắt nam sắc sảo kèm lông mày rậm, nhắm
+eyes2-wide:
+  file: eyes/eyes2-wide.png
+  kind: eyes
+  desc: mắt nam sắc sảo kèm lông mày rậm, mở to sốc
+eyes2-angry:
+  file: eyes/eyes2-angry.png
+  kind: eyes
+  desc: mắt nam sắc sảo kèm lông mày rậm, giận
+eyes2-sad:
+  file: eyes/eyes2-sad.png
+  kind: eyes
+  desc: mắt nam sắc sảo kèm lông mày rậm, buồn
+eyes3-normal:
+  file: eyes/eyes3-normal.png
+  kind: eyes
+  desc: mắt nữ to có mi cong, bình thường
+eyes3-closed:
+  file: eyes/eyes3-closed.png
+  kind: eyes
+  desc: mắt nữ to có mi cong, nhắm
+eyes3-wide:
+  file: eyes/eyes3-wide.png
+  kind: eyes
+  desc: mắt nữ to có mi cong, mở to sốc
+eyes3-angry:
+  file: eyes/eyes3-angry.png
+  kind: eyes
+  desc: mắt nữ to có mi cong, giận
+eyes3-sad:
+  file: eyes/eyes3-sad.png
+  kind: eyes
+  desc: mắt nữ to có mi cong, buồn
+eyes4-normal:
+  file: eyes/eyes4-normal.png
+  kind: eyes
+  desc: mắt trung niên mệt mỏi, bọng mắt, bình thường
+eyes4-closed:
+  file: eyes/eyes4-closed.png
+  kind: eyes
+  desc: mắt trung niên mệt mỏi, bọng mắt, nhắm
+eyes4-wide:
+  file: eyes/eyes4-wide.png
+  kind: eyes
+  desc: mắt trung niên mệt mỏi, bọng mắt, mở to sốc
+eyes4-angry:
+  file: eyes/eyes4-angry.png
+  kind: eyes
+  desc: mắt trung niên mệt mỏi, bọng mắt, giận
+eyes4-sad:
+  file: eyes/eyes4-sad.png
+  kind: eyes
+  desc: mắt trung niên mệt mỏi, bọng mắt, buồn
+eyes5-normal:
+  file: eyes/eyes5-normal.png
+  kind: eyes
+  desc: mắt tròn to trẻ con, bình thường
+eyes5-closed:
+  file: eyes/eyes5-closed.png
+  kind: eyes
+  desc: mắt tròn to trẻ con, nhắm
+eyes5-wide:
+  file: eyes/eyes5-wide.png
+  kind: eyes
+  desc: mắt tròn to trẻ con, mở to sốc
+eyes5-angry:
+  file: eyes/eyes5-angry.png
+  kind: eyes
+  desc: mắt tròn to trẻ con, giận
+eyes5-sad:
+  file: eyes/eyes5-sad.png
+  kind: eyes
+  desc: mắt tròn to trẻ con, buồn
+mouth1-neutral:
+  file: mouths/mouth1-neutral.png
+  kind: mouths
+  desc: miệng nam đơn giản, small closed neutral mouth
+mouth1-talk:
+  file: mouths/mouth1-talk.png
+  kind: mouths
+  desc: miệng nam đơn giản, small open talking mouth
+mouth1-smile:
+  file: mouths/mouth1-smile.png
+  kind: mouths
+  desc: miệng nam đơn giản, closed confident smile
+mouth1-grin:
+  file: mouths/mouth1-grin.png
+  kind: mouths
+  desc: miệng nam đơn giản, open happy grin showing teeth
+mouth1-shock:
+  file: mouths/mouth1-shock.png
+  kind: mouths
+  desc: miệng nam đơn giản, round open shocked mouth
+mouth1-shout:
+  file: mouths/mouth1-shout.png
+  kind: mouths
+  desc: miệng nam đơn giản, wide open angry shouting mouth
+mouth1-frown:
+  file: mouths/mouth1-frown.png
+  kind: mouths
+  desc: miệng nam đơn giản, sad frown
+mouth1-smirk:
+  file: mouths/mouth1-smirk.png
+  kind: mouths
+  desc: miệng nam đơn giản, one-sided smirk
+mouth2-neutral:
+  file: mouths/mouth2-neutral.png
+  kind: mouths
+  desc: miệng nữ môi đỏ, small closed neutral mouth
+mouth2-talk:
+  file: mouths/mouth2-talk.png
+  kind: mouths
+  desc: miệng nữ môi đỏ, small open talking mouth
+mouth2-smile:
+  file: mouths/mouth2-smile.png
+  kind: mouths
+  desc: miệng nữ môi đỏ, closed confident smile
+mouth2-grin:
+  file: mouths/mouth2-grin.png
+  kind: mouths
+  desc: miệng nữ môi đỏ, open happy grin showing teeth
+mouth2-shock:
+  file: mouths/mouth2-shock.png
+  kind: mouths
+  desc: miệng nữ môi đỏ, round open shocked mouth
+mouth2-shout:
+  file: mouths/mouth2-shout.png
+  kind: mouths
+  desc: miệng nữ môi đỏ, wide open angry shouting mouth
+mouth2-frown:
+  file: mouths/mouth2-frown.png
+  kind: mouths
+  desc: miệng nữ môi đỏ, sad frown
+mouth2-smirk:
+  file: mouths/mouth2-smirk.png
+  kind: mouths
+  desc: miệng nữ môi đỏ, one-sided smirk
+mouth3-neutral:
+  file: mouths/mouth3-neutral.png
+  kind: mouths
+  desc: miệng người già, small closed neutral mouth
+mouth3-talk:
+  file: mouths/mouth3-talk.png
+  kind: mouths
+  desc: miệng người già, small open talking mouth
+mouth3-smile:
+  file: mouths/mouth3-smile.png
+  kind: mouths
+  desc: miệng người già, closed confident smile
+mouth3-grin:
+  file: mouths/mouth3-grin.png
+  kind: mouths
+  desc: miệng người già, open happy grin showing teeth
+mouth3-shock:
+  file: mouths/mouth3-shock.png
+  kind: mouths
+  desc: miệng người già, round open shocked mouth
+mouth3-shout:
+  file: mouths/mouth3-shout.png
+  kind: mouths
+  desc: miệng người già, wide open angry shouting mouth
+mouth3-frown:
+  file: mouths/mouth3-frown.png
+  kind: mouths
+  desc: miệng người già, sad frown
+mouth3-smirk:
+  file: mouths/mouth3-smirk.png
+  kind: mouths
+  desc: miệng người già, one-sided smirk
+eyes6-normal:
+  file: eyes/eyes6-normal.png
+  kind: eyes
+  desc: mảnh
+eyes6-angry:
+  file: eyes/eyes6-angry.png
+  kind: eyes
+  desc: mảnh
+eyes6-sad:
+  file: eyes/eyes6-sad.png
+  kind: eyes
+  desc: mảnh
+eyes6-wide:
+  file: eyes/eyes6-wide.png
+  kind: eyes
+  desc: mảnh
+eyes7-normal:
+  file: eyes/eyes7-normal.png
+  kind: eyes
+  desc: rậm
+eyes7-angry:
+  file: eyes/eyes7-angry.png
+  kind: eyes
+  desc: rậm
+eyes7-sad:
+  file: eyes/eyes7-sad.png
+  kind: eyes
+  desc: rậm
+eyes7-wide:
+  file: eyes/eyes7-wide.png
+  kind: eyes
+  desc: rậm
+eyes8-normal:
+  file: eyes/eyes8-normal.png
+  kind: eyes
+  desc: thanh tú
+eyes8-angry:
+  file: eyes/eyes8-angry.png
+  kind: eyes
+  desc: thanh tú
+eyes8-sad:
+  file: eyes/eyes8-sad.png
+  kind: eyes
+  desc: thanh tú
+eyes8-wide:
+  file: eyes/eyes8-wide.png
+  kind: eyes
+  desc: thanh tú
+nose1:
+  file: extras/nose1.png
+  kind: extras
+  desc: mũi chấm nhỏ (mặc định)
+nose2:
+  file: extras/nose2.png
+  kind: extras
+  desc: mũi nét cong
+nose3:
+  file: extras/nose3.png
+  kind: extras
+  desc: mũi tam giác hồng
+nose4:
+  file: extras/nose4.png
+  kind: extras
+  desc: mũi tròn to (hề, say rượu)
+glasses-round:
+  file: extras/glasses-round.png
+  kind: extras
+  desc: kính tròn (mọt sách, thầy giáo)
+glasses-square:
+  file: extras/glasses-square.png
+  kind: extras
+  desc: kính vuông (công sở, nghiêm)
+sunglasses:
+  file: extras/sunglasses.png
+  kind: extras
+  desc: kính đen (đại ca, vệ sĩ)
+beard-stubble:
+  file: extras/beard-stubble.png
+  kind: extras
+  desc: râu lún phún quanh cằm
+mustache:
+  file: extras/mustache.png
+  kind: extras
+  desc: ria mép
+blush:
+  file: extras/blush.png
+  kind: extras
+  desc: má hồng (ngại, say)
+mole:
+  file: extras/mole.png
+  kind: extras
+  desc: nốt ruồi
+scar:
+  file: extras/scar.png
+  kind: extras
+  desc: vết sẹo (côn đồ)
+head-round:
+  file: heads/head-round.png
+  kind: heads
+  desc: mặt tròn, trọc (nền để thêm tóc sau)
+head-oval:
+  file: heads/head-oval.png
+  kind: heads
+  desc: mặt trái xoan, trọc
+head-square:
+  file: heads/head-square.png
+  kind: heads
+  desc: mặt vuông, trọc
+head-chubby:
+  file: heads/head-chubby.png
+  kind: heads
+  desc: mặt bầu bĩnh má phúng phính, trọc
+head-long:
+  file: heads/head-long.png
+  kind: heads
+  desc: mặt dài gầy, trọc
+head-oval2:
+  file: heads/head-oval2.png
+  kind: heads
+  desc: mặt trái xoan thon, trọc
+head-pointed:
+  file: heads/head-pointed.png
+  kind: heads
+  desc: mặt cằm nhọn xinh, trọc
+head-pointed2:
+  file: heads/head-pointed2.png
+  kind: heads
+  desc: mặt cằm nhọn, trọc
+head-old-m-special:
+  file: heads/head-old-m-special.png
+  kind: heads
+  desc: ông già nhiều nếp nhăn, mắt nhắm vẽ sẵn (không ghép mắt được, chỉ dùng làm
+    ông cụ ngủ/lim dim)
+head-old-f:
+  file: heads/head-old-f.png
+  kind: heads
+  desc: bà già nếp nhăn, tóc bạc hai bên
+head-mid-m:
+  file: heads/head-mid-m.png
+  kind: heads
+  desc: nam trung niên tóc ngắn đen
+head-mid-f:
+  file: heads/head-mid-f.png
+  kind: heads
+  desc: nữ trung niên tóc ngắn ôm mặt
+head-kid:
+  file: heads/head-kid.png
+  kind: heads
+  desc: trẻ con đầu tròn nhỏ, trọc
+head-mid-m2:
+  file: heads/head-mid-m2.png
+  kind: heads
+  desc: nam tóc ngắn gọn gàng
+head-tough-special:
+  file: heads/head-tough-special.png
+  kind: heads
+  desc: nam mặt ngầu đầu bằng, nét mặt vẽ sẵn (không ghép mắt được)
+head-messy:
+  file: heads/head-messy.png
+  kind: heads
+  desc: nam tóc rối (nam chính trẻ)
+head-buzz:
+  file: heads/head-buzz.png
+  kind: heads
+  desc: nam đầu húi cua
+head-sidepart:
+  file: heads/head-sidepart.png
+  kind: heads
+  desc: nam tóc rẽ ngôi (công tử, nhân viên)
+head-slick:
+  file: heads/head-slick.png
+  kind: heads
+  desc: nam tóc vuốt ngược (sếp, đại gia)
+head-spiky:
+  file: heads/head-spiky.png
+  kind: heads
+  desc: nam tóc dựng đứng (nổi loạn)
+head-bowl:
+  file: heads/head-bowl.png
+  kind: heads
+  desc: tóc bát úp mái ngố (mọt sách)
+head-balding:
+  file: heads/head-balding.png
+  kind: heads
+  desc: nam hói đỉnh (sếp bụng phệ, ông chú)
+head-grey-short:
+  file: heads/head-grey-short.png
+  kind: heads
+  desc: tóc bạc ngắn (ông già)
+head-long-bangs:
+  file: heads/head-long-bangs.png
+  kind: heads
+  desc: nữ tóc dài thẳng mái bằng (hoa khôi)
+head-long-wavy:
+  file: heads/head-long-wavy.png
+  kind: heads
+  desc: nữ tóc dài xoăn sóng (nữ tổng tài, tiểu tam)
+head-ponytail:
+  file: heads/head-ponytail.png
+  kind: heads
+  desc: nữ buộc đuôi ngựa mái bằng (nữ sinh)
+head-twin:
+  file: heads/head-twin.png
+  kind: heads
+  desc: nữ tóc hai bím (em gái, bé)
+head-bob:
+  file: heads/head-bob.png
+  kind: heads
+  desc: nữ tóc bob ngang cằm
+head-bun:
+  file: heads/head-bun.png
+  kind: heads
+  desc: nữ búi tóc (thư ký, mẹ)
+head-perm:
+  file: heads/head-perm.png
+  kind: heads
+  desc: nữ tóc xoăn uốn (bà thím, mẹ)
+head-grey-bun:
+  file: heads/head-grey-bun.png
+  kind: heads
+  desc: bà già tóc bạc búi
+head-yellow:
+  file: heads/head-yellow.png
+  kind: heads
+  desc: nam tóc nhuộm vàng (côn đồ)
+head-long-m:
+  file: heads/head-long-m.png
+  kind: heads
+  desc: nam tóc dài ngang vai (nghệ sĩ)
+head-cap:
+  file: heads/head-cap.png
+  kind: heads
+  desc: đội mũ lưỡi trai
+head-brown-long:
+  file: heads/head-brown-long.png
+  kind: heads
+  desc: nữ tóc nâu dài thẳng
+head-short-f:
+  file: heads/head-short-f.png
+  kind: heads
+  desc: tóc ngắn rối (nữ cá tính/nam)
+head-grey-temples:
+  file: heads/head-grey-temples.png
+  kind: heads
+  desc: nam tóc hoa râm hai bên (bố, sếp)
+head-braid:
+  file: heads/head-braid.png
+  kind: heads
+  desc: nữ tóc tết một bím
+head-flat:
+  file: heads/head-flat.png
+  kind: heads
+  desc: nam đầu bằng (bảo vệ, cảnh sát)
+outfit:m-tshirt-jeans:
+  file: bodies/m-tshirt-jeans
+  kind: bodies
+  gender: male
+  desc: áo phông trắng, quần bò; vóc thin/normal/fat; tư thế relaxed/hips/phone/point
+  missing: []
+outfit:m-school:
+  file: bodies/m-school
+  kind: bodies
+  gender: male
+  desc: đồng phục học sinh nam; vóc thin/normal/fat; tư thế relaxed/hips/phone/point
+  missing: []
+outfit:m-office:
+  file: bodies/m-office
+  kind: bodies
+  gender: male
+  desc: sơ mi công sở; vóc thin/normal/fat; tư thế relaxed/hips/phone/point
+  missing: []
+outfit:m-suit:
+  file: bodies/m-suit
+  kind: bodies
+  gender: male
+  desc: 'vest cà vạt (sếp, doanh nhân); vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: thin-relaxed, fat-point'
+  missing:
+  - thin-relaxed
+  - fat-point
+outfit:m-polo:
+  file: bodies/m-polo
+  kind: bodies
+  gender: male
+  desc: 'polo hàng hiệu (công tử); vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: normal-phone, fat-phone'
+  missing:
+  - normal-phone
+  - fat-phone
+outfit:m-tank:
+  file: bodies/m-tank
+  kind: bodies
+  gender: male
+  desc: áo ba lỗ, quần đùi (ở nhà); vóc thin/normal/fat; tư thế relaxed/hips/phone/point
+  missing: []
+outfit:m-hoodie:
+  file: bodies/m-hoodie
+  kind: bodies
+  gender: male
+  desc: 'áo hoodie; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU: thin-phone,
+    fat-point'
+  missing:
+  - thin-phone
+  - fat-point
+outfit:m-leather:
+  file: bodies/m-leather
+  kind: bodies
+  gender: male
+  desc: áo da (côn đồ, đại ca); vóc thin/normal/fat; tư thế relaxed/hips/phone/point
+  missing: []
+outfit:m-worker:
+  file: bodies/m-worker
+  kind: bodies
+  gender: male
+  desc: 'quần áo lao động; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU:
+    thin-phone, normal-hips, fat-phone'
+  missing:
+  - thin-phone
+  - normal-hips
+  - fat-phone
+outfit:m-police:
+  file: bodies/m-police
+  kind: bodies
+  gender: male
+  desc: 'cảnh sát; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU: fat-hips'
+  missing:
+  - fat-hips
+outfit:m-doctor:
+  file: bodies/m-doctor
+  kind: bodies
+  gender: male
+  desc: 'bác sĩ; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU: thin-hips,
+    fat-phone'
+  missing:
+  - thin-hips
+  - fat-phone
+outfit:m-oldman:
+  file: bodies/m-oldman
+  kind: bodies
+  gender: male
+  desc: 'áo Tôn Trung Sơn (ông già); vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: fat-hips, fat-point'
+  missing:
+  - fat-hips
+  - fat-point
+outfit:m-waiter:
+  file: bodies/m-waiter
+  kind: bodies
+  gender: male
+  desc: 'phục vụ, quản gia; vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: normal-hips, fat-hips, fat-point'
+  missing:
+  - normal-hips
+  - fat-hips
+  - fat-point
+outfit:f-school:
+  file: bodies/f-school
+  kind: bodies
+  gender: female
+  desc: 'đồng phục nữ sinh; vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: thin-phone, normal-phone, fat-point'
+  missing:
+  - thin-phone
+  - normal-phone
+  - fat-point
+outfit:f-office:
+  file: bodies/f-office
+  kind: bodies
+  gender: female
+  desc: 'công sở (thư ký, nữ tổng tài); vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: thin-phone, normal-phone, fat-hips'
+  missing:
+  - thin-phone
+  - normal-phone
+  - fat-hips
+outfit:f-evening:
+  file: bodies/f-evening
+  kind: bodies
+  gender: female
+  desc: 'đầm dạ hội đỏ; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU:
+    thin-relaxed, normal-relaxed, fat-hips'
+  missing:
+  - thin-relaxed
+  - normal-relaxed
+  - fat-hips
+outfit:f-casual:
+  file: bodies/f-casual
+  kind: bodies
+  gender: female
+  desc: 'áo phông quần short; vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: normal-phone, fat-phone'
+  missing:
+  - normal-phone
+  - fat-phone
+outfit:f-dress:
+  file: bodies/f-dress
+  kind: bodies
+  gender: female
+  desc: 'váy hoa mùa hè; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU:
+    normal-hips, fat-hips, fat-point'
+  missing:
+  - normal-hips
+  - fat-hips
+  - fat-point
+outfit:f-home:
+  file: bodies/f-home
+  kind: bodies
+  gender: female
+  desc: 'đồ ở nhà có tạp dề (mẹ, bà thím); vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: fat-hips'
+  missing:
+  - fat-hips
+outfit:f-qipao:
+  file: bodies/f-qipao
+  kind: bodies
+  gender: female
+  desc: 'sườn xám; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU: thin-phone,
+    normal-phone, fat-phone, fat-point'
+  missing:
+  - thin-phone
+  - normal-phone
+  - fat-phone
+  - fat-point
+outfit:f-nurse:
+  file: bodies/f-nurse
+  kind: bodies
+  gender: female
+  desc: 'y tá; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU: thin-hips,
+    normal-hips, fat-hips'
+  missing:
+  - thin-hips
+  - normal-hips
+  - fat-hips
+outfit:f-oldwoman:
+  file: bodies/f-oldwoman
+  kind: bodies
+  gender: female
+  desc: 'bà già; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU: thin-phone,
+    fat-point'
+  missing:
+  - thin-phone
+  - fat-point
+outfit:f-sport:
+  file: bodies/f-sport
+  kind: bodies
+  gender: female
+  desc: 'đồ thể thao; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU:
+    fat-hips'
+  missing:
+  - fat-hips
+outfit:m-guard:
+  file: bodies/m-guard
+  kind: bodies
+  gender: male
+  desc: 'bảo vệ, vệ sĩ; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU:
+    fat-hips, fat-point'
+  missing:
+  - fat-hips
+  - fat-point
+nose5:
+  file: extras/nose5.png
+  kind: extras
+  desc: small curved hook line nose like the letter J, no nostrils
+nose6:
+  file: extras/nose6.png
+  kind: extras
+  desc: 'tiny button nose: two small nostril dots with a short curve above'
+nose7:
+  file: extras/nose7.png
+  kind: extras
+  desc: small L-shaped line nose seen slightly from the side
+nose8:
+  file: extras/nose8.png
+  kind: extras
+  desc: cute tiny upturned nose with a soft rounded tip outline
+nose9:
+  file: extras/nose9.png
+  kind: extras
+  desc: elegant thin straight nose line with a small curve at the bottom
+nose10:
+  file: extras/nose10.png
+  kind: extras
+  desc: wide flat older person's nose outline
+nose11:
+  file: extras/nose11.png
+  kind: extras
+  desc: long pointed sharp nose outline (villain)
+nose12:
+  file: extras/nose12.png
+  kind: extras
+  desc: small nose shown only by a light pink nostril curve
+mouth4-neutral:
+  file: mouths/mouth4-neutral.png
+  kind: mouths
+  desc: full glamorous red lipstick lips, small closed neutral mouth
+mouth4-talk:
+  file: mouths/mouth4-talk.png
+  kind: mouths
+  desc: full glamorous red lipstick lips, small open talking mouth
+mouth4-smile:
+  file: mouths/mouth4-smile.png
+  kind: mouths
+  desc: full glamorous red lipstick lips, closed confident smile
+mouth4-grin:
+  file: mouths/mouth4-grin.png
+  kind: mouths
+  desc: full glamorous red lipstick lips, open happy grin showing teeth
+mouth4-shock:
+  file: mouths/mouth4-shock.png
+  kind: mouths
+  desc: full glamorous red lipstick lips, round open shocked mouth
+mouth4-shout:
+  file: mouths/mouth4-shout.png
+  kind: mouths
+  desc: full glamorous red lipstick lips, wide open angry shouting mouth
+mouth4-frown:
+  file: mouths/mouth4-frown.png
+  kind: mouths
+  desc: full glamorous red lipstick lips, sad frown
+mouth4-smirk:
+  file: mouths/mouth4-smirk.png
+  kind: mouths
+  desc: full glamorous red lipstick lips, one-sided smirk
+mole-lip:
+  file: extras/mole-lip.png
+  kind: extras
+  desc: small black beauty mole dot
+mole-tear:
+  file: extras/mole-tear.png
+  kind: extras
+  desc: tiny black tear mole dot
+freckles:
+  file: extras/freckles.png
+  kind: extras
+  desc: a band of small light brown freckle dots across both cheeks and nose
+eye-bags:
+  file: extras/eye-bags.png
+  kind: extras
+  desc: pair of tired under-eye bag curves
+bandaid:
+  file: extras/bandaid.png
+  kind: extras
+  desc: small beige adhesive bandage
+beard-full:
+  file: extras/beard-full.png
+  kind: extras
+  desc: full black beard around the jaw
+goatee:
+  file: extras/goatee.png
+  kind: extras
+  desc: small black goatee
+wrinkles:
+  file: extras/wrinkles.png
+  kind: extras
+  desc: three short forehead wrinkle lines
+earring-gold:
+  file: extras/earring-gold.png
+  kind: extras
+  desc: single gold hoop earring
+earring-gold-b:
+  file: extras/earring-gold-b.png
+  kind: extras
+  desc: single gold hoop earring
+earring-pearl:
+  file: extras/earring-pearl.png
+  kind: extras
+  desc: single pearl drop earring
+earring-pearl-b:
+  file: extras/earring-pearl-b.png
+  kind: extras
+  desc: single pearl drop earring
+outfit:f-lady:
+  file: bodies/f-lady
+  kind: bodies
+  gender: female
+  desc: 'quý phu nhân, mẹ nhà giàu; vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: fat-hips, fat-point'
+  missing:
+  - fat-hips
+  - fat-point
+outfit:f-white-dress:
+  file: bodies/f-white-dress
+  kind: bodies
+  gender: female
+  desc: 'váy trắng đơn giản (trà xanh); vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: thin-phone, normal-phone, fat-phone'
+  missing:
+  - thin-phone
+  - normal-phone
+  - fat-phone
+outfit:f-wedding:
+  file: bodies/f-wedding
+  kind: bodies
+  gender: female
+  desc: 'váy cưới; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU: thin-phone,
+    fat-point'
+  missing:
+  - thin-phone
+  - fat-point
+outfit:m-groom:
+  file: bodies/m-groom
+  kind: bodies
+  gender: male
+  desc: 'vest chú rể; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU:
+    thin-phone, normal-hips, fat-hips'
+  missing:
+  - thin-phone
+  - normal-hips
+  - fat-hips
+outfit:f-poor:
+  file: bodies/f-poor
+  kind: bodies
+  gender: female
+  desc: 'quần áo cũ vá (nghèo); vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: fat-hips, fat-point'
+  missing:
+  - fat-hips
+  - fat-point
+outfit:f-patient:
+  file: bodies/f-patient
+  kind: bodies
+  gender: female
+  desc: 'áo bệnh nhân nữ; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU:
+    fat-hips, fat-point'
+  missing:
+  - fat-hips
+  - fat-point
+outfit:f-pajama:
+  file: bodies/f-pajama
+  kind: bodies
+  gender: female
+  desc: 'đồ ngủ nữ; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU: fat-phone'
+  missing:
+  - fat-phone
+outfit:m-patient:
+  file: bodies/m-patient
+  kind: bodies
+  gender: male
+  desc: 'áo bệnh nhân nam; vóc thin/normal/fat; tư thế relaxed/hips/phone/point; THIẾU:
+    normal-phone, fat-phone, fat-point'
+  missing:
+  - normal-phone
+  - fat-hips
+  - fat-point
+outfit:m-poor:
+  file: bodies/m-poor
+  kind: bodies
+  gender: male
+  desc: 'quần áo cũ vá (nghèo); vóc thin/normal/fat; tư thế relaxed/hips/phone/point;
+    THIẾU: thin-phone, normal-phone, fat-phone'
+  missing:
+  - thin-phone
+  - normal-hips
+  - fat-hips

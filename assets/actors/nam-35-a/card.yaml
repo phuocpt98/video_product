@@ -1,0 +1,36 @@
+id: nam-35-a
+kind: actor
+made_by: avatar
+gender: ''
+age: ''
+look: Doanh nhân 35 tuổi thành đạt, tóc vuốt ngược lịch lãm, phong thái từng trải
+  và ánh mắt sắc sảo trong bộ vest sang trọng.
+signature: smirk
+rig:
+  mode: chibi
+  head_scale: 1.0
+  overlap: 0.06
+  head_dx: 0
+  chin_up: 0.0238
+  neck_dx: {}
+heads:
+  neutral: parts/head_neutral.png
+  neutral_talk: parts/head_neutral_talk.png
+  smirk: parts/head_smirk.png
+  smirk_talk: parts/head_smirk_talk.png
+  shocked: parts/head_shocked.png
+  angry: parts/head_angry.png
+  sad: parts/head_sad.png
+  blink: parts/head_blink.png
+outfits:
+  m-suit:
+    desc: m-suit
+    bodies:
+      relaxed: parts/m-suit/body_relaxed.png
+      hips: parts/m-suit/body_hips.png
+      phone: parts/m-suit/body_phone.png
+      point: parts/m-suit/body_point.png
+roles:
+- Trần Hán Thăng (ta-that-su-khong-muon-trong-sinh)
+notes: Ghép bằng src/studio/avatar.py từ avatar.yaml (trang tạo nhân vật); sửa avatar.yaml
+  rồi chạy lại.

@@ -1,0 +1,16 @@
+head: head-sidepart
+eyes: eyes2
+mouth: mouth1
+nose: nose7
+extras:
+- glasses-square
+skin: ''
+body:
+  outfit: m-office
+  build: normal
+look: Nam 26 tuổi lịch thiệp, tóc rẽ ngôi, đeo kính vuông trí thức, mặc sơ mi công
+  sở phẳng phiu chuyên nghiệp.
+head_size: 1.0
+adjust: {}
+roles:
+- Cố Hành (vo-cao-tay)

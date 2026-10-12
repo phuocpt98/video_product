@@ -1,0 +1,89 @@
+"""HỢP ĐỒNG DỮ LIỆU giữa các phòng, công cụ và agent: mỗi loại dữ liệu trao tay có khai báo trường bắt buộc + kiểu,
+và hàm check() dùng ở mọi chỗ NHẬN dữ liệu (đọc file, nhận câu trả lời của AI). Sai thì báo rõ, không chạy lệch.
+Mô tả cho người và AI đọc: docs/plans/protocols.md (giữ hai nơi khớp nhau khi sửa).
+
+python -m src.contracts <loại> <file.yaml>     # kiểm một file bằng tay
+"""
+import pathlib
+import sys
+
+import yaml
+
+# kiểu: str | int | float | list | dict | bool | "a|b|c" (một trong) ; "?" ở đầu tên = không bắt buộc
+CONTRACTS: dict[str, dict] = {
+    # Biên kịch → Dựng: nhãn đạo diễn từng câu (số câu = số thứ tự trong audio/NNN.srt, bắt đầu từ 1)
+    "tag": {"?scene": str, "present": list, "?speaker": str, "?actor": str, "action": str, "?expr": str, "fx": list},
+    # Dựng: kịch bản cảnh cho stage.py
+    "storyboard": {"audio": str, "cast": dict, "shots": list, "?subs": list, "?ground": float, "?feet_at": float,
+                   "?background": str},
+    "shot": {"start": float, "end": float, "?background": str, "?cam": dict, "actors": list, "?extras": dict,
+             "?screen": list},
+    "shot_actor": {"who": str, "?pose": "relaxed|hips|phone|point", "?expr": str, "?x": float, "?height": float,
+                   "?talk": bool, "?flip": bool, "?action": str, "?prop": str, "?fx": list, "?enter": str,
+                   "?shake": bool},
+    # mục lục truyện → thư viện
+    "cast": {"lead": str, "characters": dict, "?scenes": dict, "?chapters": dict},
+    "cast_character": {"actor": str, "?outfit": str, "?names": list, "?by_scene": dict, "?note": str},
+    # Thiết kế nhân vật: bản thiết kế ghép từ kho bộ phận (AI trả về phải khớp)
+    "avatar": {"head": str, "eyes": str, "mouth": str, "?nose": str, "?extras": list, "?skin": str, "body": dict,
+               "?look": str, "?head_size": float, "?overlap": float, "?adjust": dict, "?roles": list},
+    "avatar_body": {"outfit": str, "?build": "thin|normal|fat", "?colors": dict},
+    # bảng việc
+    "task": {"id": str, "from": str, "to": str, "type": str, "key": str, "need": str, "status":
+             "open|doing|blocked|done|rejected", "waiting_on": list, "log": list, "?story": str, "?chapter": int,
+             "?data": dict},
+}
+
+
+def _type_ok(v, t) -> bool:
+    if isinstance(t, str):                            # tập giá trị cho phép
+        return v in t.split("|")
+    if t is float:
+        return isinstance(v, (int, float)) and not isinstance(v, bool)
+    return isinstance(v, t)
+
+
+def check(kind: str, obj, where: str = "") -> list[str]:
+    """Trả danh sách lỗi (rỗng = hợp lệ). Kiểm cả phần con: storyboard → shot → shot_actor, cast → cast_character,
+    avatar → avatar_body."""
+    spec = CONTRACTS[kind]
+    at = f"{where or kind}"
+    if not isinstance(obj, dict):
+        return [f"{at}: phải là dict, nhận {type(obj).__name__}"]
+    errs = []
+    for key, t in spec.items():
+        opt, name = key.startswith("?"), key.lstrip("?")
+        if name not in obj or obj[name] is None:
+            if not opt:
+                errs.append(f"{at}: thiếu '{name}'")
+            continue
+        if not _type_ok(obj[name], t):
+            errs.append(f"{at}.{name}: sai kiểu/giá trị {obj[name]!r} (cần {t if isinstance(t, str) else t.__name__})")
+    if kind == "storyboard" and isinstance(obj.get("shots"), list):
+        for i, s in enumerate(obj["shots"]):
+            errs += check("shot", s, f"shots[{i}]")
+            for j, a in enumerate(s.get("actors", []) if isinstance(s, dict) else []):
+                errs += check("shot_actor", a, f"shots[{i}].actors[{j}]")
+                if isinstance(a, dict) and a.get("who") not in obj.get("cast", {}):
+                    errs.append(f"shots[{i}].actors[{j}]: '{a.get('who')}' không có trong cast")
+    if kind == "cast" and isinstance(obj.get("characters"), dict):
+        for n, c in obj["characters"].items():
+            errs += check("cast_character", c, f"characters[{n}]")
+    if kind == "avatar" and isinstance(obj.get("body"), dict):
+        errs += check("avatar_body", obj["body"], "body")
+    return errs
+
+
+def require(kind: str, obj, where: str = ""):
+    """Như check() nhưng ném ValueError nếu sai; trả lại obj để dùng nối tiếp."""
+    errs = check(kind, obj, where)
+    if errs:
+        raise ValueError(f"Sai hợp đồng '{kind}' ({len(errs)} lỗi): " + "; ".join(errs[:8]))
+    return obj
+
+
+if __name__ == "__main__":
+    data = yaml.safe_load(pathlib.Path(sys.argv[2]).read_text(encoding="utf-8"))
+    errs = check(sys.argv[1], data)
+    print("Hợp lệ" if not errs else "\n".join(errs))
+    sys.exit(1 if errs else 0)

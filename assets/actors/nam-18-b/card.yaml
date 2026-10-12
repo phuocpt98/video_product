@@ -1,0 +1,31 @@
+id: nam-18-b
+kind: actor
+gender: nam
+age: 18-25
+look: Chinese young man, stocky and chubby, lightly tanned, round honest face, buzz-cut
+  black hair
+signature: awkward friendly grin
+rig:
+  mode: chibi
+  head_scale: 1.0
+  overlap: 0.1
+  neck_dx: {}
+heads:
+  neutral: parts/head_neutral.png
+  neutral_talk: parts/head_neutral_talk.png
+  smirk: parts/head_smirk.png
+  smirk_talk: parts/head_smirk_talk.png
+  shocked: parts/head_shocked.png
+  angry: parts/head_angry.png
+  sad: parts/head_sad.png
+  blink: parts/head_blink.png
+outfits:
+  he-2002:
+    desc: faded blue T-shirt, grey shorts, plastic sandals
+    sheet: source/sheet_he-2002.jpg
+    bodies:
+      relaxed: parts/he-2002/body_relaxed.png
+      hips: parts/he-2002/body_hips.png
+      phone: parts/he-2002/body_phone.png
+      point: parts/he-2002/body_point.png
+roles: []

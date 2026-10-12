@@ -1,0 +1,12 @@
+head: head-messy
+eyes: eyes7
+mouth: mouth1
+nose: nose7
+extras: []
+skin: '#e8b98f'
+body:
+  outfit: m-waiter
+  build: fat
+look: quần chúng
+roles:
+- quần chúng

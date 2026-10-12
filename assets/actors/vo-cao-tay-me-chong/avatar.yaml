@@ -1,0 +1,14 @@
+head: head-perm
+eyes: eyes2
+mouth: mouth2
+nose: nose8
+extras: []
+skin: ''
+body:
+  outfit: f-qipao
+  build: fat
+look: Mẹ chồng 55 tuổi tóc xoăn uốn, mặc sườn xám, khó tính, trịch thượng.
+head_size: 1.0
+adjust: {}
+roles:
+- Bà Tống (vo-cao-tay)

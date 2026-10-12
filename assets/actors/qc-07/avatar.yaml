@@ -1,0 +1,13 @@
+head: head-grey-short
+eyes: eyes2
+mouth: mouth3
+nose: nose7
+extras:
+- beard-stubble
+skin: '#f7d2b0'
+body:
+  outfit: m-tshirt-jeans
+  build: fat
+look: quần chúng
+roles:
+- quần chúng

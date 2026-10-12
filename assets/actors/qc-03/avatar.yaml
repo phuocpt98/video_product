@@ -1,0 +1,12 @@
+head: head-old-f
+eyes: eyes5
+mouth: mouth2
+nose: nose8
+extras: []
+skin: ''
+body:
+  outfit: f-nurse
+  build: normal
+look: quần chúng
+roles:
+- quần chúng

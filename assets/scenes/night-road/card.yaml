@@ -1,0 +1,17 @@
+id: night-road
+type: establishing
+group: giao thông
+tags:
+- đường đêm
+characters: []
+master: master.jpg
+size:
+- 1401
+- 760
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: an empty road at night with street lamps and a guardrail

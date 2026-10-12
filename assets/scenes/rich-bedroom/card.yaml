@@ -1,0 +1,18 @@
+id: rich-bedroom
+type: establishing
+group: nhà giàu
+tags:
+- phòng ngủ vợ chồng nhà giàu
+characters: []
+master: master.jpg
+size:
+- 1404
+- 756
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'a luxurious master bedroom: big double bed with headboard, wardrobe and vanity
+  table against the back wall, wide empty carpet floor in the foreground'

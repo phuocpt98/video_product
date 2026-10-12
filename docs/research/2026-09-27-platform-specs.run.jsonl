@@ -1,0 +1,1 @@
+{"time": "2026-09-27T17:25:03", "role": "prompts/roles/researcher.md", "brief": "docs/research/trends/briefs/2026-09-27-platform-specs.md", "model": "gemini-3.1-pro-high", "rc": 0, "status": "SUCCESS", "seconds": 107, "usage": {"input_tokens": 36909, "output_tokens": 6100, "thinking_tokens": 2824, "cache_read_tokens": 36593, "total_tokens": 43009}, "notices": [], "chars": 7716}

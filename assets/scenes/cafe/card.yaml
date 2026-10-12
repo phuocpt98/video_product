@@ -1,0 +1,18 @@
+id: cafe
+type: establishing
+group: nơi khác
+tags:
+- quán cà phê
+characters: []
+master: master.jpg
+size:
+- 1373
+- 765
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: 'a cozy cafe: counter with coffee machine and shelves at the back, small tables
+  at the far sides, wide empty wooden floor in the foreground'

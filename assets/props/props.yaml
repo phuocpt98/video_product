@@ -1,0 +1,169 @@
+flip-phone:
+  file: flip-phone.png
+  desc: small silver flip phone, opened, early-2000s
+  size: 0.35
+  grip:
+  - 0.5
+  - 0.7
+smartphone:
+  file: smartphone.png
+  desc: black smartphone, screen facing viewer
+  size: 0.35
+  grip:
+  - 0.5
+  - 0.6
+pistol:
+  file: pistol.png
+  desc: black handgun in side view, barrel pointing right
+  size: 0.55
+  grip:
+  - 0.2
+  - 0.75
+kitchen-knife:
+  file: kitchen-knife.png
+  desc: kitchen knife in side view, blade pointing right
+  size: 0.6
+  grip:
+  - 0.15
+  - 0.5
+handbag:
+  file: handbag.png
+  desc: red women's handbag with a top handle
+  size: 0.55
+  grip:
+  - 0.5
+  - 0.1
+backpack:
+  file: backpack.png
+  desc: blue school backpack
+  size: 0.7
+  grip:
+  - 0.5
+  - 0.1
+briefcase:
+  file: briefcase.png
+  desc: black leather briefcase with handle on top
+  size: 0.7
+  grip:
+  - 0.5
+  - 0.1
+cash:
+  file: cash.png
+  desc: thick stack of red banknotes
+  size: 0.4
+  grip:
+  - 0.5
+  - 0.5
+black-card:
+  file: black-card.png
+  desc: black bank card
+  size: 0.25
+  grip:
+  - 0.3
+  - 0.5
+wine-glass:
+  file: wine-glass.png
+  desc: glass of red wine
+  size: 0.4
+  grip:
+  - 0.5
+  - 0.65
+cigarette:
+  file: cigarette.png
+  desc: lit cigarette with a small curl of smoke
+  size: 0.25
+  grip:
+  - 0.1
+  - 0.45
+  mirror: true
+car-key:
+  file: car-key.png
+  desc: car key with remote fob
+  size: 0.25
+  grip:
+  - 0.4
+  - 0.4
+envelope:
+  file: envelope.png
+  desc: thick brown paper envelope
+  size: 0.45
+  grip:
+  - 0.3
+  - 0.5
+contract:
+  file: contract.png
+  desc: sheet of paper document with lines of text scribbles
+  size: 0.5
+  grip:
+  - 0.3
+  - 0.6
+beer-bottle:
+  file: beer-bottle.png
+  desc: green glass beer bottle
+  size: 0.5
+  grip:
+  - 0.5
+  - 0.65
+flowers:
+  file: flowers.png
+  desc: bouquet of red roses wrapped in paper
+  size: 0.7
+  grip:
+  - 0.5
+  - 0.8
+suitcase:
+  file: suitcase.png
+  desc: brown travel suitcase with handle
+  size: 0.8
+  grip:
+  - 0.5
+  - 0.05
+laptop:
+  file: laptop.png
+  desc: open grey laptop
+  size: 0.6
+  grip:
+  - 0.5
+  - 0.8
+gift-box:
+  file: gift-box.png
+  desc: red gift box with a gold ribbon
+  size: 0.5
+  grip:
+  - 0.5
+  - 0.6
+ring-box:
+  file: ring-box.png
+  desc: small open ring box with a diamond ring
+  size: 0.25
+  grip:
+  - 0.5
+  - 0.7
+tea-cup:
+  file: tea-cup.png
+  desc: white porcelain tea cup with steam
+  size: 0.3
+  grip:
+  - 0.5
+  - 0.6
+steel-pipe:
+  file: steel-pipe.png
+  desc: short steel pipe used as a street-fight weapon
+  size: 0.8
+  grip:
+  - 0.15
+  - 0.5
+umbrella:
+  file: umbrella.png
+  desc: closed black umbrella
+  size: 0.9
+  grip:
+  - 0.5
+  - 0.1
+newspaper:
+  file: newspaper.png
+  desc: folded newspaper
+  size: 0.45
+  grip:
+  - 0.3
+  - 0.5

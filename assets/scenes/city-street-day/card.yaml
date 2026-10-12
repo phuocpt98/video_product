@@ -1,0 +1,18 @@
+id: city-street-day
+type: establishing
+group: đường phố
+tags:
+- phố thương mại ban ngày
+characters: []
+master: master.jpg
+size:
+- 1405
+- 765
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: a busy Chinese city street in daytime with small shops, awnings, sidewalk
+crowd: 3

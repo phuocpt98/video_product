@@ -1,0 +1,17 @@
+id: park
+type: establishing
+group: công cộng
+tags:
+- công viên
+characters: []
+master: master.jpg
+size:
+- 1400
+- 760
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: a city park with a path, benches, trees and a small lake

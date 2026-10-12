@@ -1,0 +1,18 @@
+id: street-food-stall
+type: establishing
+group: đại học & quán
+tags:
+- quán nướng vỉa hè
+characters: []
+master: master.jpg
+size:
+- 1404
+- 756
+frames:
+- '16:9'
+- '9:16'
+ground_y: 0.9
+notes: Bảng nền tạo trên web; ngày/đêm đổi bằng lọc màu khi dựng.
+used_in: []
+prompt: a night street food stall with plastic stools, small tables and a grill
+crowd: 3
