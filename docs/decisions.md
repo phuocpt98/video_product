@@ -8,6 +8,7 @@ Cập nhật: 26/9/2026
 
 | Ngày | Quyết định | Chi tiết ở |
 |---|---|---|
+| 12/10/2026 | **Repo GitHub `phuocpt98/video_product` chỉ giữ cấu trúc, quy tắc, code tự viết, thư viện hình** (actors, parts, props, scenes, fonts, kể cả source/). Không đẩy stories/, board/, ảnh brand kênh, clip/nhạc/sfx, model, tool/. Lịch sử cũ (có truyện) giữ ở nhánh cục bộ `main-old`, không đẩy | `.gitignore` |
 | 28/9/2026 | **Bật chế độ nhanh khâu chữ mặc định** (`pipeline.fast: true`): thử trên bản sao chương 1–5 (`stories/thu-nhanh/`), phần chữ khoảng 6–7 phút cho 5 chương so với 28 phút; người duyệt chấm cả 5 chương ĐẠT. Tắt riêng từng truyện bằng `pipeline: {fast: false}` trong story.yaml | [plans/studio-org.md](plans/studio-org.md) §3.2 |
 | 28/9/2026 | **Tổ chức studio thành phòng ban** (Biên kịch, Thiết kế nhân vật, Bối cảnh, Dựng, Tài nguyên ngoài = Người sáng lập, Kỹ thuật = Claude), trao đổi qua **bảng việc bằng file** `board/` + trang xem local. Thiếu tài nguyên thì treo việc và gửi yêu cầu sang phòng khác | [plans/studio-org.md](plans/studio-org.md) §4–5 |
 | 28/9/2026 | **Tăng tốc:** chạy gối đầu chữ → giọng → dựng; giọng đọc song song; **thử rút gọn khâu chữ** (viết kèm tự kiểm, duyệt khi máy báo lỗi, sửa khoanh vùng, gộp chương) trên 5 chương mẫu rồi mới áp dụng | [plans/studio-org.md](plans/studio-org.md) §3 |
