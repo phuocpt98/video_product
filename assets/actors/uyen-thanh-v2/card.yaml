@@ -1,0 +1,28 @@
+id: uyen-thanh-v2
+kind: actor
+gender: female
+look: Nữ chính khí chất, mặt trái xoan, mắt phượng sắc sảo, tóc dài đen, váy cưới trắng.
+made_by: reference-v2
+heads:
+  neutral: parts/head_neutral.png
+  smirk: parts/head_smirk.png
+  shocked: parts/head_shocked.png
+  angry: parts/head_angry.png
+  sad: parts/head_sad.png
+head_size: 0.85
+overlap: 0.12
+outfits:
+  f-wedding-dress:
+    bodies:
+      relaxed: parts/f-wedding-dress/body_relaxed.png
+      hips: parts/f-wedding-dress/body_hips.png
+      point: parts/f-wedding-dress/body_point.png
+      phone: parts/f-wedding-dress/body_phone.png
+rig:
+  mode: standard
+  head_size: 0.85
+  head_scale: 1.0
+  overlap: 0.12
+  chin_up: 0.0
+  head_dx: 0
+  neck_dx: {}
