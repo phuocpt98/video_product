@@ -1,10 +1,11 @@
 # Tiến độ
 
-Cập nhật: 26/9/2026
+Cập nhật: 13/10/2026
 
 Cập nhật cuối mỗi nhiệm vụ (hiến pháp §4 bước 6). Mục "Đã xong" chỉ giữ khoảng 15 việc gần nhất.
 
 ## Đang làm
+- **13/10/2026: hệ rối v2 + giao thức ba bên (qa-lead ĐẠT lượt 2, 94 test pass).** Nghiên cứu: [research/2026-10-13-puppet-v2.md](research/2026-10-13-puppet-v2.md) (file "đầu" trong PR #1 là ảnh bán thân, "toàn thân" cắt ở eo). Đã làm: `src/studio/segment.py` (tách lớp bằng màu + hình thái, thử trên ảnh thật: đầu, tóc sau vá kín, thân có mẩu cổ, ghép lại khớp ảnh gốc), `validate_actor.py` + hợp đồng `actor_card`, `scripts/new_actor.py` (ảnh gốc → bộ phận → card `semi`, cắt lại khi đổi ảnh gốc, `--no-gen` liệt kê ảnh thiếu), `prompts/actor_*.md`, `scripts/hub.py` + [plans/collab-protocol.md](plans/collab-protocol.md) (GitHub Issues làm bảng việc chung), `python -m src.drama import` (truyện Gemini → script/cast/story.yaml, `rewrite: none` đi thẳng giọng đọc; đã nhập `ngay-cuoi-doi-dau`, 4 phần 218–670 chữ). **Chưa có ảnh gốc thật**: agy hết lượt ảnh tới ~22h20 13/10; issue #1 giao Muse tạo `uyen-thanh`. **Tiếp theo:** duyệt PR của Muse bằng `validate_actor --preview`; tạo 3 nhân vật còn lại (Tống Hạo, Bà Trương, Liễu Tuyết); thở + tóc lắc trong `stage.py` (research §3); bước nở văn cho truyện nhập ngắn; xoá 4 actor `*-v2` trên nhánh PR #1 khi đóng PR.
 - **Tạm dừng (26/9, Người sáng lập yêu cầu): nghiên cứu lại luồng vì quá chậm.** Lô 1 truyện mẫu dừng giữa chừng: chương 2–5 đã ĐẠT, kiểm mạch báo chương 1 LỆCH ("Nhị bản/Nhất bản" chưa đổi), đang viết lại chương 1. Chạy lại `python -m src.run ta-that-su-khong-muon-trong-sinh --chapters 1-5 --render` là làm tiếp. Code dây chuyền theo lô **chưa qua qa-lead**.
 - **Số đo lô 1 (5 chương, phần chữ, chưa tính giọng): 28 phút**, trung bình 5,6 phút/chương dù đã chạy 3 chương song song:
   | Bước | Số lần | Trung bình | Tổng |

@@ -24,6 +24,8 @@ Cập nhật: 28/9/2026 · Code kiểm: `src/contracts.py` (khi sửa, sửa c�
 | Mục lục truyện (`cast`) | `stories/<slug>/cast.yaml` | Thiết kế/Điều phối | direct.py, bảng việc | `lead`, `characters{tên: {actor, outfit, names[], by_scene{nền: {actor, note}}}}`, `scenes{nền: [từ khoá]}`, `chapters{số: {scene}}` |
 | Kịch bản cảnh (`storyboard`) | `stories/<slug>/storyboard/NNN.yaml` | direct.py | stage.py | `audio`, `cast{khoá: {actor, outfit}}`, `shots[{start, end, background, cam{zoom[a,b]}, actors[{who, pose, expr, x, height, talk, flip, action, prop, fx[]}], extras{n, seed, exclude[]}, screen[]}]`, `subs[{start, end, text}]` |
 | Bản thiết kế nhân vật (`avatar`) | `assets/actors/<id>/avatar.yaml` | trang tạo nhân vật, Thiết kế (AI) | avatar.py | `head, eyes, mouth, nose, extras[], skin, body{outfit, build, colors{gốc: mới}}, look` |
+| Thẻ diễn viên (`actor_card`) | `assets/actors/<id>/card.yaml` | new_actor.py, make_actor.py | stage.py, validate_actor.py | `id, kind: actor, rig, heads{biểu cảm: file}, outfits{id: {desc, bodies{tư thế: file}}}, gender, age, look, signature, roles[], notes, made_by` |
+| Bộ rig diễn viên (`actor_rig`) | `rig:` trong card.yaml | new_actor.py | stage.py, validate_actor.py | `mode (chibi\|semi\|real), head_scale, overlap, chin_up, head_dx, neck_dx{}, hair_back, hair_back_chin, hands{}` |
 | Việc (`task`) | `board/tasks/<id>.yaml` | mọi phòng | mọi phòng | `id, from, to, type, key, need, status, waiting_on[], log[], story, chapter, data{}` |
 | Kho bộ phận | `assets/parts/parts.yaml` + `INDEX.md` | make_parts.py | avatar.py, AI Thiết kế | `{id: {file, kind, desc}}`; `INDEX.md` là mục lục có chú thích cho AI |
 | Thẻ nền | `assets/scenes/<id>/card.yaml` + `INDEX.md` | make_scene_sheet.py, bảng việc | direct.py, stage.py | `id, tags[], master, ground_y, crowd` |
@@ -32,6 +34,7 @@ Cập nhật: 28/9/2026 · Code kiểm: `src/contracts.py` (khi sửa, sửa c�
 **Giá trị đóng dùng chung:**
 - tư thế: `relaxed | hips | phone | point`
 - biểu cảm: `neutral | smirk | shocked | angry | sad`, cộng biến thể `_talk` và `blink` do máy tự chọn
+- chế độ rối: `chibi | semi | real`. semi = đầu ≈ 1/4,5 chiều cao người, dải head_ratio 0,18–0,30; real 0,12–0,18; chibi 0,30–0,60
 - vóc: `thin | normal | fat`
 - trạng thái việc: `open | doing | blocked | done | rejected`
 - hành động và hiệu ứng: xem `ACTIONS`, `EFFECTS` trong `src/studio/actions.py`

@@ -13,24 +13,25 @@ AGY = pathlib.Path.home() / ".local/bin/agy"
 BRAIN = pathlib.Path.home() / ".gemini/antigravity-cli/brain"
 
 
-def gen(prompt: str, refs: list[pathlib.Path], out: pathlib.Path, tries: int = 2) -> None:
+def gen(prompt: str, refs: list[pathlib.Path], out: pathlib.Path, tries: int = 2, aspect: str = "16:9") -> None:
+    """aspect: tỉ lệ khung ảnh ("16:9" nền, "9:16" nhân vật toàn thân, "1:1" đầu)."""
     if out.exists():
         return
     for i in range(tries):  # model ảnh đôi khi chậm hoặc quá tải: thử lại
         try:
-            return _gen(prompt, refs, out)
+            return _gen(prompt, refs, out, aspect)
         except RuntimeError as e:
             print(f"lần {i + 1} lỗi: {str(e)[:160]}")
     raise RuntimeError(f"không tạo được {out.name} sau {tries} lần")
 
 
-def _gen(prompt: str, refs: list[pathlib.Path], out: pathlib.Path) -> None:
+def _gen(prompt: str, refs: list[pathlib.Path], out: pathlib.Path, aspect: str = "16:9") -> None:
     with tempfile.TemporaryDirectory() as tmp:
         for r in refs:
             shutil.copy(r, pathlib.Path(tmp) / r.name)
         see = (f"Xem các ảnh {', '.join(r.name for r in refs)} trong thư mục hiện tại và dùng chúng làm ảnh tham chiếu. "
                if refs else "")
-        p = subprocess.run([str(AGY), "-p", see + "Dùng generate_image tạo đúng 1 ảnh tỉ lệ 16:9. Prompt ảnh: " + prompt +
+        p = subprocess.run([str(AGY), "-p", see + f"Dùng generate_image tạo đúng 1 ảnh tỉ lệ {aspect}. Prompt ảnh: " + prompt +
                             " Không chạy lệnh shell; chỉ được gọi subagent image-generator (agy tạo ảnh qua nó)."
                             " Tạo xong trả lời đường dẫn file ảnh.",
                             "--model", "gemini-3.8-flash-medium", "--sandbox", "--output-format", "json",

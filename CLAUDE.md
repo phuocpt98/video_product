@@ -1,6 +1,6 @@
 # video_reup: kênh truyện YouTube + TikTok
 
-Cập nhật: 25/9/2026
+Cập nhật: 13/10/2026
 
 ## 0. Lối vào (đọc theo thứ tự, đã tự nạp)
 - Studio, bạn là ai, luật lõi: @.claude/company/README.md và @.claude/company/constitution.md
@@ -51,14 +51,14 @@ video_reup/
 │   └── research/          # nghiên cứu: repo, dịch vụ, công cụ
 │       └── trends/        # báo cáo xu hướng thị trường (trend-scout), briefs/ là đề bài từng lượt
 ├── src/                   # code pipeline
-│   ├── studio/            # phòng dựng rối cắt ghép: cutout.py (cắt bảng bộ phận), stage.py (dựng cảnh → video), direct.py (dàn cảnh: nhãn AI + luật từ khoá), tagger.py (đạo diễn gắn nhãn), actions.py (hành động + hiệu ứng dùng chung), avatar.py (ghép nhân vật từ kho bộ phận), maker/index.html (trang tạo nhân vật)
+│   ├── studio/            # phòng dựng rối cắt ghép: cutout.py (cắt bảng bộ phận), segment.py (tách lớp tóc sau/đầu/thân từ ảnh gốc bằng màu + hình thái), validate_actor.py (kiểm card + hình học diễn viên), stage.py (dựng cảnh → video), direct.py (dàn cảnh: nhãn AI + luật từ khoá), tagger.py (đạo diễn gắn nhãn), actions.py (hành động + hiệu ứng dùng chung), avatar.py (ghép nhân vật từ kho bộ phận), maker/index.html (trang tạo nhân vật)
 │   ├── common/            # dùng chung: agy.py (gọi agy), pool.py (nhóm nguồn LLM miễn phí), llm.py (GLM), imagegen.py (tạo ảnh qua agy), tts.py (VieNeu + .srt), render.py (khung, ghép, video)
 │   ├── board.py           # BẢNG VIỆC giữa các phòng: python -m src.board add-render|run|list|done
 │   ├── contracts.py       # HỢP ĐỒNG DỮ LIỆU giữa các phòng/công cụ/agent (mô tả: docs/plans/protocols.md)
 │   └── run.py             # python -m src.run <slug> --chapters 1-10 [--render]: dây chuyền theo lô (docs/plans/story-bible.md)
-├── prompts/               # [md] prompt LLM, mỗi prompt 1 file .md, tên theo bước; roles/ = file vai trò của nhân viên agy
+├── prompts/               # [md] prompt LLM, mỗi prompt 1 file .md, tên theo bước (actor_master/expression/pose = tạo diễn viên semi); roles/ = file vai trò của nhân viên agy
 ├── tests/                 # test_<module>.py
-├── scripts/               # công cụ ngoài pipeline: setup.sh + setup_models.py (khởi tạo máy mới), agy_run.py, agy_permissions.json, record_game.py, make_thumbnail.py, make_actor.py, make_props.py, make_roster.py, make_parts.py, make_extras.py (quần chúng ghép từ kho), character_maker.py (máy chủ trang tạo nhân vật, http://localhost:8765), make_tiktok.py (đoạn mồi TikTok, --auto: AI chọn khúc theo công thức), drama_pipeline.py (1 lệnh từ mô-típ đến video), make_upload.py (gói đăng YouTube: .srt gộp, thumbnail, upload.md)
+├── scripts/               # công cụ ngoài pipeline: setup.sh + setup_models.py (khởi tạo máy mới), agy_run.py, agy_permissions.json, record_game.py, make_thumbnail.py, make_actor.py, make_props.py, make_roster.py, make_parts.py, make_extras.py (quần chúng ghép từ kho), character_maker.py (máy chủ trang tạo nhân vật, http://localhost:8765), make_tiktok.py (đoạn mồi TikTok, --auto: AI chọn khúc theo công thức), drama_pipeline.py (1 lệnh từ mô-típ đến video), make_upload.py (gói đăng YouTube: .srt gộp, thumbnail, upload.md), new_actor.py (diễn viên chế độ semi: ảnh gốc → tách lớp → biểu cảm, tư thế → card đã kiểm), hub.py (bảng việc chung giữa các máy = GitHub Issues, giao thức docs/plans/collab-protocol.md)
 ├── data/                  # [md] dữ liệu nhỏ dùng chung toàn studio: actions.yaml (luật từ khoá → biểu cảm/tư thế/đạo cụ), tracking.csv (dự kiến)
 ├── assets/                # (dự kiến) KHO CHUNG toàn studio, media thuộc quyền của mình. Kênh và truyện chỉ tham chiếu, không copy
 │   ├── clips/             # clip nền lặp tự tạo (gameplay game_ideal…) + tags.json

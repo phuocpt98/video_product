@@ -42,6 +42,8 @@ Cập nhật: 26/9/2026
 | 23/9/2026 | Tài liệu viết thành file `.md` trong project, không tạo tài liệu online | — |
 | 23/9/2026 | Ngách: đô thị, hệ thống, trọng sinh làm giàu. YouTube là kênh chính (bản FULL), TikTok là phễu (10 phút đầu) | [plans/channel.md](plans/channel.md) §1, §4 |
 
+- **13/10/2026 · Hệ rối v2 và giao thức ba bên.** (1) Nhân vật mới dùng chế độ `semi`: đầu to hơn người thật một chút (đầu ≈ 1/4,5 chiều cao), mặt thanh lịch kiểu manhua, tóc dài **sau lưng**; làm lại các nhân vật tóc dài và mặt; bỏ 4 actor `*-v2` (đầu bán thân + thân chibi). (2) Bộ phận cắt bằng code từ một ảnh gốc toàn thân (`src/studio/segment.py`), không nhờ AI cắt lớp. (3) Claude xây thư viện, prompt, duyệt; Muse trên máy cloud chỉ kéo về chạy và tạo ảnh; Muse không sửa code. Kênh chung = GitHub Issues qua `scripts/hub.py` ([plans/collab-protocol.md](plans/collab-protocol.md)). Căn cứ: [research/2026-10-13-puppet-v2.md](research/2026-10-13-puppet-v2.md).
+
 ## Đang chờ Người sáng lập chốt
 
 | # | Câu hỏi | Ghi chú |

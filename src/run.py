@@ -11,7 +11,8 @@ Mỗi lô (batch_size chương, mặc định 5), lô sau chờ sổ tay của l
   F. nhóm trưởng gộp đề xuất vào sổ tay → phiên bản mới + bible/CHANGELOG.md
   G. giọng VieNeu từng chương (tuần tự). --render: ghép cả dải chương thành 1 video + mốc chương.
 
-- Mức viết lại theo story.yaml `rewrite`: light (đọc chương gốc, giữ bối cảnh + tên Hán Việt) hoặc deep.
+- Mức viết lại theo story.yaml `rewrite`: light (đọc chương gốc, giữ bối cảnh + tên Hán Việt), deep, hoặc none (kịch bản
+  nhập sẵn bằng `python -m src.drama import`: bỏ viết/duyệt, đi thẳng sang giọng đọc).
 - Bước nào đã có file đầu ra thì bỏ qua. --force <bước> làm lại bước đó và mọi bước sau.
 - LLM chạy trên agy (gói Gemini Pro cá nhân), model theo config.yaml `agents:`. Log: stories/<slug>/render/pipeline.jsonl
 """
@@ -547,6 +548,13 @@ def run(story: Story, chapters: list[int], force: set[str], workers: int) -> lis
     for n in chapters:
         batches.setdefault(story.batch_of(n), []).append(n)
     for batch, chs in batches.items():
+        if story.mode == "none":                    # kịch bản nhập sẵn (drama import): không viết/duyệt, đi thẳng sang giọng đọc
+            if miss := [n for n in chs if not story.p("edit", n).exists()]:
+                raise Stop(f"rewrite: none nhưng thiếu script/{miss[0]:03d}.txt")
+            for n in chs:
+                voice_step(story, n, force)
+            done += chs
+            continue
         parallel(card_step, chs)
         plan_step(story, batch, chs, force)
         parallel(text_step, chs)

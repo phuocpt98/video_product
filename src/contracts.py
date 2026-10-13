@@ -28,6 +28,11 @@ CONTRACTS: dict[str, dict] = {
     "avatar": {"head": str, "eyes": str, "mouth": str, "?nose": str, "?extras": list, "?skin": str, "body": dict,
                "?look": str, "?head_size": float, "?overlap": float, "?adjust": dict, "?roles": list},
     "avatar_body": {"outfit": str, "?build": "thin|normal|fat", "?colors": dict},
+    # Diễn viên rối (assets/actors/<id>/card.yaml); hình học kiểm bằng src/studio/validate_actor.py
+    "actor_card": {"id": str, "kind": "actor", "rig": dict, "heads": dict, "outfits": dict, "?gender": str,
+                   "?age": str, "?look": str, "?signature": str, "?roles": list, "?notes": str, "?made_by": str},
+    "actor_rig": {"mode": "chibi|semi|real", "head_scale": float, "overlap": float, "?chin_up": float,
+                  "?head_dx": float, "?neck_dx": dict, "?hair_back": str, "?hair_back_chin": float, "?hands": dict},
     # bảng việc
     "task": {"id": str, "from": str, "to": str, "type": str, "key": str, "need": str, "status":
              "open|doing|blocked|done|rejected", "waiting_on": list, "log": list, "?story": str, "?chapter": int,

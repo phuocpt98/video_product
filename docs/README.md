@@ -1,6 +1,6 @@
 # Mục lục tài liệu
 
-Cập nhật: 25/9/2026
+Cập nhật: 13/10/2026
 
 Quy tắc tài liệu (kể cả thứ tự tin khi mâu thuẫn): [.claude/company/playbooks/files-and-docs.md](../.claude/company/playbooks/files-and-docs.md). Luật và đội hình studio ở [.claude/company/](../.claude/company/README.md).
 
@@ -16,6 +16,7 @@ Quy tắc tài liệu (kể cả thứ tự tin khi mâu thuẫn): [.claude/comp
 
 | Tài liệu | Nội dung | Khi nào đọc |
 |---|---|---|
+| [plans/collab-protocol.md](plans/collab-protocol.md) | Giao thức ba bên Claude / Muse (máy cloud) / Người sáng lập: ai làm gì, GitHub Issues làm bảng việc chung (`scripts/hub.py`), dạng bình luận bắt buộc, luồng diễn viên mới, truyện mới, lỗi | Trước khi giao việc cho Muse hoặc nhận việc từ máy khác |
 | [plans/channel.md](plans/channel.md) | Kế hoạch kênh: 6 đối thủ, bài học kênh cũ Pel Pel, định vị, chiến lược YouTube/TikTok, kiếm tiền, rủi ro, lộ trình 90 ngày | Việc liên quan nội dung, thương hiệu, tăng trưởng |
 | [plans/agent-team.md](plans/agent-team.md) | Đội agent: Claude Code dẫn dắt (gói team, hạn chế), đội agy làm (gói Gemini Pro cá nhân). Vai trò, thang model, luật chuyển model, quyền, lộ trình. Sơ đồ: [agent-team.html](plans/agent-team.html) | Trước khi giao việc, thêm vai trò, đổi model |
 | [plans/studio-flow.html](plans/studio-flow.html) | Quy trình sản xuất hiện tại (trang HTML): luồng 4 pha, ai làm, model, file ra, số đo, việc còn thiếu, câu hỏi hướng đi | Muốn nhìn tổng quan studio đang chạy thế nào |
@@ -45,4 +46,5 @@ Quy tắc tài liệu (kể cả thứ tự tin khi mâu thuẫn): [.claude/comp
 | [research/2026-09-28-story-video-production.md](research/2026-09-28-story-video-production.md) | Các kênh làm video truyện có hình thế nào (SaaS, rối cắt ghép, quay đôi…), đề xuất cải tiến: Rhubarb lip-sync… (chưa duyệt) | Tối ưu phòng Dựng |
 | [research/2026-09-28-free-llm-apis.md](research/2026-09-28-free-llm-apis.md) | API LLM miễn phí/giá rẻ (Gemini free, GLM Flash, Groq, OpenRouter, DeepSeek, Qwen…): hạn mức, tiếng Việt/Trung, điều khoản, đề xuất phân việc (chưa duyệt, cần kiểm bằng lần gọi thật) | Thêm nhân viên xử lý chữ, tăng tốc |
 | [research/2026-09-28-zhihu-short-stories.md](research/2026-09-28-zhihu-short-stories.md) | Nguồn truyện ngắn Zhihu/番茄/七猫: nền tảng, 25 truyện nữ chính hot, 12 mô-típ, nhịp truyện, bản quyền, cách dùng truyện gốc làm tài liệu để viết truyện mới (chưa duyệt) | Chọn truyện/mô-típ drama mới |
+| [research/2026-10-13-puppet-v2.md](research/2026-10-13-puppet-v2.md) | Hệ rối v2: chẩn đoán PR #1 ("đầu" thực ra là bán thân), cắt lớp bằng màu + hình thái không cần AI, vá lego, tóc lắc bằng remap, kiểm actor, thay đồ, phân công Claude xây thư viện / Muse chạy, bộ nhập truyện Gemini (chưa duyệt) | Làm nhân vật rối mới, nối Muse vào dây chuyền |
 | [research/llm-models.md](research/llm-models.md) | So sánh model LLM cho việc khối lượng lớn (rã truyện, dịch/viết lại tiếng Việt, kiểm tra văn AI): giá Gemini/DeepSeek/Qwen/Kimi/GLM/OpenAI/Claude/Grok, OpenRouter, ước tính chi phí 1 truyện mẫu, đề xuất phân công theo bước, ngân sách tháng | Chọn model LLM cho Bước 2–3, lập ngân sách LLM |
