@@ -1,0 +1,28 @@
+id: lieu-tuyet-v2
+kind: actor
+gender: female
+look: Trà xanh, mặt tròn ngây thơ, mắt to, tóc nâu xoăn, váy hồng.
+made_by: reference-v2
+heads:
+  neutral: parts/head_neutral.png
+  smirk: parts/head_smirk.png
+  shocked: parts/head_shocked.png
+  angry: parts/head_angry.png
+  sad: parts/head_sad.png
+head_size: 0.85
+overlap: 0.12
+outfits:
+  f-white-dress:
+    bodies:
+      relaxed: parts/f-white-dress/body_relaxed.png
+      hips: parts/f-white-dress/body_hips.png
+      point: parts/f-white-dress/body_point.png
+      phone: parts/f-white-dress/body_phone.png
+rig:
+  mode: standard
+  head_size: 0.85
+  head_scale: 1.0
+  overlap: 0.12
+  chin_up: 0.0
+  head_dx: 0
+  neck_dx: {}

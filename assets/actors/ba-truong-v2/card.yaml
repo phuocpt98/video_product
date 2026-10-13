@@ -1,0 +1,28 @@
+id: ba-truong-v2
+kind: actor
+gender: female
+look: Mẹ chồng phản diện trung niên, mặt dài sắc lạnh, tóc búi, áo tím truyền thống.
+made_by: reference-v2
+heads:
+  neutral: parts/head_neutral.png
+  smirk: parts/head_smirk.png
+  shocked: parts/head_shocked.png
+  angry: parts/head_angry.png
+  sad: parts/head_sad.png
+head_size: 0.85
+overlap: 0.12
+outfits:
+  f-lady:
+    bodies:
+      relaxed: parts/f-lady/body_relaxed.png
+      hips: parts/f-lady/body_hips.png
+      point: parts/f-lady/body_point.png
+      phone: parts/f-lady/body_phone.png
+rig:
+  mode: standard
+  head_size: 0.85
+  head_scale: 1.0
+  overlap: 0.12
+  chin_up: 0.0
+  head_dx: 0
+  neck_dx: {}
