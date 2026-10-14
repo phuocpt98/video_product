@@ -165,3 +165,26 @@ def test_lock_blocks_second_run(fake):
     assert "đang được chạy" in str(cli("run", "--slug", "l"))
     (job.dir / ".lock").write_text("999999")                         # PID đã chết → khoá thừa, chạy được
     assert cli("run", "--slug", "l") == 0
+
+
+def test_folder_of_chapters_with_report(fake, tmp_path):
+    d = tmp_path / "chuong"
+    d.mkdir()
+    (d / "002.txt").write_text("Chương 2: Sau đó\n\nAnh ấy quay lại.\n=== BÁO CÁO KIỂM DUYỆT ===\n- Đã bỏ: không có",
+                               encoding="utf-8")
+    (d / "001.txt").write_text("Chương 1: Bắt đầu\n\nCô ấy đi xa.\n=== BÁO CÁO KIỂM DUYỆT ===\n- Đã sửa: x → y",
+                               encoding="utf-8")
+    assert cli("run", str(d), "--slug", "f", "--title", "Truyện Thử", "--part-chars", "30") == 0
+    job = produce.Job("f")
+    assert job.data["title"] == "Truyện Thử"
+    texts = [job.p("text", p["id"]).read_text(encoding="utf-8") for p in job.data["parts"]]
+    full = "\n".join(texts)
+    assert full.index("Chương 1") < full.index("Chương 2")
+    assert "BÁO CÁO" not in full and "Đã sửa" not in full
+    assert sorted(x.name for x in (job.dir / "source").iterdir()) == ["001.txt", "002.txt"]
+
+
+def test_folder_natural_order(tmp_path):
+    for n in (1, 2, 10):
+        (tmp_path / f"Chương {n}.txt").write_text(f"Chương {n}", encoding="utf-8")
+    assert [f.name for f in produce.story_files([tmp_path])] == ["Chương 1.txt", "Chương 2.txt", "Chương 10.txt"]

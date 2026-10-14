@@ -16,11 +16,25 @@ truyện.txt/.md/.docx
    ▼
 1. NẠP + CHIA PHẦN    mỗi phần ~2500 ký tự, cắt ở tên chương / ranh giới đoạn → stories/<slug>/parts/NNN.txt
    ▼                  (với mỗi phần, lần lượt:)
-2. GIỌNG              VieNeu-TTS → audio/NNN.mp3 + NNN.srt
+2. GIỌNG              làm sạch chữ → cắt cụm 40–250 ký tự → VieNeu-TTS từng cụm → ghép + nghỉ theo dấu câu
+                      → audio/NNN.mp3 + NNN.srt
 3. VIDEO              hoạt hình ngẫu nhiên khớp độ dài giọng → video/NNN.mp4 (đã có tiếng)
    ▼                  việc lỗi → ghi lỗi, thử lại; chạy lại lệnh = làm tiếp từ chỗ dở
 4. GHÉP + XUẤT BẢN    đủ mọi phần → output/<slug>.mp4 + <slug>.srt + upload.md
 ```
+
+## 0. Quy trình vận hành (ai làm gì, từ truyện đến lúc đăng)
+
+| Bước | Ai | Làm gì | Xong khi |
+|---|---|---|---|
+| 1. Chuẩn bị truyện | Người sáng lập (hoặc AI viết truyện) | Truyện `.txt/.md/.docx`: một file, hoặc một thư mục mỗi file một chương. Chạy từng chương qua prompt làm sạch + lọc vi phạm [`prompts/story_narration.md`](prompts/story_narration.md) (giữ nguyên truyện), đọc phần báo cáo. Chỉ dùng truyện có quyền dùng | File gửi tới máy chạy (trực tiếp, hoặc issue `need-story` qua `scripts/hub.py`) |
+| 2. Chạy | Máy chạy (Muse / Claude / người) | `git pull` rồi `python -m src.produce run <file hoặc thư mục chương> --slug <slug> --title "<Tên truyện>"` (mục 2.1) | Lệnh in `XONG` (mã thoát 0) |
+| 3. Xử lý lỗi | Máy chạy | Lệnh in `CHƯA XONG` → `status <slug>` xem lỗi → sửa theo bảng 2.6 → chạy lại `run --slug <slug>` (chỉ làm phần còn thiếu). Lỗi lạ lặp lại 2 lần → báo kèm câu lỗi + cuối `log.jsonl` (issue `bug` tới Claude) | `status` mọi việc `done` |
+| 4. Kiểm nhanh | Máy chạy | Xem `output/<slug>.mp4`: đầu, giữa, cuối mỗi phần (mốc trong `upload.md`); nghe vài câu có số, tên riêng, thoại. Phần nào hỏng → `--redo NNN` hoặc `--redo NNN:video` | Không còn đoạn hỏng |
+| 5. Giao | Máy chạy | Gửi Người sáng lập: đường dẫn `output/<slug>.mp4`, `.srt`, nội dung `upload.md`, thời lượng, thời gian chạy | Người sáng lập nhận |
+| 6. Duyệt + đăng | Người sáng lập | Xem, đặt tiêu đề/thumbnail, đăng YouTube/TikTok **bằng tay** theo nhắc trong `upload.md` | Video lên kênh |
+
+Máy không bao giờ tự đăng. `stories/` (giọng, video) không lên git; gửi file thành phẩm theo cách Người sáng lập dặn.
 
 ## 1. Cài đặt (máy mới)
 
@@ -39,7 +53,7 @@ bash scripts/setup.sh        # ffmpeg + Python venv + thư viện + model giọn
 
 **Kiểm tra cài đặt:**
 ```bash
-.venv/bin/python -m pytest -q        # phải in "32 passed" (hoặc hơn)
+.venv/bin/python -m pytest -q        # phải in "41 passed" (hoặc hơn)
 ```
 
 ## 2. Vận hành
@@ -50,11 +64,19 @@ Mọi lệnh chạy ở **gốc repo** với Python của `.venv`.
 ```bash
 .venv/bin/python -m src.produce run duong/dan/truyen.md                     # video ngang YouTube 1920x1080
 .venv/bin/python -m src.produce run truyen.docx --slug ten-truyen --size 1080x1920   # khung dọc TikTok
+.venv/bin/python -m src.produce run thu-muc-chuong/ --slug ten-truyen --title "Tên Truyện"   # mỗi file 1 chương
 ```
 
+**Trước khi chạy: làm sạch + lọc vi phạm bằng AI** (khuyên dùng, nhất là truyện dịch hoặc AI viết). Dán prompt
+[`prompts/story_narration.md`](prompts/story_narration.md) vào Gemini cho TỪNG chương, lưu kết quả thành `001.txt`,
+`002.txt`... trong một thư mục. Prompt chỉ bỏ rác (lời giới thiệu, ghi chú dịch, ký hiệu...) và sửa tối thiểu chỗ vi
+phạm (tình dục, bạo lực ghê rợn, tự hại, chính trị nhạy cảm, chửi tục nặng...), **giữ nguyên lời truyện**, và in phần
+`=== BÁO CÁO KIỂM DUYỆT ===` liệt kê từng chỗ đã sửa. Dây chuyền tự bỏ phần báo cáo khi đọc; người vận hành đọc báo cáo,
+mục "Cần tôi xem lại" khác "không có" thì xem đoạn đó trước khi chạy.
+
 **File truyện:**
-- `.txt`, `.md` hoặc `.docx` (Google Docs: Tệp → Tải xuống → .docx hoặc .txt).
-- **Dòng đầu là tiêu đề** (không được đọc thành giọng). Truyện không có tiêu đề thì thêm một dòng tiêu đề lên đầu, nếu không câu mở đầu sẽ bị coi là tiêu đề.
+- `.txt`, `.md` hoặc `.docx` (Google Docs: Tệp → Tải xuống → .docx hoặc .txt). Nhiều file hoặc một thư mục: mỗi file một chương, nối theo thứ tự tên file.
+- **Dòng đầu là tiêu đề** (không được đọc thành giọng), trừ khi dòng đầu là tên chương (`Chương 1: ...`). Truyện không có tiêu đề: dùng `--title "Tên Truyện"`, nếu không câu mở đầu ngắn có thể bị coi là tiêu đề. File ĐÃ có dòng tiêu đề thì đừng thêm `--title`, nếu không dòng tiêu đề cũ sẽ bị đọc thành giọng.
 - Các dòng như `Chương 1`, `Phần 2`, `Hồi 3` được dùng làm ranh giới chia phần.
 - Markdown (`#`, `**`) tự được bỏ trước khi đọc.
 
@@ -102,13 +124,20 @@ Mọi lệnh chạy ở **gốc repo** với Python của `.venv`.
 - Giọng có sẵn (VieNeu): Ngọc Huyền (mặc định), Trúc Ly, Quỳnh Anh, Ngọc Linh, Mai Anh, Thùy Dung, Đoan Trang, Mỹ Duyên, Kim Thanh, Ngọc Trân, Thục Đoan, Thiện Minh, Hải Đăng, Quang Sơn, Minh Đức, Thái Sơn, Thanh Bình, Minh Triết, Đức Trí, Quốc Tuấn, Xuân Vĩnh, Phạm Tuyên, Thiền Tâm Đức, Adam, Adam bựa. Mẫu nghe thử: chưa có, chạy truyện mẫu với `--voice` để nghe.
 - Tên giọng sai thì câu báo lỗi in ra danh sách giọng hợp lệ.
 
-### 2.4 Tốc độ đã đo (Mac M-series 10 nhân)
-- Giọng: khoảng 15–25 giây cho mỗi phần ~1500 ký tự.
+### 2.4 Giọng đọc (`src/common/tts.py`)
+Chốt 14/10/2026 sau thí nghiệm 3 cách (đọc từng câu / cắt cụm / đọc một mạch: tốc độ và âm thanh đo ra gần như nhau; chọn cắt cụm vì sửa lỗi tách câu, làm lại rẻ, có .srt chuẩn):
+1. **Làm sạch:** bỏ ký hiệu trang trí (`***`, `===`), link, emoji, chú thích `[1]`, gạch đầu dòng thoại; `...` → `…`; `!!!` → `!`; mở viết tắt chat viết thường đứng riêng (`ko`, `đc`, `ntn`, `trc`, `mk`, `lun`). **Số, ngày, tiền, %, đơn vị để nguyên**: VieNeu tự đọc đúng ("3.000.000đ" → "ba triệu đồng", "15/7" → "ngày mười lăm tháng bảy").
+2. **Cắt cụm:** tách câu ở `. ! ? …` (kể cả sau ngoặc kép đóng), gộp câu ngắn dưới 40 ký tự, cắt câu dài trên 250 ký tự ở `, ; :`. Mỗi dòng = một đoạn.
+3. **Đọc + ghép:** mỗi cụm đọc riêng (cache trong `audio/work_NNN/`, nhiều tiến trình song song), cắt lặng thừa, cân âm lượng, nghỉ sau cụm: `.` 0,25 s · `?!` 0,3 s · `…` 0,45 s · hết đoạn 0,6 s · sau tên chương 1,0 s; tăng tốc `speed` (mặc định 1,34), chuẩn độ to -16 LUFS. Mỗi cụm = 1 dòng `.srt`.
+Đọc theo lô (`infer_batch`) KHÔNG nhanh hơn trên CPU (VieNeu chạy ONNX tuần tự); tăng tốc chỉ bằng nhiều tiến trình (`tts_workers`).
+
+### 2.5 Tốc độ đã đo (Mac M-series 10 nhân)
+- Giọng: một tiến trình đọc nhanh khoảng 2,8 lần thời gian thực; phần ~2000 ký tự mất khoảng 25–40 giây (3 tiến trình).
 - Video: khoảng 6 lần thời gian thực ở 1080p (150 giây video dựng mất 23 giây).
-- Truyện thử 3 phần (2,4 phút video) chạy hết 1,6 phút.
+- Truyện thử 2 phần, 3500 ký tự (2,4 phút video): cả luồng 1,4 phút.
 - Máy Ubuntu 2 nhân chưa đo. Ước tính chậm hơn 3–5 lần.
 
-### 2.5 Lỗi thường gặp
+### 2.6 Lỗi thường gặp
 | Triệu chứng | Cách xử lý |
 |---|---|
 | `Voice '...' not found` | Sai tên giọng. Chạy lại với `--voice "<tên trong danh sách lỗi>"` |
@@ -274,7 +303,7 @@ tmp/                 nháp, xoá lúc nào cũng được, không lên git
 
 ## 7. Rủi ro cần biết
 - **YouTube "inauthentic content"** (từ 15/7/2025): video giọng AI trên hình lặp khuôn có thể bị tắt kiếm tiền cả kênh. Để giảm rủi ro:
-  - dùng truyện tự viết, hoặc có lời bình của người kể;
+  - dự án đọc truyện THUẦN (không viết lại, không lời bình, quyết định 14/10/2026), nên rủi ro này đã được chấp nhận; truyện tự viết là an toàn nhất;
   - mỗi video một seed (dây chuyền đã tự làm);
   - không đăng dồn;
   - khai báo nội dung có dùng AI.

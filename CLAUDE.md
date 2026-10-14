@@ -13,7 +13,7 @@ Kênh kể truyện tiếng Việt (đô thị, hệ thống, trọng sinh, dram
 
 **Ràng buộc riêng của dự án:**
 - Tránh chính sách "inauthentic content" của YouTube:
-  - nên dùng truyện tự viết hoặc đã viết lại có lời bình người kể (đọc nguyên văn truyện người khác là rủi ro bản quyền + "inauthentic")
+  - truyện đọc THUẦN, không viết lại, không lời bình (Người sáng lập chốt 14/10/2026, docs/decisions.md); chỉ làm sạch + loại yếu tố không phù hợp bằng `prompts/story_narration.md`. Rủi ro đã chấp nhận: truyện dịch/phóng tác vẫn có thể vi phạm bản quyền và bị coi là "inauthentic"
   - hình ảnh **tự tạo**
   - không dùng clip, gameplay hay phim của người khác
 - Chỉ dùng công cụ, giọng và trọng số **cho phép dùng thương mại**. edge-tts chỉ để thử nghiệm.
@@ -55,7 +55,7 @@ video_reup/
 │   ├── studio/            # hình: reel.py (HOẠT HÌNH NỀN NGẪU NHIÊN: đạo diễn random + lõi vẽ pygame không màn hình), puppet.py (ghép đầu + thân diễn viên); công cụ KHO: cutout.py (cắt bảng bộ phận), segment.py (tách lớp tóc sau/đầu/thân), validate_actor.py (kiểm diễn viên), avatar.py (ghép nhân vật từ kho bộ phận), maker/index.html (trang tạo nhân vật)
 │   ├── common/            # dùng chung: tts.py (giọng VieNeu + .srt), agy.py (gọi agy), imagegen.py (tạo ảnh qua agy, để bổ sung kho)
 │   └── contracts.py       # HỢP ĐỒNG DỮ LIỆU của kho (actor_card, avatar…), mô tả: docs/plans/protocols.md
-├── prompts/               # [md] prompt LLM, mỗi prompt 1 file .md (actor_master/expression/pose = tạo diễn viên semi); roles/ = file vai trò của nhân viên agy
+├── prompts/               # [md] prompt LLM, mỗi prompt 1 file .md (story_narration = làm sạch + lọc vi phạm truyện trước khi đọc giọng; actor_master/expression/pose = tạo diễn viên semi); roles/ = file vai trò của nhân viên agy
 ├── tests/                 # test_<module>.py; data/ = dữ liệu mẫu cho test (sample_story.txt)
 ├── scripts/               # công cụ ngoài dây chuyền: setup.sh + setup_models.py (khởi tạo máy mới, Mac/Ubuntu), agy_run.py + agy_permissions.json (giao việc lẻ cho agy), BỔ SUNG KHO: new_actor.py (ảnh gốc → diễn viên), character_maker.py (trang tạo nhân vật, http://localhost:8765), make_extras.py (quần chúng ghép từ kho), make_scene_sheet.py (bảng 3 nền → assets/scenes); hub.py (bảng việc chung giữa các máy = GitHub Issues, docs/plans/collab-protocol.md)
 ├── assets/                # (dự kiến) KHO CHUNG toàn studio, media thuộc quyền của mình. Kênh và truyện chỉ tham chiếu, không copy

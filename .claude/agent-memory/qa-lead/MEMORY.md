@@ -1,1 +1,1 @@
-- [QA checklist dự án](project-qa-checklist.md) — bẫy LLM/MCP, pipeline agy, phòng dựng studio; hạng mục chờ duyệt lại: phòng dựng 27/9, lô board/tagger 28/9, rối v2 ĐẠT 13/10 (lượt 2); produce/reel plan-muse CHƯA ĐẠT lượt 2 14/10 (2 lỗi nhỏ, chờ lượt 3)
+- [QA checklist dự án](project-qa-checklist.md) — bẫy LLM/MCP, pipeline agy, phòng dựng studio; hạng mục chờ duyệt lại: phòng dựng 27/9, lô board/tagger 28/9, rối v2 ĐẠT 13/10 (lượt 2); produce/reel plan-muse 2 lỗi lượt 2 đã sửa (a7c770d); tts cách b + thư mục chương ĐẠT lượt 3 14/10; không còn mục chờ của plan-muse

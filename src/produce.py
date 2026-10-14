@@ -29,6 +29,8 @@ import yaml
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 STORIES = ROOT / "stories"
+REPORT = "=== BÁO CÁO KIỂM DUYỆT ==="                           # prompts/story_narration.md
+EXTS = (".txt", ".md", ".docx")
 HEADING = re.compile(r"^\s*(chương|chapter|phần|hồi|quyển|tập)\s*[\dIVXLC]+\b.*$", re.I)
 
 
@@ -54,6 +56,7 @@ def read_story(path: pathlib.Path) -> str:
         else:
             sys.exit(f"Lỗi: không đọc được {path} (không phải UTF-8/UTF-16). Lưu lại file dạng UTF-8 rồi chạy lại.")
     text = text.replace("\r\n", "\n")
+    text = text.split(REPORT, 1)[0]                              # phần báo cáo kiểm duyệt của AI không đọc
     text = re.sub(r"^#+\s*", "", text, flags=re.M)              # tiêu đề markdown → dòng thường
     text = re.sub(r"[*_]{1,3}([^*_\n]+)[*_]{1,3}", r"\1", text)  # bỏ in đậm/nghiêng markdown
     return text.strip()
@@ -164,11 +167,31 @@ def change_settings(job: "Job", a) -> None:
         print(f"Chú ý: truyện đã chia theo {cur.get('part_chars')} ký tự/phần; bỏ qua --part-chars (muốn chia lại: --slug mới).")
 
 
-def create(src: pathlib.Path, slug: str | None, s: dict) -> "Job":
-    text = read_story(src)
+def story_files(srcs: list[pathlib.Path]) -> list[pathlib.Path]:
+    """File truyện theo thứ tự: thư mục → các file .txt/.md/.docx trong đó, xếp theo tên (001.txt, 002.txt...)."""
+    files = []
+    for s in srcs:
+        if s.is_dir():
+            files += sorted((f for f in s.iterdir() if f.suffix.lower() in EXTS and not f.name.startswith(".")),
+                            key=lambda f: [int(x) if x.isdigit() else x.lower() for x in re.split(r"(\d+)", f.name)])
+        elif s.exists():
+            files.append(s)
+        else:
+            sys.exit(f"Lỗi: không thấy {s}")
+    if not files:
+        sys.exit("Lỗi: không có file truyện .txt/.md/.docx nào")
+    return files
+
+
+def create(srcs: list[pathlib.Path], slug: str | None, s: dict, title: str | None = None) -> "Job":
+    files = story_files(srcs)
+    text = "\n\n".join(read_story(f) for f in files)       # mỗi file một chương, nối theo thứ tự
+    if title:
+        text = title + "\n\n" + text
     title, parts = split_story(text, int(s["part_chars"]))
     if not parts:
-        sys.exit(f"Lỗi: không đọc được chữ nào trong {src}")
+        sys.exit(f"Lỗi: không đọc được chữ nào trong {', '.join(map(str, srcs))}")
+    src = files[0] if len(files) == 1 else files[0].parent
     slug = slug or slugify(title or src.stem)
     job = Job(slug)
     sha = hashlib.sha1(text.encode()).hexdigest()[:12]
@@ -178,7 +201,8 @@ def create(src: pathlib.Path, slug: str | None, s: dict) -> "Job":
         print(f"Truyện đã nạp trước đó (stories/{slug}): làm tiếp.")
         return job
     (job.dir / "source").mkdir(parents=True, exist_ok=True)
-    shutil.copy(src, job.dir / "source" / src.name)
+    for f in files:
+        shutil.copy(f, job.dir / "source" / f.name)
     (job.dir / "parts").mkdir(exist_ok=True)
     seed0 = int(sha, 16) % (1 << 30)
     job.data = {"slug": slug, "title": title or src.stem, "source": src.name, "source_sha": sha,
@@ -349,7 +373,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Truyện → giọng + hoạt hình ngẫu nhiên → video hoàn chỉnh")
     sub = ap.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("run")
-    r.add_argument("story", nargs="?", help="file truyện .txt/.md/.docx (bỏ trống nếu làm tiếp bằng --slug)")
+    r.add_argument("--title", help="tên truyện (khi file không có dòng tiêu đề, vd. mỗi file một chương)")
+    r.add_argument("story", nargs="*", help="file truyện .txt/.md/.docx, nhiều file hoặc 1 thư mục (mỗi file 1 chương, xếp theo tên); bỏ trống nếu làm tiếp bằng --slug")
     r.add_argument("--slug")
     r.add_argument("--size", help="1920x1080 (YouTube) hoặc 1080x1920 (TikTok)")
     r.add_argument("--voice")
@@ -369,7 +394,7 @@ def main() -> int:
         return status(job)
     story, machine = load_settings(a)
     if a.story:
-        job = create(pathlib.Path(a.story), a.slug, story)
+        job = create([pathlib.Path(x) for x in a.story], a.slug, story, a.title)
     elif a.slug and Job(a.slug).data:
         job = Job(a.slug)
     else:

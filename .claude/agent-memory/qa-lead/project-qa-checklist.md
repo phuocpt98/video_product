@@ -64,5 +64,14 @@ Checklist dây chuyền src/produce.py + reel.py (nhánh plan-muse, thêm 14/10/
 - grep tham chiếu module đã xoá phải dùng `rtk proxy grep` (rtk lọc bớt kết quả), và quét cả docs/plans/collab-protocol.md (Muse đọc).
 - Ép nhánh Linux của reel: gán reel.sys giả platform=linux rồi render thật (libx264).
 
-Dây chuyền mới produce/reel (plan-muse, staged): lượt 1 CHƯA ĐẠT 14/10/2026; lượt 2 CHƯA ĐẠT 14/10 (chỉ còn: read_story thử utf-16 không BOM → file cp1258 độ dài chẵn ra chữ rác im lặng; câu lỗi khoá thiết lập khuyên --redo nhưng kiểm khoá chạy TRƯỚC redo). Chờ lượt 3.
+Dây chuyền mới produce/reel (plan-muse, staged): lượt 1 CHƯA ĐẠT 14/10/2026; lượt 2 CHƯA ĐẠT 14/10 (chỉ còn: read_story thử utf-16 không BOM → file cp1258 độ dài chẵn ra chữ rác im lặng; câu lỗi khoá thiết lập khuyên --redo nhưng kiểm khoá chạy TRƯỚC redo). Lượt 3 (a7c770d): 2 lỗi đó ĐÃ SỬA.
 - Thử giải mã nhiều bảng mã: utf-16 không BOM giải mã được MỌI chuỗi byte độ dài chẵn → luôn thử file cp1258 cả độ dài chẵn lẫn lẻ.
+
+Checklist giọng đọc tts.py clean()/chunks() (thêm 14/10/2026):
+- Từ điển viết tắt + re.I + \b phá chữ thật: "bít tết"→"biết tết", "Washington DC"→"được", "J. K. Rowling"→"gì", "Ko-rê"→"không-rê" (dấu - là ranh giới \b). Luôn thử danh sách ca: tên riêng viết hoa, từ ghép thật, gạch nối.
+- Cắt cụm ở dấu phẩy phải tránh số thập phân kiểu Việt "3,5".
+- So chunks với clean() bằng norm bỏ khoảng trắng và dấu chấm (tên chương được thêm "."), chạy trên stories/*/script/*.txt + parts/*.txt.
+- Đo loudness bản ghép: lượt 14/10 ra -23,5 LUFS (nhỏ so với YouTube -14).
+
+TTS cách (b) (staged sau a7c770d): lượt 1 CHƯA ĐẠT; lượt 2 CHƯA ĐẠT 14/10 (3 lỗi lượt 1 đã sửa; còn: thư mục chương xếp chữ cái "Chương 10" trước "Chương 2", viết tắt viết hoa mở cả giữa câu "Ông Ko"→"Ông Không", thiếu dòng decisions cho "truyện thuần không lời bình"). Lượt 3 ĐẠT 14/10/2026.
+- Nhận thư mục file: luôn thử tên không đệm số (1, 2, 10) để bắt sắp xếp theo chữ cái.
