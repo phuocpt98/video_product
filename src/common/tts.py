@@ -103,8 +103,25 @@ def _say(job) -> str:
     global _ENGINE
     sent, voice, wav = job
     if _ENGINE is None:
+        # Fix cloud đã biết (xem scripts/cloud_render.py): model đã tải sẵn ở
+        # ~/workspace/models/, không để Vieneu() tự tải từ HF Hub qua proxy lỗi.
+        import pathlib
+        for k in ("no_proxy", "NO_PROXY"):
+            os.environ[k] = "localhost,127.0.0.1"
+        MODELS = pathlib.Path.home() / "workspace/models"
         from vieneu import Vieneu
-        _ENGINE = Vieneu()
+        from vieneu._v3_turbo_engine import onnx_runtime_lite as _ort
+        _orig_fetch = _ort.OnnxV3LiteEngine._fetch
+
+        def _patched(self, repo, files, subfolder):
+            if "moss" in repo.lower():
+                d = MODELS / "moss-codec"
+                if all((d / f).exists() for f in files if not f.endswith(".json")):
+                    return d
+            return _orig_fetch(self, repo, files, subfolder)
+
+        _ort.OnnxV3LiteEngine._fetch = _patched
+        _ENGINE = Vieneu(onnx_dir=str(MODELS / "vieneu-onnx"))
     tmp = wav + ".part.wav"
     _ENGINE.save(_ENGINE.infer(sent, voice=voice), tmp)
     os.replace(tmp, wav)
@@ -156,9 +173,10 @@ def vieneu(text: str, voice: str, mp3: pathlib.Path, srt: pathlib.Path, work: pa
     sf.write(str(full), np.concatenate(parts), sr)
     write_srt(srt, cues)
     mp3.parent.mkdir(parents=True, exist_ok=True)
-    tmp = mp3.with_suffix(".part.mp3")  # ghi xong mới đổi tên: mp3 tồn tại nghĩa là bước giọng đã xong
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(full), "-af", f"atempo={speed},loudnorm=I=-16:TP=-1.5:LRA=11", "-c:a", "libmp3lame",
-                    "-b:a", "160k", str(tmp)], check=True)
+    tmp = mp3.with_suffix(".part.wav")  # ghi xong mới đổi tên: wav tồn tại nghĩa là bước giọng đã xong
+    # WAV lossless -> chỉ encode lossy 1 lần ở khâu video (tránh MP3->AAC chồng artifact)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(full), "-af", f"atempo={speed},loudnorm=I=-16:TP=-1.5:LRA=11",
+                    "-c:a", "pcm_s16le", str(tmp)], check=True)
     tmp.replace(mp3)
     return t / speed
 

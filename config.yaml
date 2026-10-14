@@ -6,5 +6,5 @@ produce:
   retries: 2             # mỗi lượt chạy, 1 việc lỗi được thử lại thêm tối đa bấy nhiêu lần
   size: 1920x1080        # 1080x1920 cho TikTok
   act_seconds: 60        # hoạt hình: cứ ~1 phút đổi nền + diễn viên
-  tts_workers: 3         # tiến trình đọc giọng song song (~1,8 GB RAM mỗi tiến trình). Máy RAM 8 GB: để 1
+  tts_workers: 1         # tiến trình đọc giọng song song (~1,8 GB RAM mỗi tiến trình). Máy RAM 8 GB: để 1 (cloud 14/10: VM 7.7GB RAM, để 3 sẽ OOM)
   video_workers: 0       # tiến trình vẽ video song song; 0 = tự chọn (số nhân - 2, tối thiểu 1)

@@ -1,7 +1,7 @@
 """DÂY CHUYỀN CHÍNH: 1 file truyện → video hoàn chỉnh. Chia việc nhỏ, việc nào lỗi thì làm lại, đủ hết thì ghép.
 
   1. Đọc truyện (.txt / .md / .docx), chia thành PHẦN khoảng `part_chars` ký tự (cắt ở ranh giới chương/đoạn).
-  2. Mỗi phần có 2 việc: GIỌNG (VieNeu → audio/NNN.mp3 + .srt) rồi VIDEO (hoạt hình ngẫu nhiên reel.py → video/NNN.mp4).
+  2. Mỗi phần có 2 việc: GIỌNG (VieNeu → audio/NNN.wav + .srt) rồi VIDEO (hoạt hình ngẫu nhiên reel.py → video/NNN.mp4).
   3. Trạng thái từng việc ghi ở stories/<slug>/tasks.json. Chạy lại cùng lệnh là LÀM TIẾP: việc xong bỏ qua, việc lỗi làm
      lại (mỗi lượt thử tối đa 1 + retries lần).
   4. Đủ mọi phần → ghép thành output/<slug>.mp4 + .srt + upload.md (tiêu đề, mốc từng phần). Đăng lên mạng làm tay.
@@ -118,7 +118,7 @@ class Job:
         tmp.replace(self.file)
 
     def p(self, kind: str, pid: str) -> pathlib.Path:
-        return {"text": self.dir / "parts" / f"{pid}.txt", "mp3": self.dir / "audio" / f"{pid}.mp3",
+        return {"text": self.dir / "parts" / f"{pid}.txt", "mp3": self.dir / "audio" / f"{pid}.wav",
                 "srt": self.dir / "audio" / f"{pid}.srt", "mp4": self.dir / "video" / f"{pid}.mp4"}[kind]
 
     def log(self, **kw):
