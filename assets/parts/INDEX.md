@@ -1,6 +1,6 @@
 # Kho bộ phận nhân vật (assets/parts/)
 
-Mục lục cho AI và người đọc, sinh tự động từ `parts.yaml` bởi `scripts/make_parts.py`. Ghép bằng `src/studio/avatar.py` theo bản thiết kế `assets/actors/<id>/avatar.yaml`.
+Mục lục cho AI và người đọc, sinh tự động từ `parts.yaml` (script `make_parts.py` ở nhánh main). Ghép bằng `src/studio/avatar.py` theo bản thiết kế `assets/actors/<id>/avatar.yaml`.
 
 ## Cách ghép
 - Lớp từ sau ra trước: **thân** (bộ đồ × vóc × tư thế) → **đầu nền** (mặt + tai + tóc) → **mắt** (đã kèm lông mày) → mũi → miệng → phụ kiện (râu, má hồng, nốt ruồi, sẹo) → kính.

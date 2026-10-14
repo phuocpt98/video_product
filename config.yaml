@@ -1,45 +1,10 @@
-# Cấu hình chung của studio. Chi tiết vai trò: docs/plans/agent-team.md
-# Thang model của từng vai trò trên agy: model đầu là mặc định; lỗi hoặc duyệt CHƯA ĐẠT thì leo lên model sau.
-# 27/9/2026: chỉ dùng Gemini. Kho Claude/GPT của gói agy nhỏ (lô 1 đã tiêu hết quota tuần), chỉ dùng tay khi thật cần.
-agents:
-  story-analyst: [gemini-3.8-flash-high, gemini-3.1-pro-high]
-  scriptwriter: [gemini-3.1-pro-high, gemini-3.1-pro-high]             # rewrite: deep. Bậc 2 = viết lại kèm góp ý
-  scriptwriter-light: [gemini-3.1-pro-high, gemini-3.1-pro-high]       # rewrite: light (đọc chương gốc, viết lại nhẹ)
-  story-lead: [gemini-3.1-pro-high, gemini-3.1-pro-high]               # lập/cập nhật sổ tay + đề cương lô
-  continuity: [gemini-3.1-pro-high, gemini-3.1-pro-high]               # nhóm trưởng kiểm mạch cả lô
-  editor: [gemini-3.8-flash-high, gemini-3.1-pro-high]
-  content-reviewer: [gemini-3.8-flash-high, gemini-3.1-pro-high]   # phải khác model đã viết (tự bỏ qua model trùng)
-  character-designer: [gemini-3.8-flash-high, gemini-3.1-pro-high]   # phòng Thiết kế: chọn bộ phận từ mục lục kho
-
-pipeline:
-  fast: true                 # BẬT 28/9 sau thử 5 chương (đều ĐẠT, nhanh ~4 lần). Chế độ nhanh khâu chữ (docs/plans/studio-org.md §3.2): máy soát, duyệt mẫu
-  fast_review_every: 5       # chế độ nhanh: duyệt AI 1/5 chương (và mọi chương máy phải gọi người soát)
-  tts_workers: 3              # giọng đọc song song theo câu (mỗi tiến trình ~1,8 GB RAM; máy 16 GB)
-  script_words:               # độ dài kịch bản 1 chương (số từ) hợp lệ, theo mức viết lại
-    deep: [800, 2600]
-    light: [1200, 4500]
-  quota_floor: 10             # % quota khung 5 giờ tối thiểu còn lại mới chạy tiếp; thấp hơn thì dừng, chạy lại sau
-  rewrite_attempts: 1         # số lần viết lại khi duyệt CHƯA ĐẠT (mỗi lần leo 1 bậc model)
-  batch_size: 5               # số chương mỗi lô (sổ tay cập nhật sau mỗi lô)
-  continuity_rounds: 2        # số vòng sửa khi kiểm mạch thấy lệch
-  workers: 3                  # số chương làm song song phần chữ (agy); giọng đọc chạy tuần tự vì nặng CPU
-
-# Nguồn LLM cho nhóm nhân viên nhiều nguồn (src/common/pool.py). Key đặt trong .env, không ghi vào đây.
-providers:
-  glm: {url: "https://api.z.ai/api/paas/v4/chat/completions", model: glm-4.7-flash, key_env: ZAI_API_KEY, cooldown: 60, extra: {thinking: {type: disabled}}}
-  gemini_api: {url: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", model: gemini-2.5-flash, key_env: GEMINI_API_KEY, cooldown: 120, extra: {reasoning_effort: none}, think: {tag: {reasoning_effort: low}}}
-  gemini_api2: {url: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", model: gemini-2.5-flash, key_env: GEMINI_API_KEY_2, cooldown: 120, extra: {reasoning_effort: none}, think: {tag: {reasoning_effort: low}}}
-  groq: {url: "https://api.groq.com/openai/v1/chat/completions", model: llama-3.3-70b-versatile, key_env: GROQ_API_KEY, cooldown: 60}
-  # nguồn miễn phí có API key chính thức (danh sách lấy từ OmniRoute 28/9/2026); tên model có thể đổi, lần gọi thật đầu tiên
-  # sẽ lộ lỗi 404/400 trong câu báo lỗi của pool → sửa model ở đây. Không dùng nguồn dùng lại gói cá nhân/không key.
-  cerebras: {url: "https://api.cerebras.ai/v1/chat/completions", model: gpt-oss-120b, key_env: CEREBRAS_API_KEY, cooldown: 60}
-  nvidia: {url: "https://integrate.api.nvidia.com/v1/chat/completions", model: deepseek-ai/deepseek-v3.1, key_env: NVIDIA_API_KEY, cooldown: 60}
-  openrouter: {url: "https://openrouter.ai/api/v1/chat/completions", model: "deepseek/deepseek-chat-v3.1:free", key_env: OPENROUTER_API_KEY, cooldown: 120}
-  siliconflow: {url: "https://api.siliconflow.com/v1/chat/completions", model: deepseek-ai/DeepSeek-V3, key_env: SILICONFLOW_API_KEY, cooldown: 60}
-  agy: {model: gemini-3.8-flash-high}
-# thứ tự nguồn theo loại việc (nguồn chưa có key tự bỏ qua; agy là chốt chặn cuối)
-pool:
-  default: [gemini_api, gemini_api2, cerebras, groq, nvidia, siliconflow, openrouter, glm, agy]   # Gemini API ~1s; GLM free chậm (~60s) nên để sau
-  tag: [gemini_api, gemini_api2, cerebras, nvidia, siliconflow, groq, openrouter, glm, agy]        # đạo diễn gắn nhãn từng câu
-  design: [gemini_api, groq, cerebras, gemini_api2, nvidia, glm, agy]                  # chọn bộ phận nhân vật (YAML ngắn)
-  card: [gemini_api, gemini_api2, siliconflow, nvidia, cerebras, glm, agy]             # rã chương tiếng Trung
+# Cấu hình dây chuyền chính (src/produce.py). Hướng dẫn: README.md
+# Giọng đọc (tên giọng, tốc độ) lấy từ channels/<channel>/channel.yaml mục tts; tham số dòng lệnh ghi đè được.
+produce:
+  channel: khoai-tay-review
+  part_chars: 2500       # cỡ 1 phần (ký tự). ~2500 ký tự ≈ 2 phút giọng ở tốc độ 1,34
+  retries: 2             # mỗi lượt chạy, 1 việc lỗi được thử lại thêm tối đa bấy nhiêu lần
+  size: 1920x1080        # 1080x1920 cho TikTok
+  act_seconds: 60        # hoạt hình: cứ ~1 phút đổi nền + diễn viên
+  tts_workers: 3         # tiến trình đọc giọng song song (~1,8 GB RAM mỗi tiến trình). Máy RAM 8 GB: để 1
+  video_workers: 0       # tiến trình vẽ video song song; 0 = tự chọn (số nhân - 2, tối thiểu 1)

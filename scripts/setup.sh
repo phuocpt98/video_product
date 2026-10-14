@@ -1,39 +1,35 @@
 #!/usr/bin/env bash
-# Khởi tạo dự án trên máy Mac mới. Chạy từ gốc repo: bash scripts/setup.sh
-# Hướng dẫn đầy đủ (kể cả bước phải làm tay): docs/setup.md
+# Khởi tạo dự án trên máy mới (macOS hoặc Ubuntu). Chạy từ gốc repo: bash scripts/setup.sh
+# Hướng dẫn đầy đủ: README.md
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-echo "== 1. Công cụ hệ thống (Homebrew)"
-command -v brew >/dev/null || { echo "Thiếu Homebrew: https://brew.sh"; exit 1; }
-for f in ffmpeg yt-dlp python@3.14; do brew list --versions "$f" >/dev/null || brew install "$f"; done
+echo "== 1. Công cụ hệ thống (ffmpeg, Python 3.11+)"
+if [ "$(uname)" = "Darwin" ]; then
+  command -v brew >/dev/null || { echo "Thiếu Homebrew: https://brew.sh"; exit 1; }
+  for f in ffmpeg python@3.14; do brew list --versions "$f" >/dev/null || brew install "$f"; done
+  PY="$(brew --prefix python@3.14)/bin/python3.14"
+else
+  if ! command -v ffmpeg >/dev/null || ! python3 -c "import venv, ensurepip" 2>/dev/null; then
+    sudo apt-get update -y && sudo apt-get install -y ffmpeg python3-venv python3-pip
+  fi
+  PY=""
+  for c in python3.13 python3.12 python3.11 python3; do      # Ubuntu 22.04 mặc định 3.10: thử bản mới hơn nếu đã cài
+    if command -v "$c" >/dev/null && "$c" -c "import sys; sys.exit(sys.version_info < (3, 11))"; then PY="$c"; break; fi
+  done
+  [ -n "$PY" ] || { echo "Cần Python 3.11+ (Ubuntu 24.04 có sẵn 3.12). Ubuntu 22.04: sudo apt install python3.11 python3.11-venv"; exit 1; }
+  "$PY" -c "import venv, ensurepip" 2>/dev/null || sudo apt-get install -y "$(basename "$PY")-venv"
+fi
+"$PY" -c "import sys; assert sys.version_info >= (3, 11), 'Cần Python 3.11+'"
 
 echo "== 2. Môi trường Python của dự án (.venv)"
-[ -d .venv ] || "$(brew --prefix python@3.14)/bin/python3.14" -m venv .venv
+[ -d .venv ] || "$PY" -m venv .venv
+.venv/bin/pip install -q --upgrade pip
 .venv/bin/pip install -q -r requirements.txt
 
-echo "== 3. Model AI chạy local vào .cache/ (VieNeu-TTS, khoảng 540 MB)"
+echo "== 3. Model giọng đọc vào .cache/ (VieNeu-TTS, khoảng 540 MB)"
 .venv/bin/python scripts/setup_models.py
 
-echo "== 4. Bí mật"
-[ -f .env ] || { cp .env.example .env; echo "Đã tạo .env từ mẫu. Tự điền key vào .env (không dán key vào chat)."; }
-
-echo "== 5. agy (Antigravity CLI, gói Gemini Pro cá nhân)"
-if [ ! -x "$HOME/.local/bin/agy" ]; then
-  echo "Chưa có agy. Cài: curl -fsSL https://antigravity.google/cli/install.sh | bash, rồi chạy 'agy' một lần để đăng nhập (xem docs/setup.md)."
-else
-  .venv/bin/python - <<'PY'
-import json, os
-p = os.path.expanduser("~/.gemini/antigravity-cli/settings.json")
-d = json.load(open(p)) if os.path.exists(p) else {}
-rules = json.load(open("scripts/agy_permissions.json"))["allow"]
-allow = d.setdefault("permissions", {}).setdefault("allow", [])
-allow += [r for r in rules if r not in allow]
-json.dump(d, open(p, "w"), indent=2)
-print("Đã gộp", len(rules), "quyền read_url vào", p)
-PY
-fi
-
-echo "== 6. Kiểm tra"
+echo "== 4. Kiểm tra"
 .venv/bin/python -m pytest -q
-echo "Xong. Việc còn làm tay: xem docs/setup.md mục 'Làm tay'."
+echo "Xong. Chạy thử: .venv/bin/python -m src.produce run tests/data/sample_story.txt --slug thu-nghiem"

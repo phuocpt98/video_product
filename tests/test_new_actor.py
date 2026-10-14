@@ -88,7 +88,7 @@ ARGS = ["--look", "x", "--hair", "y", "--outfit", "o", "--outfit-desc", "d", "--
 
 def test_rig_overlap_matches_neck_stub(tmp_path, monkeypatch):
     """B1: cằm trong figure() thấp hơn đỉnh cổ đúng 0.12 × head_h dù khung đầu cao hơn vì tóc dài."""
-    from src.studio.stage import Puppet
+    from src.studio.puppet import Puppet
     from tests.test_segment import fake_figure
     na = _real(tmp_path, monkeypatch)
     m = tmp_path / "m.png"

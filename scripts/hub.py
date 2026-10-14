@@ -1,6 +1,5 @@
 """BẢNG VIỆC CHUNG giữa các máy (Claude ở máy Người sáng lập, Muse ở máy cloud, Người sáng lập): GitHub Issues của repo,
 qua `gh`. Mỗi việc = 1 issue; nhãn `to:<bên>` cho biết ai đang cầm việc. Giao thức: docs/plans/collab-protocol.md.
-Bảng việc nội bộ một máy (board/) vẫn là src/board.py; hub chỉ cho việc phải đổi máy.
 
 python scripts/hub.py ensure-labels                              # tạo nhãn một lần cho repo
 python scripts/hub.py list [--to muse|claude|founder] [--all]    # việc đang mở

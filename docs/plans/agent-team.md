@@ -1,5 +1,7 @@
 # Kế hoạch đội agent: Claude dẫn dắt, đội agy làm
 
+> **Lịch sử (trước 14/10/2026).** Ở nhánh `plan-muse` đã bỏ đội sản xuất chữ (story-analyst, scriptwriter, editor), `src/common/llm.py` và mục `agents:` của `config.yaml`; dây chuyền hiện tại ở [README.md](../../README.md). Phần dưới giữ để tham khảo khi dựng lại đội agent.
+
 Cập nhật: 26/9/2026 · Sơ đồ trực quan: [agent-team.html](agent-team.html) (mở bằng trình duyệt)
 
 ## 1. Nguyên tắc
@@ -121,7 +123,7 @@ Cập nhật: 26/9/2026 · Sơ đồ trực quan: [agent-team.html](agent-team.h
 | 1. Runner và vai trò | `src/agents/run.py` và backend agy trong `src/common/llm.py`, mục `agents:` trong `config.yaml`, 9 file `prompts/roles/`, sửa hiến pháp §5 | `coder` (agy) viết, Điều phối lên kế hoạch, `qa-lead` duyệt | Test pass; chạy thật 1 vai trò, có leo thang giả lập; `qa-lead` kết luận ĐẠT |
 | 2. Nghiên cứu thị trường | Báo cáo xu hướng đầu tiên, sau đó chạy hằng tuần | `trend-scout`, `source-finder`, `content-reviewer` | Báo cáo có nguồn, được `content-reviewer` kết luận ĐẠT |
 | 3. Thí nghiệm 5 chương | Rã truyện, viết lại, soát; so sánh các model; tối ưu prompt | Đội sản xuất; Điều phối chấm mẫu | Bảng so sánh model theo từng bước, chốt thang model |
-| 4. Nối pipeline | TTS, dựng video, TikTok; `channel-manager` (xem §4c) | `coder` và script | Theo [technical.md](technical.md) |
+| 4. Nối pipeline | TTS, dựng video, TikTok; `channel-manager` (xem §4c) | `coder` và script | Theo [README.md](../../README.md) |
 
 ## 7. Ghi chú
 

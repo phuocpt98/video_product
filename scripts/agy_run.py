@@ -1,6 +1,6 @@
 """Chạy một vai trò trên agy với 1 brief, ghi câu trả lời ra file (việc lẻ: nghiên cứu, duyệt báo cáo).
 
-Pipeline truyện dùng src/run.py. Lõi gọi agy ở src/common/agy.py.
+Lõi gọi agy ở src/common/agy.py.
 python scripts/agy_run.py --role prompts/roles/<vai-tro>.md --brief <file> --out <file.md> [--model M] [--timeout 1800]
 """
 import argparse

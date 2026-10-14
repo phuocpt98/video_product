@@ -1,5 +1,5 @@
 """TRANG TẠO NHÂN VẬT chạy local (kiểu màn tạo nhân vật trong game): chọn đầu, mắt, miệng, mũi, phụ kiện, màu da,
-bộ đồ, vóc, màu quần áo → xem ngay → Lưu thành diễn viên (assets/actors/<id>/) dùng được trong stage.py.
+bộ đồ, vóc, màu quần áo → xem ngay → Lưu thành diễn viên (assets/actors/<id>/) dùng được ngay trong hoạt hình ngẫu nhiên (reel.py).
 Ghép ảnh do src/studio/avatar.py làm (một nguồn duy nhất), trang web chỉ để chọn và xem.
 
 python scripts/character_maker.py [--port 8765]   → mở http://localhost:8765

@@ -1,6 +1,6 @@
 # Đoàn diễn viên (thư viện rối chibi, thể loại đô thị)
 
-Nguồn: [roster.yaml](roster.yaml). Mỗi diễn viên = 1 khuôn mặt + nhiều trang phục; phân vai theo truyện ở `stories/<slug>/cast.yaml`. Tạo bằng `scripts/make_actor.py` (2 ảnh cho diễn viên mới + 1 ảnh cho mỗi bộ đồ thêm).
+Nguồn: [roster.yaml](roster.yaml). Mỗi diễn viên = 1 khuôn mặt + nhiều trang phục; phân vai theo truyện ở `stories/<slug>/cast.yaml`. (Cách tạo mới: README.md mục 4.1; script cũ `make_actor.py` ở nhánh main.) Tạo bằng `scripts/make_actor.py` (2 ảnh cho diễn viên mới + 1 ảnh cho mỗi bộ đồ thêm).
 
 | Ưu tiên | id | Kiểu nhân vật | Tuổi | Trang phục | Vai ví dụ | Đã tạo |
 |---|---|---|---|---|---|---|

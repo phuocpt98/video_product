@@ -95,7 +95,7 @@ SHEETS.update({
 })
 
 # Bản 3 (28/9/2026): nền mới cho truyện drama (nhà giàu, bệnh viện, pháp lý, mua sắm, nhà nghèo, trời và đường cho xe cộ).
-# Tạo 1 nền/ảnh bằng --single <id>, thứ tự và độ ưu tiên ở board/image_queue.yaml. Id bắt đầu "sky-" = trời, không cần sàn.
+# Tạo 1 nền/ảnh bằng --single <id>. Id bắt đầu "sky-" = trời, không cần sàn.
 SHEETS.update({
     14: ("NHÀ GIÀU", [
         ("villa-living-room", "a luxurious villa living room: big leather sofas, marble coffee table, grand staircase and a "

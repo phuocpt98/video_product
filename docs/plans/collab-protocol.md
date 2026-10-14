@@ -1,6 +1,8 @@
 # Giao thức ba bên: Claude, Muse, Người sáng lập
 
-Cập nhật: 13/10/2026 · Người sáng lập chốt hướng 13/10/2026 (Claude xây thư viện, Muse chỉ kéo về chạy)
+Cập nhật: 14/10/2026 · Người sáng lập chốt hướng 13/10/2026 (Claude xây thư viện, Muse chỉ kéo về chạy)
+
+**Từ 14/10/2026 (nhánh `plan-muse`):** việc chính của Muse là **chạy dây chuyền** theo [README.md](../../README.md) mục 2: nhận file truyện → `python -m src.produce run <file>` → `status` → làm lại việc lỗi → báo đường dẫn `output/<slug>.mp4` kèm thời lượng. Lỗi không tự xử lý được thì mở issue `to:claude` kèm đúng câu lỗi trong `status` và đoạn cuối `log.jsonl`. Muse không sửa `src/`.
 
 ## 1. Ai làm gì
 
@@ -13,7 +15,6 @@ Cập nhật: 13/10/2026 · Người sáng lập chốt hướng 13/10/2026 (Cla
 
 ## 2. Kênh: GitHub Issues là bảng việc chung
 
-- `board/` (src/board.py) chỉ dùng **trong một máy** và không lên GitHub.
 - Việc phải **đổi máy** đi qua **GitHub Issues** của repo, thao tác bằng `python scripts/hub.py` (bọc `gh`, máy nào cũng cần `gh auth login` một lần).
 - Một issue = một việc. Nhãn `to:claude | to:muse | to:founder` = ai đang cầm. Nhãn loại: `need-image | need-prompt | need-code | need-story | bug | review`.
 - Sản phẩm (ảnh, bộ phận, card) giao bằng **PR** từ nhánh `task/<số issue>-<slug>`, mô tả PR có `Closes #<số>`.
@@ -31,7 +32,7 @@ Dòng đầu của mọi bình luận kết thúc một lượt làm: `Kết lu�
 3. Claude: pull, `python -m src.studio.validate_actor <id> --preview`, xem preview. ĐẠT → merge, `hub.py done`. CHƯA ĐẠT → `hub.py reject <n> --to muse "lỗi..."`.
 4. Người sáng lập chỉ xem khi Claude gắn `to:founder` (hình quan trọng: nhân vật chính, thumbnail).
 
-**B. Truyện mới (`need-story`)**: Gemini (hoặc Người sáng lập) viết truyện dạng *tên, thể loại, tóm tắt, các phần đánh số*. Muse để file vào `stories/<slug>/source/story.md`, chạy `python -m src.drama import <slug> stories/<slug>/source/story.md` rồi `python scripts/drama_pipeline.py <slug> --full`. Thiếu diễn viên thì bảng việc nội bộ mở việc; Muse làm theo luồng A. Video ra ở `stories/<slug>/output/` (không lên git) → Muse mở issue `review` `to:founder` kèm link tải.
+**B. Truyện mới (`need-story`)**: Người sáng lập (hoặc Claude) gửi file truyện `.txt/.md/.docx` (dòng đầu là tiêu đề) qua issue `to:muse`. Muse: `git pull`, chạy `python -m src.produce run <file> --slug <slug>` theo [README.md](../../README.md) mục 2; còn việc `failed` thì đọc `status`, chạy lại `run --slug <slug>`; lỗi lặp lại thì mở `bug` `to:claude`. Xong: `hub.py handoff <n> --to founder` kèm đường dẫn `stories/<slug>/output/<slug>.mp4`, thời lượng, nội dung `upload.md` (video KHÔNG lên git; gửi file theo cách Người sáng lập dặn).
 
 **C. Lỗi (`bug`)**: Muse mở issue `to:claude`: lệnh, 30 dòng log cuối, commit đang đứng. Claude sửa trong repo, merge, `handoff` về Muse để chạy lại. Muse **không vá code**.
 

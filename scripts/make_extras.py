@@ -1,5 +1,5 @@
 """Tạo QUẦN CHÚNG (người qua đường, khách, học sinh…) bằng cách ghép ngẫu nhiên từ kho bộ phận: không tốn ảnh AI.
-Ghi ra assets/actors/qc-XX/ (đủ 8 biểu cảm, 4 tư thế). stage.py ưu tiên lấy quần chúng từ nhóm qc-*.
+Ghi ra assets/actors/qc-XX/ (đủ 8 biểu cảm, 4 tư thế). reel.py tự quét vào vòng random.
 
 python scripts/make_extras.py [--n 16] [--seed 1]
 """

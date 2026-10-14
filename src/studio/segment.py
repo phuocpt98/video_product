@@ -1,7 +1,7 @@
 """Cắt rối bằng code (không AI) từ MỘT ảnh gốc toàn thân: màu phẳng, viền mực đen, nền trắng thuần.
 
 Ra các lớp: hair_back (tóc dưới cằm, vẽ SAU thân), head_front (mặt + tóc trên cằm, vẽ TRÊN thân),
-body_<pose> (thân từ cổ xuống, có mẩu cổ kéo lên để đầu che). hair_back và head_front cùng khung (stage.py resize
+body_<pose> (thân từ cổ xuống, có mẩu cổ kéo lên để đầu che). hair_back và head_front cùng khung (puppet.py resize
 hair_back về cỡ ảnh đầu). Cách làm: docs/research/2026-10-13-puppet-v2.md §2 và §4 hướng A.
 """
 from __future__ import annotations

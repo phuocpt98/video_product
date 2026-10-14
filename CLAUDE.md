@@ -1,26 +1,26 @@
 # video_reup: kênh truyện YouTube + TikTok
 
-Cập nhật: 13/10/2026
+Cập nhật: 14/10/2026
 
 ## 0. Lối vào (đọc theo thứ tự, đã tự nạp)
 - Studio, bạn là ai, luật lõi: @.claude/company/README.md và @.claude/company/constitution.md
 - Mục lục tài liệu dự án: @docs/README.md
 - Đầu mỗi phiên: đọc [docs/progress.md](docs/progress.md). Các file khác chỉ mở khi việc cần.
-- Máy mới: làm theo [docs/setup.md](docs/setup.md) (`bash scripts/setup.sh`).
+- **Vận hành dây chuyền (truyện → video), cài máy mới, bổ sung kho: [README.md](README.md)** (nguồn chính, viết cho mọi AI).
 
 ## 1. Dự án
-Kênh review và kể truyện tiếng Việt (đô thị, hệ thống, trọng sinh). Pipeline biến **1 truyện chữ** thành **video FULL YouTube + clip TikTok + thumbnail**. Kế hoạch ở [docs/plans/](docs/plans/). Quyết định ở [docs/decisions.md](docs/decisions.md).
+Kênh kể truyện tiếng Việt (đô thị, hệ thống, trọng sinh, drama). Từ 14/10/2026 (nhánh `plan-muse`): **1 file truyện chữ → chia phần → giọng đọc + hoạt hình nền ngẫu nhiên từng phần → ghép thành 1 video hoàn chỉnh** (`python -m src.produce`). Hình KHÔNG khớp truyện, chỉ để giữ mắt; không phụ đề trên hình (chỉ .srt). Kế hoạch ở [docs/plans/](docs/plans/). Quyết định ở [docs/decisions.md](docs/decisions.md).
 
 **Ràng buộc riêng của dự án:**
 - Tránh chính sách "inauthentic content" của YouTube:
-  - kịch bản **viết lại** theo cách 拆书 + 仿写, có lời bình người kể
+  - nên dùng truyện tự viết hoặc đã viết lại có lời bình người kể (đọc nguyên văn truyện người khác là rủi ro bản quyền + "inauthentic")
   - hình ảnh **tự tạo**
   - không dùng clip, gameplay hay phim của người khác
 - Chỉ dùng công cụ, giọng và trọng số **cho phép dùng thương mại**. edge-tts chỉ để thử nghiệm.
 - Repo trong `tool/` phần lớn là GPL/AGPL hoặc không có giấy phép: **chỉ lấy ý tưởng**, tự viết code và prompt.
 - Không lặp lỗi của repo cũ `~/Documents/project/personal/tiktok_content`: cắt clip kênh khác, chạy theo số lượng, mỗi video một script.
 
-**Môi trường:** Mac Apple Silicon, Python 3.11+, ffmpeg (mã hoá phần cứng `h264_videotoolbox`).
+**Môi trường:** Mac Apple Silicon (mã hoá `h264_videotoolbox`) hoặc Ubuntu (máy cloud của Muse, `libx264`), Python 3.11+, ffmpeg. Không cần màn hình.
 
 ## 2. Bản đồ thư mục
 
@@ -29,9 +29,9 @@ Nguồn duy nhất, hook đọc khối dưới đây. Ý nghĩa các đánh dấ
 ```
 video_reup/
 ├── CLAUDE.md              # lối vào tầng dự án (file này)
-├── README.md              # giới thiệu ngắn cho GitHub (github.com/phuocpt98/video_product)
+├── README.md              # HƯỚNG DẪN VẬN HÀNH ĐẦY ĐỦ (cài, chạy, lỗi, bổ sung kho) cho người và mọi AI: nguồn chính
 ├── .gitignore             # repo GitHub chỉ giữ cấu trúc, quy tắc, code, thư viện hình (không truyện, board, media)
-├── config.yaml            # cấu hình chung của studio: thang model từng vai trò (agents:), mặc định pipeline
+├── config.yaml            # tham số dây chuyền chính (mục produce:), xem README.md §2.3
 ├── .env                   # API key. Không commit, không in ra
 ├── .env.example           # mẫu biến môi trường, không chứa giá trị thật
 ├── requirements.txt
@@ -51,17 +51,14 @@ video_reup/
 │   └── research/          # nghiên cứu: repo, dịch vụ, công cụ
 │       └── trends/        # báo cáo xu hướng thị trường (trend-scout), briefs/ là đề bài từng lượt
 ├── src/                   # code pipeline
-│   ├── studio/            # phòng dựng rối cắt ghép: cutout.py (cắt bảng bộ phận), segment.py (tách lớp tóc sau/đầu/thân từ ảnh gốc bằng màu + hình thái), validate_actor.py (kiểm card + hình học diễn viên), stage.py (dựng cảnh → video), direct.py (dàn cảnh: nhãn AI + luật từ khoá), tagger.py (đạo diễn gắn nhãn), actions.py (hành động + hiệu ứng dùng chung), avatar.py (ghép nhân vật từ kho bộ phận), maker/index.html (trang tạo nhân vật)
-│   ├── common/            # dùng chung: agy.py (gọi agy), pool.py (nhóm nguồn LLM miễn phí), llm.py (GLM), imagegen.py (tạo ảnh qua agy), tts.py (VieNeu + .srt), render.py (khung, ghép, video)
-│   ├── board.py           # BẢNG VIỆC giữa các phòng: python -m src.board add-render|run|list|done
-│   ├── contracts.py       # HỢP ĐỒNG DỮ LIỆU giữa các phòng/công cụ/agent (mô tả: docs/plans/protocols.md)
-│   └── run.py             # python -m src.run <slug> --chapters 1-10 [--render]: dây chuyền theo lô (docs/plans/story-bible.md)
-├── prompts/               # [md] prompt LLM, mỗi prompt 1 file .md, tên theo bước (actor_master/expression/pose = tạo diễn viên semi); roles/ = file vai trò của nhân viên agy
-├── tests/                 # test_<module>.py
-├── scripts/               # công cụ ngoài pipeline: setup.sh + setup_models.py (khởi tạo máy mới), agy_run.py, agy_permissions.json, record_game.py, make_thumbnail.py, make_actor.py, make_props.py, make_roster.py, make_parts.py, make_extras.py (quần chúng ghép từ kho), character_maker.py (máy chủ trang tạo nhân vật, http://localhost:8765), make_tiktok.py (đoạn mồi TikTok, --auto: AI chọn khúc theo công thức), drama_pipeline.py (1 lệnh từ mô-típ đến video), make_upload.py (gói đăng YouTube: .srt gộp, thumbnail, upload.md), new_actor.py (diễn viên chế độ semi: ảnh gốc → tách lớp → biểu cảm, tư thế → card đã kiểm), hub.py (bảng việc chung giữa các máy = GitHub Issues, giao thức docs/plans/collab-protocol.md)
-├── data/                  # [md] dữ liệu nhỏ dùng chung toàn studio: actions.yaml (luật từ khoá → biểu cảm/tư thế/đạo cụ), tracking.csv (dự kiến)
+│   ├── produce.py         # DÂY CHUYỀN CHÍNH: python -m src.produce run <truyện.txt|.md|.docx>: chia phần → giọng → video → làm lại lỗi → ghép (README.md)
+│   ├── studio/            # hình: reel.py (HOẠT HÌNH NỀN NGẪU NHIÊN: đạo diễn random + lõi vẽ pygame không màn hình), puppet.py (ghép đầu + thân diễn viên); công cụ KHO: cutout.py (cắt bảng bộ phận), segment.py (tách lớp tóc sau/đầu/thân), validate_actor.py (kiểm diễn viên), avatar.py (ghép nhân vật từ kho bộ phận), maker/index.html (trang tạo nhân vật)
+│   ├── common/            # dùng chung: tts.py (giọng VieNeu + .srt), agy.py (gọi agy), imagegen.py (tạo ảnh qua agy, để bổ sung kho)
+│   └── contracts.py       # HỢP ĐỒNG DỮ LIỆU của kho (actor_card, avatar…), mô tả: docs/plans/protocols.md
+├── prompts/               # [md] prompt LLM, mỗi prompt 1 file .md (actor_master/expression/pose = tạo diễn viên semi); roles/ = file vai trò của nhân viên agy
+├── tests/                 # test_<module>.py; data/ = dữ liệu mẫu cho test (sample_story.txt)
+├── scripts/               # công cụ ngoài dây chuyền: setup.sh + setup_models.py (khởi tạo máy mới, Mac/Ubuntu), agy_run.py + agy_permissions.json (giao việc lẻ cho agy), BỔ SUNG KHO: new_actor.py (ảnh gốc → diễn viên), character_maker.py (trang tạo nhân vật, http://localhost:8765), make_extras.py (quần chúng ghép từ kho), make_scene_sheet.py (bảng 3 nền → assets/scenes); hub.py (bảng việc chung giữa các máy = GitHub Issues, docs/plans/collab-protocol.md)
 ├── assets/                # (dự kiến) KHO CHUNG toàn studio, media thuộc quyền của mình. Kênh và truyện chỉ tham chiếu, không copy
-│   ├── clips/             # clip nền lặp tự tạo (gameplay game_ideal…) + tags.json
 │   ├── music/             # nhạc nền + file giấy phép từng bài
 │   ├── sfx/               # hiệu ứng âm thanh (tự tổng hợp hoặc có giấy phép) + LICENSE.md
 │   ├── actors/            # ĐOÀN DIỄN VIÊN chibi: roster.yaml (danh sách cần tạo), INDEX.md, <id>/card.yaml, source/, parts/<trang phục>/
@@ -73,25 +70,17 @@ video_reup/
 ├── channels/              # [md] (dự kiến) MỖI KÊNH một thư mục con = slug không dấu (khoai-tay-review…)
 │   └── <channel>/
 │       ├── channel.yaml   # tên, handle YouTube/TikTok, giọng TTS, màu, lịch đăng
-│       ├── style_card.md  # thẻ phong cách giọng kể của kênh
-│       ├── end_lines.json # kho câu chèn và câu kết của kênh
 │       └── brand/         # avatar, ảnh tham chiếu linh vật, banner, logo, intro/outro
-├── stories/               # [md] (dự kiến) MỖI TRUYỆN = 1 DỰ ÁN, thư mục con = slug không dấu
+├── stories/               # [md] MỖI TRUYỆN = 1 thư mục slug không dấu, do produce.py tạo (không lên git)
 │   └── <slug>/
-│       ├── story.yaml     # thuộc kênh nào, nguồn, trạng thái, model đã dùng, quyết định riêng của truyện
-│       ├── assets/        # tài nguyên riêng của truyện: ảnh tham chiếu nhân vật…
-│       ├── source/        # truyện chữ gốc (không sửa)
-│       ├── chapters/      # 001.txt…
-│       ├── outline/       # chapter_cards/, segments/, setting.md, character_state.md
-│       ├── bible/         # SỔ TAY TRUYỆN (nhóm trưởng giữ): bible.md, characters.md, ledger.md, CHANGELOG.md, arcs/KK.md, checks/KK.md
-│       ├── cast.yaml      # MỤC LỤC truyện → thư viện: nhân vật → diễn viên + trang phục, nền + từ khoá, nền mở đầu chương
-│       ├── storyboard/    # NNN.yaml kịch bản cảnh do direct.py sinh (sửa tay được), stage.py dựng
-│       ├── rename_map.json
-│       ├── script/        # 001.txt…
-│       ├── audio/
-│       ├── render/        # file trung gian, xoá được
-│       └── output/        # video_full.mp4, tiktok_*.mp4, thumbnail, description.txt
-├── board/                 # bảng việc: tasks/<id>.yaml, events.jsonl, inbox/ (ảnh Người sáng lập trả lời việc need-image), image_queue.yaml (hàng đợi tạo ảnh theo ưu tiên, scripts/image_queue.sh chạy)
+│       ├── tasks.json     # TRẠNG THÁI từng việc (giọng/video từng phần: todo|running|done|failed, số lần thử, lỗi)
+│       ├── log.jsonl      # nhật ký từng lần chạy việc (kể cả vết lỗi)
+│       ├── source/        # file truyện gốc đã nạp (không sửa)
+│       ├── parts/         # NNN.txt: chữ từng phần
+│       ├── audio/         # NNN.mp3 + NNN.srt; work_NNN/ = cache từng câu (xoá được)
+│       ├── video/         # NNN.mp4 (hình + giọng từng phần), NNN.plan.json (seed hoạt hình)
+│       └── output/        # <slug>.mp4 + <slug>.srt + upload.md (bản hoàn chỉnh để đăng)
+├── board/                 # (cũ, chỉ còn trên máy Mac) bảng việc của dây chuyền cũ; không dùng nữa
 ├── tool/                  # [readonly] repo tham khảo clone từ GitHub, không sửa, không import
 ├── tmp/                   # [md] nháp tạm, xoá bất cứ lúc nào
 └── .idea/                 # cấu hình IDE, không động tới

@@ -56,3 +56,13 @@ Rối v2 + drama import: lượt 1 CHƯA ĐẠT, lượt 2 ĐẠT 13/10/2026 (c�
 
 Client GLM (src/common/llm.py, scripts/glm_mcp.py, .mcp.json): lượt 1 CHƯA ĐẠT, lượt 2 ĐẠT 26/9/2026. 
 Pipeline src/run.py: lượt 1 CHƯA ĐẠT, lượt 2 ĐẠT 26/9/2026. Không còn hạng mục chờ duyệt.
+
+Checklist dây chuyền src/produce.py + reel.py (nhánh plan-muse, thêm 14/10/2026):
+- Làm tiếp (`run --slug`) phải nhận thay đổi config.yaml (tts_workers/video_workers/retries): settings lưu trong tasks.json dễ che config. Kiểm bằng stub do_voice/do_video trong scratchpad, gán P.STORIES.
+- Đổi --size/--voice giữa chừng: ffmpeg concat -c copy khác độ phân giải vẫn exit 0, ra file hỏng im lặng.
+- File mới trong tests/ (.md) phải qua hook check_file_placement (chạy hook bằng JSON stdin).
+- grep tham chiếu module đã xoá phải dùng `rtk proxy grep` (rtk lọc bớt kết quả), và quét cả docs/plans/collab-protocol.md (Muse đọc).
+- Ép nhánh Linux của reel: gán reel.sys giả platform=linux rồi render thật (libx264).
+
+Dây chuyền mới produce/reel (plan-muse, staged): lượt 1 CHƯA ĐẠT 14/10/2026; lượt 2 CHƯA ĐẠT 14/10 (chỉ còn: read_story thử utf-16 không BOM → file cp1258 độ dài chẵn ra chữ rác im lặng; câu lỗi khoá thiết lập khuyên --redo nhưng kiểm khoá chạy TRƯỚC redo). Chờ lượt 3.
+- Thử giải mã nhiều bảng mã: utf-16 không BOM giải mã được MỌI chuỗi byte độ dài chẵn → luôn thử file cp1258 cả độ dài chẵn lẫn lẻ.

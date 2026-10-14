@@ -166,7 +166,7 @@ def validate(actor_dir: pathlib.Path) -> list[str]:
 
 
 def preview(actor_dir: pathlib.Path) -> list[pathlib.Path]:
-    from src.studio.stage import Puppet
+    from src.studio.puppet import Puppet
     card = yaml.safe_load((actor_dir / "card.yaml").read_text(encoding="utf-8"))
     outs = []
     for oid, o in card["outfits"].items():

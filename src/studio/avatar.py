@@ -1,5 +1,5 @@
 """PHÒNG THIẾT KẾ NHÂN VẬT, bước 2: ghép đầu từ các lớp bộ phận (assets/parts/) theo một bản thiết kế (spec), xuất
-thành diễn viên chibi dùng ngay trong stage.py: 8 đầu biểu cảm + thân mượn từ kho trang phục + card.yaml.
+thành diễn viên chibi dùng ngay trong puppet.py: 8 đầu biểu cảm + thân mượn từ kho trang phục + card.yaml.
 
 Lớp từ sau ra trước: đầu nền (mặt + tai + tóc, đổi màu da) → mắt (kèm lông mày) → mũi → miệng → phụ kiện → kính.
 Vị trí mỗi lớp tính theo khuôn mặt tự dò từ vùng màu da (LAYOUT, đo từ cằm lên theo bề rộng mặt); chỉnh thêm từng
@@ -276,7 +276,7 @@ def chin_up(h: Image.Image) -> float:
 
 
 def figure(spec: dict, expr: str = "neutral", pose: str = "relaxed", reg: dict | None = None) -> Image.Image:
-    """Nhân vật hoàn chỉnh để xem trước (cùng cách ghép với stage.py chế độ chibi)."""
+    """Nhân vật hoàn chỉnh để xem trước (cùng cách ghép với puppet.py chế độ chibi)."""
     from src.studio.cutout import neck_top
     bd = body(spec, pose)
     h = scaled_head(spec, expr, reg)
