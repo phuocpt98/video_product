@@ -148,6 +148,21 @@ Chốt 14/10/2026 sau thí nghiệm 3 cách (đọc từng câu / cắt cụm / 
 | Việc kẹt ở `running` sau khi máy tắt | Chạy lại `run --slug <slug>`: việc dở tự quay về `todo` |
 | Video một phần trông lỗi (nhân vật méo, khung trống) | `--redo NNN:video`: dựng lại với cùng seed. Muốn hình khác thì đổi `seed` của phần đó trong `tasks.json` rồi `--redo NNN:video` |
 
+### 2.7 Bản dài ngang cho YouTube (`src/longform.py`)
+Gộp các truyện/chương đã làm xong (thường là khổ dọc cho TikTok/Facebook) thành **1 video dài 1920x1080**. **Dùng lại giọng
+đã đọc** (không đọc lại), chỉ vẽ lại hình khổ ngang theo đúng kế hoạch hoạt hình của bản dọc (cùng cảnh, cùng diễn viên).
+```bash
+.venv/bin/python -m src.longform chuong-1 chuong-2 chuong-3 --series ten-bo --title "Tên Bộ Truyện" --thumb bia.png
+.venv/bin/python -m src.longform ten-truyen            # 1 truyện nhiều phần → bản ngang của chính nó
+```
+- Slug theo **thứ tự chương**. Nhiều slug: mỗi slug là 1 chương trong mốc mô tả (`Chương N: <tên truyện>`); 1 slug: mốc theo phần.
+- Kết quả ở `stories/<series>/long/`: `<series>-full.mp4`, `.srt`, `youtube.md` (mốc chương, nhắc khi đăng), `long.json`.
+- `--thumb`: ảnh bìa **phủ** lên `--intro` giây đầu (mặc định 3), giọng vẫn chạy từ giây 0 nên hình, giọng, phụ đề khớp nhau. Ảnh dọc thì có viền đen 2 bên.
+- **Phải chạy TRƯỚC khi dọn rác** `audio/` (cần `audio/NNN.wav`, bản cũ `.mp3`, và `.srt`).
+- Âm thanh mono, mã hoá AAC đúng 1 lần; mỗi phần đệm/cắt cho bằng đúng độ dài hình nên phụ đề không trôi.
+- Dừng giữa chừng: chạy lại cùng lệnh là làm tiếp (phần đã vẽ nằm ở `long/work/`, xoá khi ghép xong).
+- Tốc độ đo trên Mac: 4 phần, 1,3 phút video mất 29 giây (không có bước giọng).
+
 ## 3. Hoạt hình ngẫu nhiên (`src/studio/reel.py`)
 
 **Cách hoạt động:**

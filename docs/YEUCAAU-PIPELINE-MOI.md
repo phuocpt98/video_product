@@ -18,12 +18,13 @@ Sau khi từng chương gen xong:
 - **TikTok**: upload qua browser session (skill `local-tiktok-post`), caption + hashtag riêng, KHÔNG copy từ Facebook
 - Mỗi nền tảng giãn cách 2-3 tiếng giữa các tập (bài học: đăng dồn bị bóp reach)
 
-### 3. Ghép bản dài ngang cho YouTube
-- Ghép tất cả chương trong batch thành 1 video ngang 1920x1080
-- Cách ghép: **xếp 3 khung hình dọc cạnh nhau** (mỗi khung 640x1080) thành 1 frame ngang 1920x1080 — KHÔNG dùng nền mờ blur 2 bên
-- Nếu số chương không chia hết cho 3: khung thừa để trống đen hoặc lặp lại khung cuối
-- Audio: nối tiếp các chương, giữ nguyên mono, không re-encode thừa
-- Thêm intro chung đầu video (thumbnail tổng của cả bộ, 3s)
+### 3. Bản dài ngang cho YouTube (ĐÃ LÀM 15/10/2026: `python -m src.longform`, README.md §2.7)
+- Người sáng lập chốt 15/10/2026: **dùng lại giọng đã đọc, vẽ lại hình khổ ngang 1920x1080** (cùng kế hoạch hoạt hình với
+  bản dọc), KHÔNG ghép 3 khung dọc (3 khung lệch nội dung với giọng, hình nhỏ, giống nội dung ghép lại → rủi ro
+  "inauthentic content", và vẫn phải mã hoá lại hình nên không rẻ hơn)
+- Audio: nối tiếp các chương, mono, mã hoá AAC 1 lần
+- Ảnh bìa tổng phủ 3 giây đầu (`--thumb`), giọng chạy từ giây 0
+- Phải chạy TRƯỚC bước dọn rác `audio/`
 
 ### 4. Đăng YouTube
 - Upload bản dài qua YouTube Data API v3 (credentials đã có: `~/.youtube_oauth_env`, refresh token `~/.youtube_refresh_token`)

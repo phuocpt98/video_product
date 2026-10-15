@@ -1,6 +1,6 @@
 # Quyết định dự án
 
-Cập nhật: 14/10/2026
+Cập nhật: 15/10/2026
 
 Đây là nguồn đúng cao nhất: tài liệu nào mâu thuẫn với file này thì sửa tài liệu đó. Quyết định mới thêm vào đầu bảng "Đã chốt", ghi kèm ngày.
 
@@ -8,6 +8,7 @@ Cập nhật: 14/10/2026
 
 | Ngày | Quyết định | Chi tiết ở |
 |---|---|---|
+| 15/10/2026 | **Bản dài ngang YouTube: dùng lại giọng đã đọc, vẽ lại hình khổ 1920x1080** (cùng kế hoạch hoạt hình với bản dọc), không ghép 3 khung dọc cạnh nhau (3 khung lệch nội dung với giọng, hình nhỏ, giống nội dung ghép lại → rủi ro "inauthentic content", vẫn phải mã hoá lại hình). Ảnh bìa phủ lên giây đầu, không chèn thêm. Người sáng lập chốt | [README.md](../README.md) §2.7, `src/longform.py`, [YEUCAAU-PIPELINE-MOI.md](YEUCAAU-PIPELINE-MOI.md) §3 |
 | 14/10/2026 | **Truyện THUẦN: không viết lại, không lời bình.** Trước khi đọc giọng, AI chỉ làm sạch (bỏ rác) và loại yếu tố không phù hợp ở mức tối thiểu, theo `prompts/story_narration.md` (prompt không nhắc nền tảng đăng: "tôi tải về tự đọc, bạn review"). Người sáng lập chấp nhận đánh đổi: rủi ro bản quyền và "inauthentic content" khi đọc truyện dịch/phóng tác (thay ràng buộc cũ "viết lại có lời bình") | [prompts/story_narration.md](../prompts/story_narration.md), README §0–2.1 |
 | 14/10/2026 | **Giọng đọc: cắt cụm (cách b).** Thí nghiệm 3 cách trên cùng đoạn 1435 ký tự (đọc từng câu / cắt cụm 40–250 ký tự + nghỉ theo dấu câu / một mạch): tốc độ 19,5–21,9 giây, số chỗ nghỉ và độ đều âm lượng gần như nhau; chọn cắt cụm vì sửa lỗi dính câu sau ngoặc kép, làm lại rẻ, có .srt chuẩn. Số/ngày/tiền để VieNeu tự chuẩn hoá. `infer_batch` không nhanh hơn trên CPU. Người sáng lập chốt | [README.md](../README.md) §2.4, `src/common/tts.py` |
 | 14/10/2026 | **Đổi hướng (nhánh `plan-muse`): truyện chữ đọc thẳng bằng giọng VieNeu + hoạt hình nền NGẪU NHIÊN (không khớp truyện), không phụ đề trên hình (chỉ .srt).** Muse làm hình khớp truyện quá kém. Một lệnh `python -m src.produce run <file>`: chia phần → giọng → video → làm lại việc lỗi → ghép. Lõi vẽ pygame không màn hình (đo: nhanh hơn Pillow ~3,5 lần, hơn quay trình duyệt ~10 lần). Mỗi hồi ~1 phút (Người sáng lập chọn). Bỏ dây chuyền viết lại bằng AI và dàn cảnh theo truyện (còn ở nhánh main). Hướng dẫn vận hành duy nhất: README.md gốc, viết cho mọi AI. Thay quyết định 26/9 (video nền = clip game lặp) và câu 10 | [README.md](../README.md), [research/2026-10-14-random-animation.md](research/2026-10-14-random-animation.md) |

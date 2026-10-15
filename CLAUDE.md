@@ -1,6 +1,6 @@
 # video_reup: kênh truyện YouTube + TikTok
 
-Cập nhật: 14/10/2026
+Cập nhật: 15/10/2026
 
 ## 0. Lối vào (đọc theo thứ tự, đã tự nạp)
 - Studio, bạn là ai, luật lõi: @.claude/company/README.md và @.claude/company/constitution.md
@@ -52,6 +52,7 @@ video_reup/
 │       └── trends/        # báo cáo xu hướng thị trường (trend-scout), briefs/ là đề bài từng lượt
 ├── src/                   # code pipeline
 │   ├── produce.py         # DÂY CHUYỀN CHÍNH: python -m src.produce run <truyện.txt|.md|.docx>: chia phần → giọng → video → làm lại lỗi → ghép (README.md)
+│   ├── longform.py        # BẢN DÀI NGANG YouTube: python -m src.longform <slug>...: dùng lại giọng đã có, vẽ lại hình 1920x1080, ghép 1 video (README.md §2.7)
 │   ├── studio/            # hình: reel.py (HOẠT HÌNH NỀN NGẪU NHIÊN: đạo diễn random + lõi vẽ pygame không màn hình), puppet.py (ghép đầu + thân diễn viên); công cụ KHO: cutout.py (cắt bảng bộ phận), segment.py (tách lớp tóc sau/đầu/thân), validate_actor.py (kiểm diễn viên), avatar.py (ghép nhân vật từ kho bộ phận), maker/index.html (trang tạo nhân vật)
 │   ├── common/            # dùng chung: tts.py (giọng VieNeu + .srt), agy.py (gọi agy), imagegen.py (tạo ảnh qua agy, để bổ sung kho)
 │   └── contracts.py       # HỢP ĐỒNG DỮ LIỆU của kho (actor_card, avatar…), mô tả: docs/plans/protocols.md
@@ -79,7 +80,8 @@ video_reup/
 │       ├── parts/         # NNN.txt: chữ từng phần
 │       ├── audio/         # NNN.mp3 + NNN.srt; work_NNN/ = cache từng câu (xoá được)
 │       ├── video/         # NNN.mp4 (hình + giọng từng phần), NNN.plan.json (seed hoạt hình)
-│       └── output/        # <slug>.mp4 + <slug>.srt + upload.md (bản hoàn chỉnh để đăng)
+│       ├── output/        # <slug>.mp4 + <slug>.srt + upload.md (bản hoàn chỉnh để đăng)
+│       └── long/          # bản dài ngang của src.longform: <series>-full.mp4 + .srt + youtube.md + long.json; work/ = hình từng phần đang vẽ (tự xoá khi xong)
 ├── board/                 # (cũ, chỉ còn trên máy Mac) bảng việc của dây chuyền cũ; không dùng nữa
 ├── tool/                  # [readonly] repo tham khảo clone từ GitHub, không sửa, không import
 ├── tmp/                   # [md] nháp tạm, xoá bất cứ lúc nào
