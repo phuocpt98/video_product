@@ -103,13 +103,15 @@ def _say(job) -> str:
     global _ENGINE
     sent, voice, wav = job
     if _ENGINE is None:
-        # Fix cloud đã biết (xem scripts/cloud_render.py): model đã tải sẵn ở
+        from vieneu import Vieneu
+        MODELS = pathlib.Path.home() / "workspace/models"
+        if not (MODELS / "vieneu-onnx").is_dir():          # máy thường (Mac...): model trong .cache/, tự tải
+            _ENGINE = Vieneu()
+            return _say(job)
+        # Máy cloud của Muse (xem scripts/cloud_render.py): model đã tải sẵn ở
         # ~/workspace/models/, không để Vieneu() tự tải từ HF Hub qua proxy lỗi.
-        import pathlib
         for k in ("no_proxy", "NO_PROXY"):
             os.environ[k] = "localhost,127.0.0.1"
-        MODELS = pathlib.Path.home() / "workspace/models"
-        from vieneu import Vieneu
         from vieneu._v3_turbo_engine import onnx_runtime_lite as _ort
         _orig_fetch = _ort.OnnxV3LiteEngine._fetch
 
