@@ -215,3 +215,9 @@ final.mp4 8.02s. Áp dụng từ Tập 2 (Tập 1 đã render xong nguyên khố
 - NGUYÊN NHÂN (tại gốc): `add_intro.py` v1 tạo 3s intro với audio im lặng STEREO (`anullsrc=cl=stereo`), rồi concat `-c copy` với audio chính MONO → channel layout bị vỡ, player đọc lệch kênh (loa phải thành tiếng rè).
 - KHẮC PHỤC (tại gốc): viết lại `add_intro.py` — intro chỉ có hình (`-an`, không audio), audio lấy trực tiếp từ video gốc (`-map 1:a -c:a copy`) giữ nguyên mono; thumbnail 1s + voice từ giây 0. Verify: output ffprobe channels=1.
 - QUY TẮC: không bao giờ concat audio khác channel layout bằng `-c copy`.
+
+## Quy tắc nhân vật hỏng (2026-10-18)
+- Mọi character mới tạo bằng `new_actor.py` PHẢI chạy `python -m src.studio.validate_actor <id>` và ĐẠT trước khi đưa vào kho.
+- Nếu CHƯA ĐẠT: hoặc sửa asset cho đạt, hoặc thêm id vào `SKIP_ACTORS` trong `src/studio/reel.py` ngay lập tức.
+- `SKIP_ACTORS` hiện tại: `{"uyen-thanh"}` (head là mảnh vụn, body váy cưới thiếu thân trên — lỗi cắt từ 13/10/2026).
+- Chi tiết lỗi: xem `docs/VAN-DE-NHAN-VAT-PUPPET.md` Lỗi 9.

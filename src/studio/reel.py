@@ -29,6 +29,10 @@ import yaml  # noqa: E402
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 FONT = ROOT / "assets/fonts/BeVietnamPro-ExtraBold.ttf"
 SKIP_SCENES = {"sky-day", "sky-night"}          # nền không có mặt đất
+# Diễn viên HỎNG (không dùng): asset bị lỗi, render ra nhân vật không đầu/khuyết thân.
+# - uyen-thanh (2026-10-18): head_*.png chỉ là mảnh vụn (không phải đầu), body f-wedding-dress
+#   thiếu thân trên — do new_actor.py cắt sai từ source. validate_actor báo CHƯA ĐẠT.
+SKIP_ACTORS = {"uyen-thanh"}
 HEADS = ("neutral", "smirk", "shocked", "angry", "sad")
 THEMES = [(255, 196, 0), (255, 92, 120), (64, 196, 255), (120, 220, 90), (190, 120, 255)]   # màu dải chuyển hồi
 TINTS = {"day": None, "sunset": (255, 205, 160), "night": (120, 140, 210)}
@@ -58,7 +62,8 @@ BEATS = {
 
 
 def library() -> tuple[list[str], list[str]]:
-    actors = sorted(p.parent.name for p in (ROOT / "assets/actors").glob("*/card.yaml"))
+    actors = sorted(p.parent.name for p in (ROOT / "assets/actors").glob("*/card.yaml")
+                    if p.parent.name not in SKIP_ACTORS)
     scenes = sorted(p.parent.name for p in (ROOT / "assets/scenes").glob("*/card.yaml")
                     if p.parent.name not in SKIP_SCENES)
     return actors, scenes
