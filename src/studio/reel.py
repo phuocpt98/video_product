@@ -31,8 +31,9 @@ FONT = ROOT / "assets/fonts/BeVietnamPro-ExtraBold.ttf"
 SKIP_SCENES = {"sky-day", "sky-night"}          # nền không có mặt đất
 # Diễn viên HỎNG (không dùng): asset bị lỗi, render ra nhân vật không đầu/khuyết thân.
 # - uyen-thanh (2026-10-18): head_*.png chỉ là mảnh vụn (không phải đầu), body f-wedding-dress
+# - uyen-thanh-lego (2026-10-19): head_full.png/lego_mai.png là ảnh ghép 2 mảnh (voan/tóc sau + mặt), chưa có code lắp ráp lego — render ra "vương miện đen" trên đầu
 #   thiếu thân trên — do new_actor.py cắt sai từ source. validate_actor báo CHƯA ĐẠT.
-SKIP_ACTORS = {"uyen-thanh"}
+SKIP_ACTORS = {"uyen-thanh", "uyen-thanh-lego"}
 HEADS = ("neutral", "smirk", "shocked", "angry", "sad")
 THEMES = [(255, 196, 0), (255, 92, 120), (64, 196, 255), (120, 220, 90), (190, 120, 255)]   # màu dải chuyển hồi
 TINTS = {"day": None, "sunset": (255, 205, 160), "night": (120, 140, 210)}

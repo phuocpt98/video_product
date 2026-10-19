@@ -82,3 +82,10 @@
   File sửa: `assets/actors/nu-khichat/parts/f-wedding-dress/body_relaxed.png`. Verify bằng composite `Puppet.figure('relaxed','neutral')`: hết voan, cằm nối liền cổ-váy.
 - **Bake vào pipeline:** Không sửa code (lỗi ở asset, không phải renderer). Quy tắc mới trong WORKFLOW.md: body asset mới PHẢI kiểm tra không có chi tiết nào vượt quá mép trên vùng cổ (voan, tóc, phụ kiện chĩa lên) — vì `neck_top()` và vị trí đầu đều tính từ mép trên này; chi tiết thừa sẽ lòi ra sau đầu.
 - **Video bị ảnh hưởng:** `hien-than-tap1` Part 002 (có f-wedding-dress trong plan) → regen `--redo 002:video` với asset đã sửa.
+
+## Lỗi 11 (2026-10-19): Nhân vật uyen-thanh-lego render "vương miện đen" trên đầu
+- **Lỗi:** Trong video `hien-than-tap1` (Part 002, regen lần 1), nhân vật nữ mặc váy cưới xuất hiện vật đen như vương miện trên đầu (có họa tiết voan trắng). 
+- **Nguyên nhân gốc:** Asset character `assets/actors/uyen-thanh-lego/` là WIP dở dang từ 13/10/2026 (ý tưởng "lego 4 mảnh" — mặt/mái/tóc sau/thân tách rời), nhưng các file PNG thực tế lại là ẢNH GHÉP NHIỀU MẢNH xếp dọc: `head_full.png` (voan+tóc sau ở trên, mặt+mái ở dưới), `lego_mai.png` (voan ở trên, mái ở dưới), `lego_mat.png` (mái ở trên, mặt trọc ở dưới). Card.yaml trỏ `heads.neutral` thẳng vào `head_full.png` mà KHÔNG có code nào cắt/lắp ráp các mảnh lego → `puppet.py` đặt nguyên ảnh ghép, phần voan/tóc sau ở trên lòi lên trên đầu thành "vương miện". Actor chưa từng qua `validate_actor`.
+- **Khắc phục:** Thêm `"uyen-thanh-lego"` vào `SKIP_ACTORS` trong `src/studio/reel.py` (cùng pattern Lỗi 9). Không cố sửa asset vì không có spec lắp ráp gốc — các mảnh lego đã duyệt nằm ở `reference/lego-v2/uyen-thanh/`, là luồng riêng.
+- **Bake vào pipeline:** Đã sửa `src/studio/reel.py`. Cập nhật WORKFLOW.md: actor "lego" WIP chưa có code lắp ráp thì cấm vào kho.
+- **Bài học:** Đừng để actor WIP lọt vào `assets/actors/` (library tự động quét `*/card.yaml`) — chỉ đưa vào khi đã `validate_actor` ĐẠT.
