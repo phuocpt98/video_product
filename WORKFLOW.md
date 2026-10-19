@@ -221,3 +221,8 @@ final.mp4 8.02s. Áp dụng từ Tập 2 (Tập 1 đã render xong nguyên khố
 - Nếu CHƯA ĐẠT: hoặc sửa asset cho đạt, hoặc thêm id vào `SKIP_ACTORS` trong `src/studio/reel.py` ngay lập tức.
 - `SKIP_ACTORS` hiện tại: `{"uyen-thanh"}` (head là mảnh vụn, body váy cưới thiếu thân trên — lỗi cắt từ 13/10/2026).
 - Chi tiết lỗi: xem `docs/VAN-DE-NHAN-VAT-PUPPET.md` Lỗi 9.
+
+## Quy tắc asset body mới (2026-10-19, từ Lỗi 10)
+- Body asset (thân không đầu) KHÔNG được có chi tiết nào vượt quá mép trên vùng cổ: voan, tóc, khăn, phụ kiện chĩa lên trên. Lý do: `neck_top()` trong `cutout.py` tìm mép trên đầu tiên ở dải giữa thân để đặt đầu — chi tiết thừa sẽ (1) làm sai anchor, (2) lòi ra phía trên/sau đầu khi render (đầu nhỏ hơn chi tiết thừa).
+- Cách kiểm tra nhanh sau khi tạo body mới: `python -m src.studio.validate_actor <id>` + composite thử `Puppet.figure('relaxed','neutral')` xem có vật lạ trên đầu không.
+- Chi tiết: xem `docs/VAN-DE-NHAN-VAT-PUPPET.md` Lỗi 10 (voan cô dâu nu-khichat).

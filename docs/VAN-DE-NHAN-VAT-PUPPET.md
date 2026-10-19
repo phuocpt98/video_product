@@ -71,3 +71,14 @@
 - **Khắc phục:** Thêm `SKIP_ACTORS = {"uyen-thanh"}` trong `src/studio/reel.py`, filter trong `library()` (theo đúng pattern `SKIP_SCENES` có sẵn). Nhân vật hỏng không bao giờ được chọn vào cast nữa.
 - **Bake vào pipeline:** Đã sửa `src/studio/reel.py` (thêm SKIP_ACTORS + filter trong library()). Regenerate Part 002 của chong-tieutam-tap3 với seed mới để có plan không chứa uyen-thanh.
 - **Bài học:** Mọi character mới tạo bằng `new_actor.py` PHẢI chạy `validate_actor` và ĐẠT trước khi đưa vào kho dùng chung. Nếu CHƯA ĐẠT thì hoặc sửa asset, hoặc thêm vào SKIP_ACTORS ngay.
+
+## Lỗi 10 (2026-10-19): Voan cô dâu của nu-khichat chĩa lên trên đầu như "mũ đen thứ hai"
+- **Lỗi:** Trong video `hien-than-tap1` (Part 002, timestamp ~138-141s), nhân vật nữ mặc váy cưới (actor `nu-khichat`, outfit `f-wedding-dress`, pose `relaxed`) xuất hiện vật đen lạ phía trên đầu — nhìn như đội thêm một cái mũ/vương miện đen thứ hai. Lỗi persistent (không phải frame chuyển động), thấy rõ trong scene tối.
+- **Nguyên nhân gốc:** Asset body `assets/actors/nu-khichat/parts/f-wedding-dress/body_relaxed.png` được AI-gen kèm voan cô dâu chĩa LÊN TRÊN từ vùng cổ (thay vì rủ xuống như voan thật). Trong `puppet.py`, đầu được vẽ ĐÈ LÊN thân, nhưng đầu nhỏ hơn phạm vi voan → phần voan trên cùng lòi ra trên/sau đầu. Trong scene tối + tint đêm, voan trắng mờ hiện thành khối đen. Bonus: `neck_top()` trong `cutout.py` cũng bị voan đánh lừa (trả về y=0 là đỉnh voan thay vì đỉnh cổ).
+- **Khắc phục (tại gốc, sửa asset):**
+  1. Xóa toàn bộ voan: với mỗi hàng y<120, chỉ giữ lại cột da cổ (detect màu da), erase mọi pixel ngoài cột cổ → hết voan.
+  2. Rút ngắn cổ 15px (xóa 15 hàng trên cùng): cổ body wedding dài hơn các outfit khác (~62px vs ~40px của f-evening), khiến chỗ nối cằm-cổ-váy bị hở.
+  3. Fill khoảng trong suốt giữa chân cổ và cổ áo váy bằng màu da cho liền mạch.
+  File sửa: `assets/actors/nu-khichat/parts/f-wedding-dress/body_relaxed.png`. Verify bằng composite `Puppet.figure('relaxed','neutral')`: hết voan, cằm nối liền cổ-váy.
+- **Bake vào pipeline:** Không sửa code (lỗi ở asset, không phải renderer). Quy tắc mới trong WORKFLOW.md: body asset mới PHẢI kiểm tra không có chi tiết nào vượt quá mép trên vùng cổ (voan, tóc, phụ kiện chĩa lên) — vì `neck_top()` và vị trí đầu đều tính từ mép trên này; chi tiết thừa sẽ lòi ra sau đầu.
+- **Video bị ảnh hưởng:** `hien-than-tap1` Part 002 (có f-wedding-dress trong plan) → regen `--redo 002:video` với asset đã sửa.
